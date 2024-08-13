@@ -21,7 +21,7 @@ import {
 } from './Components/styledComponents/styledContainer';
 import NewProjectForm from './Components/NewProjectForm';
 import DeleteIcon from '@mui/icons-material/Delete';
-import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
+import AddchartIcon from '@mui/icons-material/Addchart';
 import EditIcon from '@mui/icons-material/Edit';
 import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
 import { useReactToPrint } from 'react-to-print';
@@ -222,14 +222,15 @@ const App: React.FC = () => {
             ))}
           </StyledSelect>
         </FormControl>
-
-        <Tooltip title="Print">
+        
+        <Tooltip title="Add New Project">
           <IconButton
             color="primary"
-            onClick={handlePrintClick}
+            onClick={handleAddProject}
             disabled={isAddingProject || isEditing}
+            sx={{ '&:hover svg': { transform: 'scale(1.2)' }, transition: 'transform 0.3s',color: 'rgba(4, 36, 106, 1)' }}
           >
-            <PictureAsPdfIcon />
+            <AddchartIcon />
           </IconButton>
         </Tooltip>
         <Tooltip title="Edit Project">
@@ -237,26 +238,29 @@ const App: React.FC = () => {
             color="primary"
             onClick={handleEditProject}
             disabled={isAddingProject || isEditing}
+            sx={{ '&:hover svg': { transform: 'scale(1.2)' }, transition: 'transform 0.3s',color: 'rgba(4, 36, 106, 1)' }}
           >
             <EditIcon />
           </IconButton>
         </Tooltip>
-        <Tooltip title="Add New Project">
-          <IconButton
-            color="primary"
-            onClick={handleAddProject}
-            disabled={isAddingProject || isEditing}
-          >
-            <AddCircleOutlineIcon />
-          </IconButton>
-        </Tooltip>
         <Tooltip title="Delete Project">
           <IconButton
-            color="error"
+            color="primary"
             onClick={() => openDeleteDialog(currentProject?.id)}
             disabled={isAddingProject || isEditing}
+            sx={{ '&:hover svg': { transform: 'scale(1.2)' }, transition: 'transform 0.3s',color: 'rgba(4, 36, 106, 1)' }}
           >
             <DeleteIcon />
+          </IconButton>
+        </Tooltip>
+        <Tooltip title="Print">
+          <IconButton
+            color="primary"
+            onClick={handlePrintClick}
+            disabled={isAddingProject || isEditing}
+            sx={{ '&:hover svg': { transform: 'scale(1.2)' }, transition: 'transform 0.3s',color: 'rgba(4, 36, 106, 1)' }}
+          >
+            <PictureAsPdfIcon />
           </IconButton>
         </Tooltip>
       </Box>

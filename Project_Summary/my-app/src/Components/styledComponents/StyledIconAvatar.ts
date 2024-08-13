@@ -22,7 +22,7 @@ export const StyledIconGreyBackground = styled(Box)`
   height: 40px; // Size for the background circle
   border-radius: 50%;
   background-color: #D3D3D3; // Grey background
-  color: blue; // Inherit color from parent or set a default color
+  color: rgba(4, 36, 106, 1); // Inherit color from parent or set a default color
   flex-shrink: 0; // Prevent shrinking
   
 `;
