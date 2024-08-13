@@ -6,10 +6,10 @@ import {
   BudgetRow,
   BudgetContainer,
   ActualBudgetValueBox,
-  PlannedBudgetValueBox
+  PlannedBudgetValueBox,
 } from './styledComponents/styledContainer';
 import { Field } from 'react-final-form';
-import { TextField } from '@mui/material';
+import { TextField, Box } from '@mui/material';
 
 type Budget = {
   actual?: number;
@@ -18,12 +18,13 @@ type Budget = {
 
 interface BudgetSectionProps {
   budget: Budget;
+  roi?: string;
   mode: 'view' | 'edit';
 }
 
-const BudgetSection: React.FC<BudgetSectionProps> = ({ budget, mode }) => {
-  const actualBudget = budget.actual ?? 0; // Default to 0 if undefined
-  const plannedBudget = budget.planned ?? 0; // Default to 0 if undefined
+const BudgetSection: React.FC<BudgetSectionProps> = ({ budget, roi, mode }) => {
+  const actualBudget = budget.actual;
+  const plannedBudget = budget.planned;
 
   return (
     <LowerSection
@@ -32,58 +33,85 @@ const BudgetSection: React.FC<BudgetSectionProps> = ({ budget, mode }) => {
       data={[budget]}
       renderItem={() => (
         <BudgetContainer>
-          <BudgetRow>
-            <CalibriText12Navy>Actual:</CalibriText12Navy>
-            {mode === 'edit' ? (
-              <Field name="budget.actual" initialValue={budget.actual}>
-                {({ input, meta }) => (
-                  <TextField
-                    {...input}
-                    variant="standard"
-                    type="number"
-                    fullWidth
-                    error={meta.touched && meta.error}
-                    helperText={meta.touched && meta.error}
-                    style={{ marginLeft: '8px' }}
-                  />
-                )}
-              </Field>
-            ) : (
-              <ActualBudgetValueBox
-                isActual={true}
-                budget_actual_usd={actualBudget}
-                budget_planned_usd={plannedBudget}
-              >
-                {budget.actual ? `${budget.actual} USD` : 'N/A'}
-              </ActualBudgetValueBox>
-            )}
-          </BudgetRow>
-          <BudgetRow>
-            <CalibriText12Navy>Planned:</CalibriText12Navy>
-            {mode === 'edit' ? (
-              <Field name="budget.planned" initialValue={budget.planned}>
-                {({ input, meta }) => (
-                  <TextField
-                    {...input}
-                    variant="standard"
-                    type="number"
-                    fullWidth
-                    error={meta.touched && meta.error}
-                    helperText={meta.touched && meta.error}
-                    style={{ marginLeft: '8px' }}
-                  />
-                )}
-              </Field>
-            ) : (
-              <PlannedBudgetValueBox
-                isActual={false}
-                budget_actual_usd={actualBudget}
-                budget_planned_usd={plannedBudget}
-              >
-                {budget.planned ? `${budget.planned} USD` : 'N/A'}
-              </PlannedBudgetValueBox>
-            )}
-          </BudgetRow>
+          {actualBudget !== undefined && (
+            <BudgetRow>
+              <CalibriText12Navy>Actual:</CalibriText12Navy>
+              {mode === 'edit' ? (
+                <Field name="budget.actual" initialValue={actualBudget}>
+                  {({ input, meta }) => (
+                    <TextField
+                      {...input}
+                      variant="standard"
+                      type="number"
+                      fullWidth
+                      error={meta.touched && meta.error}
+                      helperText={meta.touched && meta.error}
+                      style={{ marginLeft: '8px' }}
+                    />
+                  )}
+                </Field>
+              ) : (
+                <ActualBudgetValueBox
+                  isActual={true}
+                  budget_actual_usd={actualBudget}
+                  budget_planned_usd={plannedBudget || 0}
+                >
+                  {`${actualBudget} USD`}
+                </ActualBudgetValueBox>
+              )}
+            </BudgetRow>
+          )}
+          {plannedBudget !== undefined && (
+            <BudgetRow>
+              <CalibriText12Navy>Planned:</CalibriText12Navy>
+              {mode === 'edit' ? (
+                <Field name="budget.planned" initialValue={plannedBudget}>
+                  {({ input, meta }) => (
+                    <TextField
+                      {...input}
+                      variant="standard"
+                      type="number"
+                      fullWidth
+                      error={meta.touched && meta.error}
+                      helperText={meta.touched && meta.error}
+                      style={{ marginLeft: '8px' }}
+                    />
+                  )}
+                </Field>
+              ) : (
+                <PlannedBudgetValueBox
+                  isActual={false}
+                  budget_actual_usd={actualBudget || 0}
+                  budget_planned_usd={plannedBudget}
+                >
+                  {`${plannedBudget} USD`}
+                </PlannedBudgetValueBox>
+              )}
+            </BudgetRow>
+          )}
+          {roi && (
+            <BudgetRow style={{ marginTop: '16px' }}>
+              <CalibriText12Navy>ROI:</CalibriText12Navy>
+              {mode === 'edit' ? (
+                <Field name="roi" initialValue={roi}>
+                  {({ input, meta }) => (
+                    <TextField
+                      {...input}
+                      variant="standard"
+                      fullWidth
+                      error={meta.touched && meta.error}
+                      helperText={meta.touched && meta.error}
+                      style={{ marginLeft: '8px' }}
+                    />
+                  )}
+                </Field>
+              ) : (
+                <Box style={{ marginLeft: '8px' }}>
+                  {roi}
+                </Box>
+              )}
+            </BudgetRow>
+          )}
         </BudgetContainer>
       )}
     />

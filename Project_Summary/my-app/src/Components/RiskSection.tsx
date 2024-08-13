@@ -47,7 +47,7 @@ const RiskSection: React.FC<RiskSectionProps> = ({ risks, mode, addRiskField, re
         </div>
       ) : (
         <BulletedList key={index}>
-          <Value>{risk}</Value>
+           <li>{risk}</li> 
         </BulletedList>
       )
     )}

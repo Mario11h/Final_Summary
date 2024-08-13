@@ -2,9 +2,8 @@ import React from 'react';
 import GroupsOutlinedIcon from '@mui/icons-material/GroupsOutlined';
 import LowerSection from './lowerSection';
 import { BulletedList, Label, Value } from './styledComponents/styledText';
-import { TextField, Button, Box } from '@mui/material';
+import { TextField } from '@mui/material';
 import { Field } from 'react-final-form';
-import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 
 type HubTeam = {
   pm: string;
@@ -16,10 +15,9 @@ type HubTeam = {
 type HubTeamSectionProps = {
   hubTeam: HubTeam;
   mode: 'view' | 'edit';
-  addDevTeamMember?: () => void;
 };
 
-const HubTeamSection: React.FC<HubTeamSectionProps> = ({ hubTeam, mode, addDevTeamMember }) => (
+const HubTeamSection: React.FC<HubTeamSectionProps> = ({ hubTeam, mode }) => (
   <LowerSection
     title="HUB Team"
     icon={GroupsOutlinedIcon}
@@ -27,7 +25,7 @@ const HubTeamSection: React.FC<HubTeamSectionProps> = ({ hubTeam, mode, addDevTe
     renderItem={() => (
       <BulletedList>
         <div style={{ display: 'flex', alignItems: 'center', marginBottom: '8px' }}>
-          <Label>PM:</Label>
+          <Label><li>PM:</li></Label>
           {mode === 'edit' ? (
             <Field name="hubTeam.pm">
               {({ input, meta }) => (
@@ -42,11 +40,11 @@ const HubTeamSection: React.FC<HubTeamSectionProps> = ({ hubTeam, mode, addDevTe
               )}
             </Field>
           ) : (
-            <Value>{hubTeam.pm}</Value>
+            <Value>{hubTeam.pm || 'N/A'}</Value>
           )}
         </div>
         <div style={{ display: 'flex', alignItems: 'center', marginBottom: '8px' }}>
-          <Label>Dev:</Label>
+          <Label><li>Dev:</li></Label>
           {mode === 'edit' ? (
             <Field name="hubTeam.dev">
               {({ input, meta }) => (
@@ -61,11 +59,11 @@ const HubTeamSection: React.FC<HubTeamSectionProps> = ({ hubTeam, mode, addDevTe
               )}
             </Field>
           ) : (
-            <Value>{hubTeam.dev}</Value>
+            <Value>{hubTeam.dev || 'N/A'}</Value>
           )}
         </div>
         <div style={{ display: 'flex', alignItems: 'center', marginBottom: '8px' }}>
-          <Label>BA:</Label>
+          <Label><li>BA:</li></Label>
           {mode === 'edit' ? (
             <Field name="hubTeam.ba">
               {({ input, meta }) => (
@@ -80,41 +78,28 @@ const HubTeamSection: React.FC<HubTeamSectionProps> = ({ hubTeam, mode, addDevTe
               )}
             </Field>
           ) : (
-            <Value>{hubTeam.ba}</Value>
+            <Value>{hubTeam.ba || 'N/A'}</Value>
           )}
         </div>
-        {hubTeam.qa && (
-          <div style={{ display: 'flex', alignItems: 'center', marginBottom: '8px' }}>
-            <Label>QA:</Label>
-            {mode === 'edit' ? (
-              <Field name="hubTeam.qa">
-                {({ input, meta }) => (
-                  <TextField
-                    {...input}
-                    variant="standard"
-                    fullWidth
-                    error={meta.touched && meta.error}
-                    helperText={meta.touched && meta.error}
-                    style={{ marginLeft: '8px' }}
-                  />
-                )}
-              </Field>
-            ) : (
-              <Value>{hubTeam.qa}</Value>
-            )}
-          </div>
-        )}
-        {mode === 'edit' && (
-          <Box mt={2} display="flex" justifyContent="center">
-            <Button
-              onClick={addDevTeamMember}
-              variant="text"
-              color="primary"
-            >
-              <AddCircleOutlineIcon />
-            </Button>
-          </Box>
-        )}
+        <div style={{ display: 'flex', alignItems: 'center', marginBottom: '8px' }}>
+          <Label><li>QA:</li></Label>
+          {mode === 'edit' ? (
+            <Field name="hubTeam.qa">
+              {({ input, meta }) => (
+                <TextField
+                  {...input}
+                  variant="standard"
+                  fullWidth
+                  error={meta.touched && meta.error}
+                  helperText={meta.touched && meta.error}
+                  style={{ marginLeft: '8px' }}
+                />
+              )}
+            </Field>
+          ) : (
+            <Value>{hubTeam.qa || 'N/A'}</Value>
+          )}
+        </div>
       </BulletedList>
     )}
   />

@@ -121,13 +121,13 @@ const App: React.FC = () => {
               <StyledMainGridItem item xs={12} md={8}>
                 <StyledMainBox>
                   <OverviewSection overview={project.description} mode="view" />
-                  <Box mt={4} />
+                  <Box/>
                   <ProjectScopeGoalsSection scopeDescription={project.scope} goals={project.goals} mode="view" />
                   <StyledEqualContainer>
                     <BusinessTeamSection businessTeam={project.businessTeam} mode="view" />
                     <HubTeamSection hubTeam={project.hubTeam} mode="view" />
                     <RiskSection risks={project.risks} mode="view" />
-                    <BudgetSection budget={project.budget} mode="view" />
+                    <BudgetSection budget={project.budget} roi={project.roi} mode="view"  />
                   </StyledEqualContainer>
                 </StyledMainBox>
               </StyledMainGridItem>
@@ -153,7 +153,10 @@ const App: React.FC = () => {
   let content;
 
   if (isLoading) {
-    content = <Typography>Loading...</Typography>;
+    content = <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+    <div>Loading...</div>
+    <CircularProgress />
+  </Box>
   } else if (error) {
     content = <Typography>{error}</Typography>;
   } else if (projects.length > 0) {
@@ -187,7 +190,7 @@ const App: React.FC = () => {
   }
 
   return (
-    <Container>
+    <Container style={{minWidth: "99%"}}>
       <Box display="flex" justifyContent="flex-end" alignItems="center" mb={2}>
       <Tooltip title="Add New Project">
           <IconButton

@@ -50,7 +50,7 @@ export const StyledTimelineDotPerson = styled(TimelineDot)`
 export const StyledTimelineDotDone = styled(TimelineDot)`
 && {  
 color: white;
-  background-color: green;
+  background-color: rgba(4, 164, 132, 1);
 }
 `;
 

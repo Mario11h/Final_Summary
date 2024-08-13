@@ -74,13 +74,13 @@ const BusinessTeamSection: React.FC<BusinessTeamSectionProps> = ({ businessTeam,
         ) : (
           <BulletedList>
             <div style={{ display: 'flex', alignItems: 'center', marginBottom: '8px' }}>
-              <Label>Sponsor:</Label> <Value>{team.sponsor}</Value>
+              <Label><li>Sponsor:</li></Label> <Value>{team.sponsor}</Value>
             </div>
             <div style={{ display: 'flex', alignItems: 'center', marginBottom: '8px' }}>
-              <Label>Business Owner:</Label> <Value>{team.businessOwner}</Value>
+              <Label><li>Business Owner:</li></Label> <Value>{team.businessOwner}</Value>
             </div>
             <div style={{ display: 'flex', alignItems: 'center', marginBottom: '8px' }}>
-              <Label>Product Owner:</Label> <Value>{team.productOwner}</Value>
+              <Label><li>Product Owner:</li></Label> <Value>{team.productOwner}</Value>
             </div>
           </BulletedList>
         )

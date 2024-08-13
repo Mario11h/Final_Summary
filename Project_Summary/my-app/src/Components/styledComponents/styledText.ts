@@ -38,14 +38,14 @@ export const ProjectCode = styled(Typography)`
 // Calibri font styled component Fixed
 export const CalibriText12 = styled(Typography)`
   font-family: roboto;
-  font-size: 12px; // Set the font size
+  font-size: 14px; // Set the font size
   color: #000; // Set the text color
 `;
 
 
 export const CalibriText12P = styled(Typography)`
   font-family: roboto;
-  font-size: 12px; // Set the font size
+  font-size: 14px; // Set the font size
   color: #000; // Set the text color
   padding-top: 15px;
   padding-left: 20px;
@@ -53,27 +53,15 @@ export const CalibriText12P = styled(Typography)`
 //Fixed
 export const CalibriText12Navy = styled(Typography)`
   font-family: roboto;
-  font-size: 12px; // Set the font size
-  color: #003366; // Navy blue color
+  font-size: 16px; // Set the font size
+  font-weight: bold; /* Set the font weight */
+  color: rgba(4, 36, 106, 1); /* Set the text color */
+  gap: 10px; // Navy blue color
   display: flex;
   flex-direction: column; // Align items in a column
-  gap: 8px; // Add some space between items
   margin-left: 8px;
   margin-top: 8px; // Add some margin at the top
 `;
-
-
-
-// Numbered list styled component Fixed
-export const NumberedList = styled.ol`
-  font-family: roboto;
-  font-size: 12px; // Set the font size
-  color: #000; // Set the text color
-  list-style-type: decimal; // Use decimal numbers for list items
-  padding-left: 30px;
-`;
-
-
 
 // Bulleted list styled component Fixed
 export const BulletedList = styled.ul`
@@ -91,7 +79,7 @@ export const LabelValueItem = styled.li`
 // Label styled  Fixed
 export const Label = styled.span`
   font-weight: bold; // Set label font to bold
-  font-size: 12px;
+  font-size: 14px;
 `;
 
 // Value styled component Fixed

@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { Paper, Box, Grid, Divider } from '@mui/material';
+import {  Box, Grid, Divider } from '@mui/material';
 
 
 
@@ -72,7 +72,7 @@ export const StyledMainBox = styled(Box)`
 export const StyledContainerBox = styled(Box)`
   display: flex;
   width: 100%;
-  min-height: 400px;
+  min-height: 600px;
 `;
 
 export const StyledMainGridItem = styled(Grid)`
@@ -171,7 +171,7 @@ export const BudgetValueBox = styled(Box)<{ isActual: boolean; budget_actual_usd
   padding: 4px 8px;
   margin: 4px 0;
   font-size: 12px;
-  font-family: Calibri;
+  font-family: roboto;
   font-weight: bold;
   width: ${({ isActual, budget_actual_usd, budget_planned_usd }) => 
     getWidth(isActual, budget_actual_usd, budget_planned_usd)};
@@ -239,5 +239,5 @@ export const ProjectCode = styled(Box)`
 
 export const OngoingText = styled(Box)`
   font-size: 1rem;
-  color: green;
+  color: rgba(4, 36, 106, 1);
 `;
