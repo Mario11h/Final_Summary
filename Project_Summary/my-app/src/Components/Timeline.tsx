@@ -1,5 +1,5 @@
 import React from 'react';
-import DirectionsWalkIcon from '@mui/icons-material/DirectionsWalk';
+import DirectionsRunIcon from '@mui/icons-material/DirectionsRun';
 import DoneIcon from '@mui/icons-material/Done';
 import {
   StyledTimeline,
@@ -25,7 +25,7 @@ type Milestone = {
   title: string;
   description: string;
   date: string;
-  is_current_state: boolean;
+  currentFlag: boolean;
 };
 
 type CustomizedTimelineProps = {
@@ -47,7 +47,7 @@ const CustomizedTimeline: React.FC<CustomizedTimelineProps> = ({ startDate, endD
       <StyledTimelineItem>
         <StyledTimelineSeparator>
           <StyledTimelineDotPerson>
-            <DirectionsWalkIcon />
+            <DirectionsRunIcon  />
           </StyledTimelineDotPerson>
           <StyledTimelineConnector />
         </StyledTimelineSeparator>
@@ -75,7 +75,7 @@ const CustomizedTimeline: React.FC<CustomizedTimelineProps> = ({ startDate, endD
                 </LeftDiv>
                 <RightDiv>
                   <CalibriBoldNavy11>{milestone.date}</CalibriBoldNavy11>
-                  {milestone.is_current_state ? (
+                  {milestone.currentFlag ? (
                     <ArrowContainer>
                       <StyledArrowBackIcon />
                     </ArrowContainer>

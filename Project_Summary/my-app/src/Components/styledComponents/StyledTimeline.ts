@@ -41,7 +41,7 @@ export const StyledTimelineContent = styled(TimelineContent)`
 
 export const StyledTimelineDotPerson = styled(TimelineDot)`
   && {
-    background-color: blue;
+    background-color: rgba(4, 36, 106, 1);
     color: white;
   }
 `;

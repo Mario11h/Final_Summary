@@ -1,10 +1,14 @@
 import React from 'react';
-import {  Box } from '@mui/material';
-import { StyledSectionBox, StyledTeamBox, StyledTitleContainer } from './styledComponents/styledContainer';
+import { Box } from '@mui/material';
+import {
+  StyledSectionBox,
+  StyledTeamBox,
+  StyledTitleContainer
+} from './styledComponents/styledContainer';
 import { StyledTitle } from './styledComponents/styledText';
 import { StyledIconMulIcon } from './styledComponents/StyledIconAvatar';
 
-type LowerSectionProps<T extends { id: number }> = {
+type LowerSectionProps<T> = {
   title: string;
   icon: React.ElementType;
   data: T[];
@@ -12,7 +16,7 @@ type LowerSectionProps<T extends { id: number }> = {
   children?: React.ReactNode;
 };
 
-function LowerSection<T extends { id: number }>({ title, icon: Icon, data, renderItem, children }: LowerSectionProps<T>): JSX.Element {
+function LowerSection<T>({ title, icon: Icon, data, renderItem, children }: LowerSectionProps<T>): JSX.Element {
   return (
     <StyledSectionBox>
       <StyledTeamBox>
@@ -26,7 +30,7 @@ function LowerSection<T extends { id: number }>({ title, icon: Icon, data, rende
       <Box mt={2}>
         {data && data.length > 0 ? (
           data.map((item, index) => (
-            <div key={item.id}>{renderItem(item, index)}</div>
+            <div key={index}>{renderItem(item, index)}</div>
           ))
         ) : (
           <p>No data available</p>
@@ -38,6 +42,5 @@ function LowerSection<T extends { id: number }>({ title, icon: Icon, data, rende
     </StyledSectionBox>
   );
 }
-
 
 export default LowerSection;

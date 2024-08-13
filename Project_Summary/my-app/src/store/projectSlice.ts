@@ -1,29 +1,51 @@
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
-import axios from 'axios';
 
-// Define types for project data
-type Goal = { id: number; goal: string; };
-type Risk = { id: number; risk_issue: string; };
-type BusinessTeam = { id: number; executive_sponsor: string; business_product: string; process_owner: string; };
-type HubTeam = { id: number; pm: string; dev_team: string[]; };
-type Budget = { id: number; actual_budget: number; planned_budget: number; };
-type Milestone = { id: number; title: string; description: string; date: string; is_current_state: boolean; };
+// Import the local JSON data
+import localProjectsData from '../data.json';
+
+type BusinessTeam = {
+  sponsor: string;
+  businessOwner: string;
+  productOwner: string;
+};
+
+type HubTeam = {
+  pm: string;
+  dev: string;
+  ba: string;
+  qa?: string;
+};
+
+type Budget = {
+  actual?: number;
+  planned?: number;
+};
+
+type Milestone = {
+  title: string;
+  description: string;
+  date: string;
+  currentFlag: boolean;
+};
+
 type Project = {
-  id: number;
   name: string;
   code: string;
-  overview: string;
   status: string;
-  start_date: string;
-  end_date: string;
-  scope_description: string;
-  goals: Goal[];
-  risks: Risk[];
-  business_teams: BusinessTeam[];
-  hub_teams: HubTeam[];
-  budgets: Budget[];
+  description: string;
+  scope: string;
+  goals: string[];
+  businessTeam: BusinessTeam;
+  hubTeam: HubTeam;
+  risks: string[];
+  roi: string;
+  budget: Budget;
+  startDate: string;
+  endDate: string;
   milestones: Milestone[];
 };
+
+
 
 // Define the state type
 interface ProjectState {
@@ -41,30 +63,15 @@ const initialState: ProjectState = {
   currentPage: 1,
 };
 
-// Async thunk for fetching projects
-export const fetchProjects = createAsyncThunk('projects/fetchProjects', async (_, { rejectWithValue }) => {
-  try {
-    const response = await axios.get('http://localhost:3001/projects');
-    return response.data.data.map((project: any) => ({
-      ...project,
-      hub_teams: project.hub_teams.map((team: any) => ({
-        ...team,
-        dev_team: JSON.parse(team.dev_team)
-      }))
-    }));
-  } catch (error: any) {
-    return rejectWithValue(error.response?.data || 'Failed to fetch projects');
-  }
-});
-
-// Async thunk for deleting a project
-export const deleteProject = createAsyncThunk('projects/deleteProject', async (projectId: number, { rejectWithValue }) => {
-  try {
-    await axios.delete(`http://localhost:3001/projects/${projectId}`);
-    return projectId;
-  } catch (error: any) {
-    return rejectWithValue(error.response?.data || 'Failed to delete project');
-  }
+// Update the loadProjects thunk
+export const loadProjects = createAsyncThunk('projects/loadProjects', async () => {
+  // Simulate an async operation
+  return new Promise<Project[]>((resolve) => {
+    setTimeout(() => {
+      // Cast the localProjectsData to Project[] to ensure type compatibility
+      resolve(localProjectsData as Project[]);
+    }, 500);
+  });
 });
 
 // Create the slice
@@ -78,23 +85,16 @@ const projectSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(fetchProjects.pending, (state) => {
+      .addCase(loadProjects.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(fetchProjects.fulfilled, (state, action) => {
+      .addCase(loadProjects.fulfilled, (state, action) => {
         state.isLoading = false;
         state.projects = action.payload;
       })
-      .addCase(fetchProjects.rejected, (state, action) => {
+      .addCase(loadProjects.rejected, (state, action) => {
         state.isLoading = false;
-        state.error = action.payload as string;
-      })
-      .addCase(deleteProject.fulfilled, (state, action) => {
-        state.projects = state.projects.filter(project => project.id !== action.payload);
-        state.currentPage = 1; // Reset to the first page after deletion
-      })
-      .addCase(deleteProject.rejected, (state, action) => {
-        state.error = action.payload as string;
+        state.error = action.error.message || 'Failed to load projects';
       });
   }
 });

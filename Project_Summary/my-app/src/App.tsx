@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchProjects, deleteProject, setCurrentPage } from './store/projectSlice';
+import { loadProjects, setCurrentPage } from './store/projectSlice';
 import { RootState, AppDispatch } from './store/store';
 import Pagination from './Components/Pagination';
 import ProjectHeader from './Components/ProjectHeader';
@@ -11,21 +11,14 @@ import HubTeamSection from './Components/HubTeamSection';
 import RiskSection from './Components/RiskSection';
 import BudgetSection from './Components/BudgetSection';
 import MilestonesSection from './Components/MilestonesSection';
-import { Container, Typography, Button, Box, Grid, Backdrop, CircularProgress, Tooltip, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, FormControl, InputLabel, IconButton,SelectChangeEvent } from '@mui/material';
-import { 
-  StyledEqualContainer, 
-  StyledContainerBox, 
-  StyledMainGridItem, 
-  StyledMilestonesGridItem, 
-  StyledMainBox 
-} from './Components/styledComponents/styledContainer';
+import { Container, Typography, Button, Box, Grid, Backdrop, CircularProgress, Tooltip, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, IconButton } from '@mui/material';
+import { StyledEqualContainer, StyledContainerBox, StyledMainGridItem, StyledMilestonesGridItem, StyledMainBox } from './Components/styledComponents/styledContainer';
 import NewProjectForm from './Components/NewProjectForm';
 import DeleteIcon from '@mui/icons-material/Delete';
 import AddchartIcon from '@mui/icons-material/Addchart';
 import EditIcon from '@mui/icons-material/Edit';
 import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
 import { useReactToPrint } from 'react-to-print';
-import { StyledSelect, StyledMenuItem } from './Components/styledComponents/styledControl';
 import './App.css';
 
 const App: React.FC = () => {
@@ -44,12 +37,13 @@ const App: React.FC = () => {
   const printRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    dispatch(fetchProjects());
+    dispatch(loadProjects());
   }, [dispatch]);
 
   const handlePrint = useReactToPrint({
     content: () => printRef.current,
-    onAfterPrint: () => setPrintMode(false)  });
+    onAfterPrint: () => setPrintMode(false)
+  });
 
   const handlePrintClick = () => {
     setPrintMode(true);
@@ -72,13 +66,13 @@ const App: React.FC = () => {
     console.log('New Project:', newProject);
     setIsAddingProject(false);
     setIsEditing(false);
-    await dispatch(fetchProjects());
+    await dispatch(loadProjects());
   };
 
   const handleDoneEditProject = async () => {
     setIsAddingProject(false);
     setIsEditing(false);
-    await dispatch(fetchProjects());
+    await dispatch(loadProjects());
   };
 
   const handleEditProject = () => {
@@ -88,9 +82,9 @@ const App: React.FC = () => {
 
   const handleDeleteProject = async (projectId: number) => {
     setIsDeleting(true);
-    await dispatch(deleteProject(projectId));
+    // Implement delete logic here
     dispatch(setCurrentPage(1));
-    await dispatch(fetchProjects());
+    await dispatch(loadProjects());
     setIsDeleting(false);
     setDeleteDialogOpen(false);
   };
@@ -111,14 +105,6 @@ const App: React.FC = () => {
     }
   };
 
-  const handleProjectSelect = (event: SelectChangeEvent<unknown>) => {
-    const selectedProjectId = event.target.value as number;
-    const selectedProjectIndex = projects.findIndex(project => project.id === selectedProjectId);
-    if (selectedProjectIndex !== -1) {
-      dispatch(setCurrentPage(selectedProjectIndex + 1));
-    }
-  };
-  
   const renderProject = (project: any, index?: number) => {
     if (!project) return null;
     return (
@@ -134,14 +120,14 @@ const App: React.FC = () => {
             <Grid container spacing={2}>
               <StyledMainGridItem item xs={12} md={8}>
                 <StyledMainBox>
-                  <OverviewSection overview={project.overview} mode="view" />
+                  <OverviewSection overview={project.description} mode="view" />
                   <Box mt={4} />
-                  <ProjectScopeGoalsSection scopeDescription={project.scope_description} goals={project.goals} mode="view" />
+                  <ProjectScopeGoalsSection scopeDescription={project.scope} goals={project.goals} mode="view" />
                   <StyledEqualContainer>
-                    <BusinessTeamSection businessTeams={project.business_teams} mode="view" />
-                    <HubTeamSection hubTeams={project.hub_teams} mode="view" />
+                    <BusinessTeamSection businessTeam={project.businessTeam} mode="view" />
+                    <HubTeamSection hubTeam={project.hubTeam} mode="view" />
                     <RiskSection risks={project.risks} mode="view" />
-                    <BudgetSection budgets={project.budgets} mode="view" />
+                    <BudgetSection budget={project.budget} mode="view" />
                   </StyledEqualContainer>
                 </StyledMainBox>
               </StyledMainGridItem>
@@ -149,8 +135,8 @@ const App: React.FC = () => {
                 <StyledMainBox>
                   <MilestonesSection
                     milestones={project.milestones}
-                    startDate={project.start_date}
-                    endDate={project.end_date}
+                    startDate={project.startDate}
+                    endDate={project.endDate}
                   />
                 </StyledMainBox>
               </StyledMilestonesGridItem>
@@ -162,6 +148,7 @@ const App: React.FC = () => {
   };
 
   const currentProject = projects[currentPage - 1];
+  console.log('Current Project:', currentProject);
 
   let content;
 
@@ -176,7 +163,6 @@ const App: React.FC = () => {
           onCancel={handleCancelAddProject} 
           onDone={handleDoneAddProject} 
           onEdit={handleDoneEditProject}
-          project={isEditing ? currentProject : undefined}
         />
       );
     } else {
@@ -203,27 +189,7 @@ const App: React.FC = () => {
   return (
     <Container>
       <Box display="flex" justifyContent="flex-end" alignItems="center" mb={2}>
-      <FormControl variant="outlined" sx={{ minWidth: 240, mr: 2 }}>
-      <InputLabel id="project-select-label">Go to Project</InputLabel>
-          <StyledSelect
-            labelId="project-select-label"
-            id="project-select"
-            value={currentProject?.id || ''}
-            onChange={handleProjectSelect}
-            label="Go to Project"
-          >
-            {projects.map((project) => (
-              <StyledMenuItem 
-                key={project.id} 
-                value={project.id}
-              >
-                {project.name}
-              </StyledMenuItem>
-            ))}
-          </StyledSelect>
-        </FormControl>
-        
-        <Tooltip title="Add New Project">
+      <Tooltip title="Add New Project">
           <IconButton
             color="primary"
             onClick={handleAddProject}
@@ -233,6 +199,7 @@ const App: React.FC = () => {
             <AddchartIcon />
           </IconButton>
         </Tooltip>
+        
         <Tooltip title="Edit Project">
           <IconButton
             color="primary"
@@ -241,16 +208,6 @@ const App: React.FC = () => {
             sx={{ '&:hover svg': { transform: 'scale(1.2)' }, transition: 'transform 0.3s',color: 'rgba(4, 36, 106, 1)' }}
           >
             <EditIcon />
-          </IconButton>
-        </Tooltip>
-        <Tooltip title="Delete Project">
-          <IconButton
-            color="primary"
-            onClick={() => openDeleteDialog(currentProject?.id)}
-            disabled={isAddingProject || isEditing}
-            sx={{ '&:hover svg': { transform: 'scale(1.2)' }, transition: 'transform 0.3s',color: 'rgba(4, 36, 106, 1)' }}
-          >
-            <DeleteIcon />
           </IconButton>
         </Tooltip>
         <Tooltip title="Print">

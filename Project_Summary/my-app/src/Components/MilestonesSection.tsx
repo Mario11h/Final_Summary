@@ -7,7 +7,7 @@ type Milestone = {
   title: string;
   description: string;
   date: string;
-  is_current_state: boolean;
+  currentFlag: boolean;
 };
 
 type MilestonesSectionProps = {

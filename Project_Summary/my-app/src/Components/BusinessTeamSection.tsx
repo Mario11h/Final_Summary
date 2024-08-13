@@ -6,32 +6,28 @@ import { BulletedList, Label, Value } from './styledComponents/styledText';
 import { TextField } from '@mui/material';
 
 type BusinessTeam = {
-  id: number;
-  executive_sponsor: string;
-  business_product: string;
-  process_owner: string;
+  sponsor: string;
+  businessOwner: string;
+  productOwner: string;
 };
 
 type BusinessTeamSectionProps = {
-  businessTeams: BusinessTeam[];
+  businessTeam: BusinessTeam;
   mode: 'view' | 'edit';
 };
 
-const BusinessTeamSection: React.FC<BusinessTeamSectionProps> = ({ businessTeams, mode }) => {
+const BusinessTeamSection: React.FC<BusinessTeamSectionProps> = ({ businessTeam, mode }) => {
   return (
     <LowerSection
       title="Business Team"
       icon={GroupsIcon}
-      data={businessTeams}
-      renderItem={(team: BusinessTeam, index: number) =>
+      data={[businessTeam]}
+      renderItem={(team: BusinessTeam) =>
         mode === 'edit' ? (
-          <BulletedList key={team.id}>
+          <BulletedList>
             <div style={{ display: 'flex', alignItems: 'center', marginBottom: '8px' }}>
-              <Label>Exec. Sponsor:</Label>
-              <Field
-                name={`business_teams[${index}].executive_sponsor`}
-                initialValue={team.executive_sponsor}
-              >
+              <Label>Sponsor:</Label>
+              <Field name="businessTeam.sponsor" initialValue={team.sponsor}>
                 {({ input, meta }) => (
                   <TextField
                     {...input}
@@ -45,52 +41,46 @@ const BusinessTeamSection: React.FC<BusinessTeamSectionProps> = ({ businessTeams
               </Field>
             </div>
             <div style={{ display: 'flex', alignItems: 'center', marginBottom: '8px' }}>
-              <Label>Business Product:</Label>
-              <Field
-                name={`business_teams[${index}].business_product`}
-                initialValue={team.business_product}
-              >
+              <Label>Business Owner:</Label>
+              <Field name="businessTeam.businessOwner" initialValue={team.businessOwner}>
                 {({ input, meta }) => (
                   <TextField
                     {...input}
                     variant="standard"
                     fullWidth
+                    style={{ marginLeft: '8px' }}
                     error={meta.touched && meta.error}
                     helperText={meta.touched && meta.error}
-                    style={{ marginLeft: '8px' }}
                   />
                 )}
               </Field>
             </div>
             <div style={{ display: 'flex', alignItems: 'center', marginBottom: '8px' }}>
-              <Label>Process Owner:</Label>
-              <Field
-                name={`business_teams[${index}].process_owner`}
-                initialValue={team.process_owner}
-              >
+              <Label>Product Owner:</Label>
+              <Field name="businessTeam.productOwner" initialValue={team.productOwner}>
                 {({ input, meta }) => (
                   <TextField
                     {...input}
                     variant="standard"
                     fullWidth
+                    style={{ marginLeft: '8px' }}
                     error={meta.touched && meta.error}
                     helperText={meta.touched && meta.error}
-                    style={{ marginLeft: '8px' }}
                   />
                 )}
               </Field>
             </div>
           </BulletedList>
         ) : (
-          <BulletedList key={team.id}>
+          <BulletedList>
             <div style={{ display: 'flex', alignItems: 'center', marginBottom: '8px' }}>
-              <Label>Exec. Sponsor:</Label> <Value>{team.executive_sponsor}</Value>
+              <Label>Sponsor:</Label> <Value>{team.sponsor}</Value>
             </div>
             <div style={{ display: 'flex', alignItems: 'center', marginBottom: '8px' }}>
-              <Label>Business Product:</Label> <Value>{team.business_product}</Value>
+              <Label>Business Owner:</Label> <Value>{team.businessOwner}</Value>
             </div>
             <div style={{ display: 'flex', alignItems: 'center', marginBottom: '8px' }}>
-              <Label>Process Owner:</Label> <Value>{team.process_owner}</Value>
+              <Label>Product Owner:</Label> <Value>{team.productOwner}</Value>
             </div>
           </BulletedList>
         )

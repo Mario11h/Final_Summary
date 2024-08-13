@@ -7,29 +7,30 @@ import { Field } from 'react-final-form';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 
 type HubTeam = {
-  id: number;
   pm: string;
-  dev_team: string[];
+  dev: string;
+  ba: string;
+  qa?: string;
 };
 
 type HubTeamSectionProps = {
-  hubTeams: HubTeam[];
+  hubTeam: HubTeam;
   mode: 'view' | 'edit';
-  addDevTeamMember?: (teamIndex: number) => void;
+  addDevTeamMember?: () => void;
 };
 
-const HubTeamSection: React.FC<HubTeamSectionProps> = ({ hubTeams, mode, addDevTeamMember }) => (
+const HubTeamSection: React.FC<HubTeamSectionProps> = ({ hubTeam, mode, addDevTeamMember }) => (
   <LowerSection
     title="HUB Team"
     icon={GroupsOutlinedIcon}
-    data={hubTeams}
-    renderItem={(team, index) => (
-      <BulletedList key={team.id}>
+    data={[hubTeam]}
+    renderItem={() => (
+      <BulletedList>
         <div style={{ display: 'flex', alignItems: 'center', marginBottom: '8px' }}>
           <Label>PM:</Label>
           {mode === 'edit' ? (
-            <Field name={`hub_teams[${index}].pm`}>
-              {({ input, meta}) => (
+            <Field name="hubTeam.pm">
+              {({ input, meta }) => (
                 <TextField
                   {...input}
                   variant="standard"
@@ -41,20 +42,16 @@ const HubTeamSection: React.FC<HubTeamSectionProps> = ({ hubTeams, mode, addDevT
               )}
             </Field>
           ) : (
-            <Value>{team.pm}</Value>
+            <Value>{hubTeam.pm}</Value>
           )}
         </div>
         <div style={{ display: 'flex', alignItems: 'center', marginBottom: '8px' }}>
-          <Label>Dev Team:</Label>
+          <Label>Dev:</Label>
           {mode === 'edit' ? (
-            <Field name={`hub_teams[${index}].dev_team`}>
+            <Field name="hubTeam.dev">
               {({ input, meta }) => (
                 <TextField
-                  value={input.value.join(', ')}
-                  onChange={(e) => {
-                    const updatedDevTeam = e.target.value.split(',').map(dev => dev.trim());
-                    input.onChange(updatedDevTeam);
-                  }}
+                  {...input}
                   variant="standard"
                   fullWidth
                   error={meta.touched && meta.error}
@@ -64,13 +61,53 @@ const HubTeamSection: React.FC<HubTeamSectionProps> = ({ hubTeams, mode, addDevT
               )}
             </Field>
           ) : (
-            <Value>{team.dev_team.join(', ')}</Value>
+            <Value>{hubTeam.dev}</Value>
           )}
         </div>
+        <div style={{ display: 'flex', alignItems: 'center', marginBottom: '8px' }}>
+          <Label>BA:</Label>
+          {mode === 'edit' ? (
+            <Field name="hubTeam.ba">
+              {({ input, meta }) => (
+                <TextField
+                  {...input}
+                  variant="standard"
+                  fullWidth
+                  error={meta.touched && meta.error}
+                  helperText={meta.touched && meta.error}
+                  style={{ marginLeft: '8px' }}
+                />
+              )}
+            </Field>
+          ) : (
+            <Value>{hubTeam.ba}</Value>
+          )}
+        </div>
+        {hubTeam.qa && (
+          <div style={{ display: 'flex', alignItems: 'center', marginBottom: '8px' }}>
+            <Label>QA:</Label>
+            {mode === 'edit' ? (
+              <Field name="hubTeam.qa">
+                {({ input, meta }) => (
+                  <TextField
+                    {...input}
+                    variant="standard"
+                    fullWidth
+                    error={meta.touched && meta.error}
+                    helperText={meta.touched && meta.error}
+                    style={{ marginLeft: '8px' }}
+                  />
+                )}
+              </Field>
+            ) : (
+              <Value>{hubTeam.qa}</Value>
+            )}
+          </div>
+        )}
         {mode === 'edit' && (
           <Box mt={2} display="flex" justifyContent="center">
             <Button
-              onClick={() => addDevTeamMember && addDevTeamMember(index)}
+              onClick={addDevTeamMember}
               variant="text"
               color="primary"
             >

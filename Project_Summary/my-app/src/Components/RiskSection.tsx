@@ -1,19 +1,14 @@
 import React from 'react';
 import ContentPasteSearchIcon from '@mui/icons-material/ContentPasteSearch';
 import LowerSection from './lowerSection';
-import { BulletedList, LabelValueItem, Label, Value } from './styledComponents/styledText';
+import { BulletedList, Label, Value } from './styledComponents/styledText';
 import { TextField, Button, Box } from '@mui/material';
 import { Field } from 'react-final-form';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
 
-type Risk = {
-  id: number;
-  risk_issue: string;
-};
-
 type RiskSectionProps = {
-  risks: Risk[];
+  risks: string[];
   mode: 'view' | 'edit';
   addRiskField?: () => void;
   removeRisk?: (index: number) => void;
@@ -24,11 +19,11 @@ const RiskSection: React.FC<RiskSectionProps> = ({ risks, mode, addRiskField, re
     title="Risk & Issues"
     icon={ContentPasteSearchIcon}
     data={risks}
-    renderItem={(risk: Risk, index: number) => (
+    renderItem={(risk: string, index: number) => (
       mode === 'edit' ? (
         <div key={index} style={{ display: 'flex', alignItems: 'center', marginBottom: '8px' }}>
           <Label>Risk Issue:</Label>
-          <Field name={`risks[${index}].risk_issue`}>
+          <Field name={`risks[${index}]`}>
             {({ input, meta }) => (
               <TextField
                 {...input}
@@ -51,10 +46,8 @@ const RiskSection: React.FC<RiskSectionProps> = ({ risks, mode, addRiskField, re
           </Button>
         </div>
       ) : (
-        <BulletedList key={risk.id}>
-          <LabelValueItem>
-            <Value>{risk.risk_issue}</Value>
-          </LabelValueItem>
+        <BulletedList key={index}>
+          <Value>{risk}</Value>
         </BulletedList>
       )
     )}
@@ -68,6 +61,5 @@ const RiskSection: React.FC<RiskSectionProps> = ({ risks, mode, addRiskField, re
     )}
   </LowerSection>
 );
-
 
 export default RiskSection;
