@@ -20,7 +20,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
 import { useReactToPrint } from 'react-to-print';
 import './App.css';
-import { images } from './Components/Assets/DymmyData';
+import { images } from './Components/Assets/DummyData';
 const App: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
   const currentPage = useSelector((state: RootState) => state.projects.currentPage);
