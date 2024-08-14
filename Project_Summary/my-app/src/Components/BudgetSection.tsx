@@ -33,10 +33,10 @@ const BudgetSection: React.FC<BudgetSectionProps> = ({ budget, roi, mode }) => {
       data={[budget]}
       renderItem={() => (
         <BudgetContainer>
-          {actualBudget !== undefined && (
-            <BudgetRow>
-              <CalibriText12Navy>Actual:</CalibriText12Navy>
-              {mode === 'edit' ? (
+          {mode === 'edit' && (
+            <>
+              <BudgetRow>
+                <CalibriText12Navy>Actual:</CalibriText12Navy>
                 <Field name="budget.actual" initialValue={actualBudget}>
                   {({ input, meta }) => (
                     <TextField
@@ -50,21 +50,9 @@ const BudgetSection: React.FC<BudgetSectionProps> = ({ budget, roi, mode }) => {
                     />
                   )}
                 </Field>
-              ) : (
-                <ActualBudgetValueBox
-                  isActual={true}
-                  budget_actual_usd={actualBudget}
-                  budget_planned_usd={plannedBudget || 0}
-                >
-                  {`${actualBudget} USD`}
-                </ActualBudgetValueBox>
-              )}
-            </BudgetRow>
-          )}
-          {plannedBudget !== undefined && (
-            <BudgetRow>
-              <CalibriText12Navy>Planned:</CalibriText12Navy>
-              {mode === 'edit' ? (
+              </BudgetRow>
+              <BudgetRow>
+                <CalibriText12Navy>Planned:</CalibriText12Navy>
                 <Field name="budget.planned" initialValue={plannedBudget}>
                   {({ input, meta }) => (
                     <TextField
@@ -78,40 +66,60 @@ const BudgetSection: React.FC<BudgetSectionProps> = ({ budget, roi, mode }) => {
                     />
                   )}
                 </Field>
+              </BudgetRow>
+            </>
+          )}
+          {mode === 'view' && (
+            <>
+              {actualBudget !== undefined && (
+                <BudgetRow>
+                  <CalibriText12Navy>Actual:</CalibriText12Navy>
+                  <ActualBudgetValueBox
+                    isActual={true}
+                    budget_actual_usd={actualBudget}
+                    budget_planned_usd={plannedBudget || 0}
+                  >
+                    {`${actualBudget} USD`}
+                  </ActualBudgetValueBox>
+                </BudgetRow>
+              )}
+              {plannedBudget !== undefined && (
+                <BudgetRow>
+                  <CalibriText12Navy>Planned:</CalibriText12Navy>
+                  <PlannedBudgetValueBox
+                    isActual={false}
+                    budget_actual_usd={actualBudget || 0}
+                    budget_planned_usd={plannedBudget}
+                  >
+                    {`${plannedBudget} USD`}
+                  </PlannedBudgetValueBox>
+                </BudgetRow>
+              )}
+            </>
+          )}
+          {(mode === 'edit' || roi !== "") && (
+            <BudgetRow style={{ marginTop: '16px' }}>
+              <CalibriText12Navy>ROI:</CalibriText12Navy>
+              {mode === 'edit' ? (
+                <Field name="roi" initialValue={roi}>
+                  {({ input, meta }) => (
+                    <TextField
+                      {...input}
+                      variant="standard"
+                      fullWidth
+                      error={meta.touched && meta.error}
+                      helperText={meta.touched && meta.error}
+                      style={{ marginLeft: '8px' }}
+                    />
+                  )}
+                </Field>
               ) : (
-                <PlannedBudgetValueBox
-                  isActual={false}
-                  budget_actual_usd={actualBudget || 0}
-                  budget_planned_usd={plannedBudget}
-                >
-                  {`${plannedBudget} USD`}
-                </PlannedBudgetValueBox>
+                <Box style={{ marginLeft: '8px' }}>
+                  {roi}
+                </Box>
               )}
             </BudgetRow>
           )}
-          {roi !== undefined && (
-  <BudgetRow style={{ marginTop: '16px' }}>
-    <CalibriText12Navy>ROI:</CalibriText12Navy>
-    {mode === 'edit' ? (
-      <Field name="roi" initialValue={roi}>
-        {({ input, meta }) => (
-          <TextField
-            {...input}
-            variant="standard"
-            fullWidth
-            error={meta.touched && meta.error}
-            helperText={meta.touched && meta.error}
-            style={{ marginLeft: '8px' }}
-          />
-        )}
-      </Field>
-    ) : (
-      <Box style={{ marginLeft: '8px' }}>
-        {roi}
-      </Box>
-    )}
-  </BudgetRow>
-)}
         </BudgetContainer>
       )}
     />

@@ -53,8 +53,8 @@ const App: React.FC = () => {
   };
 
   const handleAddProject = () => {
-    setIsAddingProject(true);
     setIsEditing(false);
+    setIsAddingProject(true);
   };
 
   const handleCancelAddProject = () => {
@@ -166,6 +166,7 @@ const App: React.FC = () => {
           onCancel={handleCancelAddProject} 
           onDone={handleDoneAddProject} 
           onEdit={handleDoneEditProject}
+          project={isEditing ? currentProject : undefined}
         />
       );
     } else {
@@ -191,7 +192,7 @@ const App: React.FC = () => {
 
   return (
     
-    <Container style={{minWidth: "99%"}}>
+    <Container style={{minWidth: "100%"}}>
       <Box
                   sx={{
                     position: 'absolute',

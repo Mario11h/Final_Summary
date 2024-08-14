@@ -9,6 +9,8 @@ import {
   InputLabel,
   CircularProgress,
   Backdrop,
+  Tooltip,
+  IconButton,
 } from "@mui/material";
 import { Form, Field } from "react-final-form";
 import arrayMutators from "final-form-arrays";
@@ -48,8 +50,7 @@ import {
 import HubTeamSection from "./HubTeamSection";
 import { FieldArray } from "react-final-form-arrays";
 // import validateProjectForm from "./Validation/ValidationProjectForm";
-
-// Define the types according to your structure
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 type BusinessTeam = {
   sponsor: string;
   businessOwner: string;
@@ -188,6 +189,20 @@ const NewProjectForm: React.FC<NewProjectFormProps> = ({
       render={({ handleSubmit }) => (
         <form onSubmit={handleSubmit}>
           <StyledMainBox>
+          <div style={{ position: 'relative', left: 0 }}>
+  <Tooltip title="Cancel" arrow>
+    <IconButton
+      color="secondary"
+      onClick={onCancel}
+      sx={{
+        "&:hover svg": { transform: "scale(1.2)" },
+        transition: "transform 0.3s",
+      }}
+    >
+      <ArrowBackIcon sx={{ color: "rgba(4, 36, 106, 1)" }} />
+    </IconButton>
+  </Tooltip>
+</div>
             <ProjectHeader
               name={initialValues.name}
               code={initialValues.code}
@@ -378,15 +393,7 @@ const NewProjectForm: React.FC<NewProjectFormProps> = ({
                 >
                   {project ? "Update Project" : "Add Project"}
                 </Button>
-                <Button
-                  variant="outlined"
-                  color="secondary"
-                  onClick={onCancel}
-                  style={{ marginLeft: "16px" }}
-                  disabled={isSubmitting}
-                >
-                  Cancel
-                </Button>
+                
               </Box>
             </StyledContainerBox>
           </StyledMainBox>
