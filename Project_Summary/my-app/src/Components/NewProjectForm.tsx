@@ -247,6 +247,7 @@ const NewProjectForm: React.FC<NewProjectFormProps> = ({
 
                       <BudgetSection
                         budget={initialValues.budget}
+                        roi={initialValues.roi}
                         mode="edit"
                       />
                     </StyledEqualContainer>

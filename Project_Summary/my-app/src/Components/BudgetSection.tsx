@@ -89,29 +89,29 @@ const BudgetSection: React.FC<BudgetSectionProps> = ({ budget, roi, mode }) => {
               )}
             </BudgetRow>
           )}
-          {roi && (
-            <BudgetRow style={{ marginTop: '16px' }}>
-              <CalibriText12Navy>ROI:</CalibriText12Navy>
-              {mode === 'edit' ? (
-                <Field name="roi" initialValue={roi}>
-                  {({ input, meta }) => (
-                    <TextField
-                      {...input}
-                      variant="standard"
-                      fullWidth
-                      error={meta.touched && meta.error}
-                      helperText={meta.touched && meta.error}
-                      style={{ marginLeft: '8px' }}
-                    />
-                  )}
-                </Field>
-              ) : (
-                <Box style={{ marginLeft: '8px' }}>
-                  {roi}
-                </Box>
-              )}
-            </BudgetRow>
-          )}
+          {roi !== undefined && (
+  <BudgetRow style={{ marginTop: '16px' }}>
+    <CalibriText12Navy>ROI:</CalibriText12Navy>
+    {mode === 'edit' ? (
+      <Field name="roi" initialValue={roi}>
+        {({ input, meta }) => (
+          <TextField
+            {...input}
+            variant="standard"
+            fullWidth
+            error={meta.touched && meta.error}
+            helperText={meta.touched && meta.error}
+            style={{ marginLeft: '8px' }}
+          />
+        )}
+      </Field>
+    ) : (
+      <Box style={{ marginLeft: '8px' }}>
+        {roi}
+      </Box>
+    )}
+  </BudgetRow>
+)}
         </BudgetContainer>
       )}
     />
