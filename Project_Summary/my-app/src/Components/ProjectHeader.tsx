@@ -1,6 +1,6 @@
 import React from "react";
 import { Field } from "react-final-form";
-import { TextField, Box } from "@mui/material";
+import { TextField, Box, MenuItem, Select } from "@mui/material";
 import {
   ProjectName,
   ProjectCode,
@@ -74,19 +74,20 @@ const ProjectHeader: React.FC<ProjectHeaderProps> = ({
       {mode === "edit" ? (
         <OngoingText>
           <Field name="status" initialValue={status}>
-            {({ input, meta }) => (
-              <TextField
+            {({ input }) => (
+              <Select
                 {...input}
-                placeholder="Status"
                 fullWidth
                 variant="standard"
-                error={meta.touched && meta.error}
-                helperText={meta.touched && meta.error}
-                InputProps={{
-                  disableUnderline: true,
-                  style: { fontSize: "inherit", fontWeight: "inherit" },
-                }}
-              />
+                displayEmpty
+                value={input.value} // Display the initial status value
+                style={{ fontSize: "inherit", fontWeight: "inherit" }}
+              >
+                <MenuItem value="REQUESTED">Requested</MenuItem>
+                <MenuItem value="ONGOING">Ongoing</MenuItem>
+                <MenuItem value="ON HOLD">On Hold</MenuItem>
+                <MenuItem value="FINISHED">Finished</MenuItem>
+              </Select>
             )}
           </Field>
         </OngoingText>
