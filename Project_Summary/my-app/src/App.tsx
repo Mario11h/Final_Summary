@@ -20,7 +20,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
 import { useReactToPrint } from 'react-to-print';
 import './App.css';
-
+import { images } from './Components/Assets/DymmyData';
 const App: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
   const currentPage = useSelector((state: RootState) => state.projects.currentPage);
@@ -190,7 +190,21 @@ const App: React.FC = () => {
   }
 
   return (
+    
     <Container style={{minWidth: "99%"}}>
+      <Box
+                  sx={{
+                    position: 'absolute',
+                    left: 0,
+                    top: 10,
+                    width: '12%',
+                    height: '8vh',
+                    backgroundImage: `url(${images[0].imageUrl})`,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                  }}
+                />
+
       <Box display="flex" justifyContent="flex-end" alignItems="center" mb={2}>
       <Tooltip title="Add New Project">
           <IconButton

@@ -112,7 +112,7 @@ export const StyledTeamBox = styled(Box)`
 export const StyledSectionBox = styled(Box)`
   flex: 1 1 45%;
   min-width: 300px;
-  padding: 16px;
+  padding: 10px;
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
