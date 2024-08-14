@@ -51,6 +51,9 @@ import HubTeamSection from "./HubTeamSection";
 import { FieldArray } from "react-final-form-arrays";
 // import validateProjectForm from "./Validation/ValidationProjectForm";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
+
+
 type BusinessTeam = {
   sponsor: string;
   businessOwner: string;
@@ -381,8 +384,7 @@ const NewProjectForm: React.FC<NewProjectFormProps> = ({
                               </Button>
                             </Box>
                           ))}
-                          <Button
-                            variant="contained"
+                          <IconButton
                             color="primary"
                             onClick={() =>
                               fields.push({
@@ -393,8 +395,8 @@ const NewProjectForm: React.FC<NewProjectFormProps> = ({
                               })
                             }
                           >
-                            Add Milestone
-                          </Button>
+                            <AddCircleOutlineIcon />
+                          </IconButton>
                         </>
                       )}
                     </FieldArray>
@@ -411,10 +413,6 @@ const NewProjectForm: React.FC<NewProjectFormProps> = ({
         type="submit"
         sx={{
           backgroundColor: "rgba(4, 36, 106, 1)",
-          '&:hover': {
-            backgroundColor: 'rgba(4, 36, 106, 1)',
-            boxShadow: '0 4px 8px rgba(4, 36, 106, 1)',
-          },
         }}
         disabled={isSubmitting}
       >

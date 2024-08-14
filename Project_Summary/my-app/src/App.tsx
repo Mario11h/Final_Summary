@@ -213,6 +213,7 @@ const App: React.FC = () => {
             color="primary"
             onClick={handleAddProject}
             disabled={isAddingProject || isEditing}
+            size="large"
             sx={{ '&:hover svg': { transform: 'scale(1.2)' }, transition: 'transform 0.3s',color: 'rgba(4, 36, 106, 1)' }}
           >
             <AddchartIcon />
@@ -225,6 +226,7 @@ const App: React.FC = () => {
             onClick={handleEditProject}
             disabled={isAddingProject || isEditing}
             sx={{ '&:hover svg': { transform: 'scale(1.2)' }, transition: 'transform 0.3s',color: 'rgba(4, 36, 106, 1)' }}
+            size="large"
           >
             <EditIcon />
           </IconButton>
@@ -235,6 +237,7 @@ const App: React.FC = () => {
             onClick={handlePrintClick}
             disabled={isAddingProject || isEditing}
             sx={{ '&:hover svg': { transform: 'scale(1.2)' }, transition: 'transform 0.3s',color: 'rgba(4, 36, 106, 1)' }}
+            size="large"
           >
             <PictureAsPdfIcon />
           </IconButton>

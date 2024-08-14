@@ -132,7 +132,7 @@ export const StyledTitleContainer = styled(Box)`
 
 export const StyledMilestoneContainer = styled(Box)`
   padding: 16px;
-  width: 100%;
+  width: 92%;
   display: flex;
   justify-content: center;
   align-items: center;
