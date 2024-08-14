@@ -210,8 +210,18 @@ export const PaginationContainer = styled.div`
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  padding: 10px 0;
+  padding-bottom: 0px;
+  position: fixed;
+  bottom: 0;
+  background-color: transparent;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: rgba(226, 234, 250, 1); 
+  }
 `;
+
+
 
 export const PageNumbers = styled.div`
   flex: 1;

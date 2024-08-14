@@ -13,19 +13,14 @@ import {
 } from './styledComponents/styledContainer';
 import InsertChartIcon from '@mui/icons-material/InsertChart';
 import FlagCircleIcon from '@mui/icons-material/FlagCircle';
-import { CalibriText12, BulletedList, CalibriText12P ,LabelValueItem} from './styledComponents/styledText';
+import { CalibriText12, BulletedList, CalibriText12P, LabelValueItem } from './styledComponents/styledText';
 import { Grid, TextField, Button } from '@mui/material';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
 
-type Goal = {
-  id: number;
-  goal: string;
-};
-
 type ProjectScopeGoalsSectionProps = {
   scopeDescription: string;
-  goals: Goal[];
+  goals: string[];
   mode: 'view' | 'edit';
   addGoalField?: () => void;
   removeGoalField?: (index: number) => void;
@@ -51,24 +46,22 @@ const ProjectScopeGoalsSection: React.FC<ProjectScopeGoalsSectionProps> = ({
             title="Project Scope"
             content={
               mode === 'edit' ? (
-                <Field name="scope_description" initialValue={scopeDescription}>
-                  {({ input, meta }) => {
-                    return (
-                      <TextField
-                        {...input}
-                        placeholder="Project Scope"
-                        fullWidth
-                        multiline
-                        variant="standard"
-                        error={meta.touched && meta.error}
-                        helperText={meta.touched && meta.error}
-                        InputProps={{
-                          disableUnderline: true,
-                          style: { fontSize: 'inherit', fontWeight: 'inherit' },
-                        }}
-                      />
-                    );
-                  }}
+                <Field name="scope" initialValue={scopeDescription}>
+                  {({ input, meta }) => (
+                    <TextField
+                      {...input}
+                      placeholder="Project Scope"
+                      fullWidth
+                      multiline
+                      variant="standard"
+                      error={meta.touched && meta.error}
+                      helperText={meta.touched && meta.error}
+                      InputProps={{
+                        disableUnderline: true,
+                        style: { fontSize: 'inherit', fontWeight: 'inherit' },
+                      }}
+                    />
+                  )}
                 </Field>
               ) : (
                 <CalibriText12P>{scopeDescription}</CalibriText12P>
@@ -76,6 +69,7 @@ const ProjectScopeGoalsSection: React.FC<ProjectScopeGoalsSectionProps> = ({
             }
           />
         </StyledGridItem>
+        <StyledVerticalDivider />
         <StyledGridItem item xs={12} md={6}>
           <Section
             icon={
@@ -88,58 +82,54 @@ const ProjectScopeGoalsSection: React.FC<ProjectScopeGoalsSectionProps> = ({
             title="Project Goals"
             content={
               mode === 'edit' ? (
-                <React.Fragment>
+                <>
                   {goals.map((goal, index) => (
-                    <div key={goal.id} style={{ display: 'flex', alignItems: 'center' }}>
-                      <Field name={`goals[${index}].goal`}>
-                        {({ input, meta }) => {
-                          return (
-                            <TextField
-                              {...input}
-                              placeholder={`Goal ${index + 1}`}
-                              fullWidth
-                              multiline
-                              variant="standard"
-                              error={meta.touched && meta.error}
-                              helperText={meta.touched && meta.error}
-                              InputProps={{
-                                disableUnderline: true,
-                                style: { fontSize: 'inherit', fontWeight: 'inherit' },
-                              }}
-                              margin="normal"
-                            />
-                          );
-                        }}
+                    <div key={index} style={{ display: 'flex', alignItems: 'center' }}>
+                      <Field name={`goals[${index}]`} initialValue={goal}>
+                        {({ input, meta }) => (
+                          <TextField
+                            {...input}
+                            placeholder={`Goal ${index + 1}`}
+                            fullWidth
+                            multiline
+                            variant="standard"
+                            error={meta.touched && meta.error}
+                            helperText={meta.touched && meta.error}
+                            InputProps={{
+                              disableUnderline: true,
+                              style: { fontSize: 'inherit', fontWeight: 'inherit' },
+                            }}
+                            margin="normal"
+                          />
+                        )}
                       </Field>
-                      {removeGoalField && (
-                        <Button
-                          onClick={() => removeGoalField(index)}
-                          variant="text"
-                          color="error"
-                          disabled={goals.length === 1}
-                          style={{ marginLeft: '8px' }}
-                        >
-                          <RemoveCircleOutlineIcon />
-                        </Button>
-                      )}
+                      <Button
+                        onClick={() => removeGoalField?.(index)}
+                        variant="text"
+                        color="error"
+                        style={{ marginLeft: '8px' }}
+                      >
+                        <RemoveCircleOutlineIcon />
+                      </Button>
                     </div>
                   ))}
-                  {addGoalField && (
-                    <Button onClick={addGoalField} variant="text" color="primary">
-                      <AddCircleOutlineIcon />
-                    </Button>
-                  )}
-                </React.Fragment>
-              ) : goals && Array.isArray(goals) ? (
+                  <Button
+                    onClick={addGoalField}
+                    variant="text"
+                    color="primary"
+                    style={{ marginTop: '8px' }}
+                  >
+                    <AddCircleOutlineIcon />
+                  </Button>
+                </>
+              ) : (
                 <BulletedList>
                   {goals.map((goal, index) => (
                     <LabelValueItem key={index}>
-                      <CalibriText12>{typeof goal === 'string' ? goal : goal.goal}</CalibriText12>
+                      <CalibriText12>{goal}</CalibriText12>
                     </LabelValueItem>
                   ))}
                 </BulletedList>
-              ) : (
-                <CalibriText12>No goals available</CalibriText12>
               )
             }
           />
