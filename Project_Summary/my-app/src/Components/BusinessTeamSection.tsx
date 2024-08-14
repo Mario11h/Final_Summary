@@ -26,7 +26,7 @@ const BusinessTeamSection: React.FC<BusinessTeamSectionProps> = ({ businessTeam,
         mode === 'edit' ? (
           <BulletedList>
             <div style={{ display: 'flex', alignItems: 'center', marginBottom: '8px' }}>
-              <Label>Sponsor:</Label>
+              <Label><li>Sponsor:</li></Label>
               <Field name="businessTeam.sponsor" initialValue={team.sponsor}>
                 {({ input, meta }) => (
                   <TextField
@@ -41,7 +41,7 @@ const BusinessTeamSection: React.FC<BusinessTeamSectionProps> = ({ businessTeam,
               </Field>
             </div>
             <div style={{ display: 'flex', alignItems: 'center', marginBottom: '8px' }}>
-              <Label>Business Owner:</Label>
+              <Label><li>Business Owner:</li></Label>
               <Field name="businessTeam.businessOwner" initialValue={team.businessOwner}>
                 {({ input, meta }) => (
                   <TextField
@@ -56,7 +56,7 @@ const BusinessTeamSection: React.FC<BusinessTeamSectionProps> = ({ businessTeam,
               </Field>
             </div>
             <div style={{ display: 'flex', alignItems: 'center', marginBottom: '8px' }}>
-              <Label>Product Owner:</Label>
+              <Label><li>Product Owner:</li></Label>
               <Field name="businessTeam.productOwner" initialValue={team.productOwner}>
                 {({ input, meta }) => (
                   <TextField

@@ -53,9 +53,9 @@ export const CalibriText12P = styled(Typography)`
 //Fixed
 export const CalibriText12Navy = styled(Typography)`
   font-family: roboto;
-  font-size: 16px; // Set the font size
-  font-weight: bold; /* Set the font weight */
-  color: rgba(4, 36, 106, 1); /* Set the text color */
+  font-size: 16px;  
+  font-weight: bold; 
+  color: rgba(4, 36, 106, 1);  
   gap: 10px; // Navy blue color
   display: flex;
   flex-direction: column; // Align items in a column

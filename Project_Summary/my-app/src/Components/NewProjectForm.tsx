@@ -306,7 +306,7 @@ const NewProjectForm: React.FC<NewProjectFormProps> = ({
                       {({ fields }) => (
                         <>
                           {fields.map((name, index) => (
-                            <Box key={index} mt={2}>
+                            <Box key={index} mt={2} >
                               <Field name={`${name}.title`}>
                                 {({ input, meta }) => (
                                   <FormControl fullWidth margin="normal">
@@ -347,9 +347,26 @@ const NewProjectForm: React.FC<NewProjectFormProps> = ({
                                   </FormControl>
                                 )}
                               </Field>
+                              <FormControlLabel
+                                  control={
+                                    <Field
+                                      name={`${name}.currentFlag`}
+                                      component="input"
+                                      type="checkbox"
+                                    />
+                                  }
+                                  label="Current State"
+                                />
                               <Button
                                 variant="contained"
                                 color="secondary"
+                                sx={{
+                                  backgroundColor: 'rgba(226, 1, 1 , 1)',
+                                  '&:hover': {
+                                    backgroundColor: 'rgba(226, 1, 1, 1)',  
+                                    boxShadow: '0 4px 8px rgba(4, 36, 106, 1)',  
+                                  },
+                                }}
                                 onClick={() => {
                                   const milestoneId = fields.value[index].id;
                                   if (milestoneId)
@@ -384,19 +401,26 @@ const NewProjectForm: React.FC<NewProjectFormProps> = ({
                   </StyledMilestoneContainer>
                 </StyledMilestonesGridItem>
               </Grid>
-              <Box mt={4} textAlign="center">
-                <Button
-                  variant="contained"
-                  color="primary"
-                  type="submit"
-                  disabled={isSubmitting}
-                >
-                  {project ? "Update Project" : "Add Project"}
-                </Button>
-                
-              </Box>
+              
             </StyledContainerBox>
           </StyledMainBox>
+          <Box mt={2} textAlign="right">
+      <Button
+        variant="contained"
+        color="primary"
+        type="submit"
+        sx={{
+          backgroundColor: "rgba(4, 36, 106, 1)",
+          '&:hover': {
+            backgroundColor: 'rgba(4, 36, 106, 1)',
+            boxShadow: '0 4px 8px rgba(4, 36, 106, 1)',
+          },
+        }}
+        disabled={isSubmitting}
+      >
+        {project ? "Update Project" : "Add Project"}
+      </Button>
+    </Box>
           {isSubmitting && (
             <Backdrop open={isSubmitting}>
               <CircularProgress color="inherit" />

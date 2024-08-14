@@ -1,7 +1,7 @@
 import React from 'react';
 import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
 import LowerSection from './lowerSection';
-import { CalibriText12Navy } from './styledComponents/styledText';
+import { CalibriText12, CalibriText12Navy } from './styledComponents/styledText';
 import {
   BudgetRow,
   BudgetContainer,
@@ -115,7 +115,7 @@ const BudgetSection: React.FC<BudgetSectionProps> = ({ budget, roi, mode }) => {
                 </Field>
               ) : (
                 <Box style={{ marginLeft: '8px' }}>
-                  {roi}
+                  <CalibriText12>{roi}</CalibriText12>
                 </Box>
               )}
             </BudgetRow>

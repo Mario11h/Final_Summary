@@ -207,7 +207,8 @@ const App: React.FC = () => {
                 />
 
       <Box display="flex" justifyContent="flex-end" alignItems="center" mb={2}>
-      <Tooltip title="Add New Project">
+
+      <Tooltip title="Add New Project" arrow>
           <IconButton
             color="primary"
             onClick={handleAddProject}
@@ -218,7 +219,7 @@ const App: React.FC = () => {
           </IconButton>
         </Tooltip>
         
-        <Tooltip title="Edit Project">
+        <Tooltip title="Edit Project" arrow>
           <IconButton
             color="primary"
             onClick={handleEditProject}
@@ -228,7 +229,7 @@ const App: React.FC = () => {
             <EditIcon />
           </IconButton>
         </Tooltip>
-        <Tooltip title="Print">
+        <Tooltip title="Print" arrow>
           <IconButton
             color="primary"
             onClick={handlePrintClick}

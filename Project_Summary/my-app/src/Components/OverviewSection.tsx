@@ -27,6 +27,8 @@ const OverviewSection: React.FC<OverviewSectionProps> = ({ overview, mode }) => 
                   {...input}
                   placeholder="Overview Text"
                   fullWidth
+                      multiline
+                      rows={4}
                   variant="standard"
                   error={meta.touched && meta.error}
                   helperText={meta.touched && meta.error}

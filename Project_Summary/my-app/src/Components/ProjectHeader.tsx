@@ -37,7 +37,7 @@ const ProjectHeader: React.FC<ProjectHeaderProps> = ({
                     error={meta.touched && meta.error}
                     helperText={meta.touched && meta.error}
                     InputProps={{
-                      disableUnderline: true,
+                      disableUnderline: false,
                       style: { fontSize: "inherit", fontWeight: "inherit" },
                     }}
                   />
