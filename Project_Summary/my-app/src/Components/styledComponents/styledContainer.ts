@@ -209,16 +209,13 @@ export const PaginationContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 100%;
+  width: 95.5%;
   padding-bottom: 0px;
   position: fixed;
   bottom: 0;
-  background-color: transparent;
   transition: background-color 0.3s ease;
-
-  &:hover {
-    background-color: rgba(226, 234, 250, 1); 
-  }
+   background-color: rgba(226, 234, 250, 1); 
+  
 `;
 
 

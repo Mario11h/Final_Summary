@@ -16,8 +16,6 @@ export const StyledTitleGreyBackground = styled(Typography)`
   
 `;
 
-
-
 // Project name styled component FIXED
 export const ProjectName = styled(Typography)`
   color: #003366; // Navy blue color
@@ -80,6 +78,7 @@ export const LabelValueItem = styled.li`
 export const Label = styled.span`
   font-weight: bold; // Set label font to bold
   font-size: 14px;
+  margin-right:4px;
 `;
 
 // Value styled component Fixed
@@ -88,15 +87,26 @@ export const Value = styled.span`
 `;
 
 // Ongoing styled component Fixed
-export const OngoingText = styled(Typography)`
-  background-color: #e69500; // Orange background
-  color: white; // White text color
-  font-family:roboto;
-  font-size: 18px; // Font size 18px
-  text-transform: uppercase; // All caps
-  padding: 5px 10px; // Padding
-  display: inline-block; // Inline-block for fitting content
-  margin-right: 0; 
+export const OngoingText = styled(Typography)<{ status: string }>`
+  background-color: ${({ status }) => {
+    switch (status) {
+      case 'ONGOING':
+        return 'rgba(226, 1, 1, 0.5)';
+      case 'ON HOLD':
+        return 'rgba(226, 1, 1, 1)';
+      case 'FINISHED':
+        return 'rgba(4, 164, 132, 1)';
+      case 'REQUESTED':
+        return 'rgba(198, 213, 245, 1)';
+    }
+  }};
+  color: white; 
+  font-family: roboto;
+  font-size: 18px;
+  text-transform: uppercase;
+  padding: 5px 10px;
+  display: inline-block;
+  margin-right: 0;
 `;
 
 // Calibri bold navy with font size 14px Fixed
@@ -113,7 +123,14 @@ export const CalibriBoldNavy11 = styled(Typography)`
   font-family: 'roboto'; // Calibri font
   font-size: 11px; // Font size 11px
   font-weight: bold; // Bold font weight
-  color: #003366; // Navy blue color
+   color: #003366; // Navy blue color
+
+`;
+export const CalibriBoldRed11 = styled(Typography)`
+  font-family: 'roboto'; // Calibri font
+  font-size: 13px; // Font size 11px
+  font-weight: bold; // Bold font weight
+  color:rgba(226, 1, 1, 1);
 
 `;
 //Fixed

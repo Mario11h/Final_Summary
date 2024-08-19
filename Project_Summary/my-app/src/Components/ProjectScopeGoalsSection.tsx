@@ -97,7 +97,7 @@ const ProjectScopeGoalsSection: React.FC<ProjectScopeGoalsSectionProps> = ({
                             helperText={meta.touched && meta.error}
                             InputProps={{
                               disableUnderline: true,
-                              style: { fontSize: 'inherit', fontWeight: 'inherit' },
+                              style: { fontSize: 'inherit', fontWeight: 'inherit', paddingLeft:'15px'},
                             }}
                             margin="normal"
                           />

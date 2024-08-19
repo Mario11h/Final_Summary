@@ -37,9 +37,10 @@ const ProjectHeader: React.FC<ProjectHeaderProps> = ({
                     error={meta.touched && meta.error}
                     helperText={meta.touched && meta.error}
                     InputProps={{
-                      disableUnderline: false,
+                      disableUnderline: true,
                       style: { fontSize: "inherit", fontWeight: "inherit" },
                     }}
+                    sx={{width:'145%'}}
                   />
                 )}
               </Field>
@@ -72,7 +73,7 @@ const ProjectHeader: React.FC<ProjectHeaderProps> = ({
         )}
       </Box>
       {mode === "edit" ? (
-        <OngoingText>
+        <OngoingText status={status}>
           <Field name="status" initialValue={status}>
             {({ input }) => (
               <Select
@@ -80,7 +81,7 @@ const ProjectHeader: React.FC<ProjectHeaderProps> = ({
                 fullWidth
                 variant="standard"
                 displayEmpty
-                value={input.value} // Display the initial status value
+                value={input.value}
                 style={{ fontSize: "inherit", fontWeight: "inherit" }}
               >
                 <MenuItem value="REQUESTED">Requested</MenuItem>
@@ -92,7 +93,7 @@ const ProjectHeader: React.FC<ProjectHeaderProps> = ({
           </Field>
         </OngoingText>
       ) : (
-        <OngoingText>{status}</OngoingText>
+        <OngoingText status={status}>{status}</OngoingText>
       )}
     </StyledProjectHeaderBox>
   );

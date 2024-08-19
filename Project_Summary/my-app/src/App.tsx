@@ -143,10 +143,12 @@ const App: React.FC = () => {
             </Grid>
           </StyledContainerBox>
         </StyledMainBox>
+        {/* Apply the page break after each project */}
+        <div className="page-break"></div>
       </div>
     );
   };
-
+  
   const currentProject = projects[currentPage - 1];
   console.log('Current Project:', currentProject);
 

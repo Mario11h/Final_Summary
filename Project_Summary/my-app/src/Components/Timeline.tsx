@@ -17,7 +17,7 @@ import {
   RightDiv,
   ArrowContainer,
 } from './styledComponents/StyledTimeline';
-import { CalibriBoldNavy14, CalibriBoldNavy11, CalibriBoldNavy18 } from './styledComponents/styledText';
+import { CalibriBoldNavy14, CalibriBoldNavy11, CalibriBoldNavy18, CalibriBoldRed11 } from './styledComponents/styledText';
 import { timelineItemClasses } from '@mui/lab/TimelineItem';
 
 type Milestone = {
@@ -53,7 +53,7 @@ const CustomizedTimeline: React.FC<CustomizedTimelineProps> = ({ startDate, endD
         </StyledTimelineSeparator>
         <StyledTimelineContent>
           <CalibriBoldNavy14>Project Start Date</CalibriBoldNavy14>
-          <CalibriBoldNavy11>{startDate}</CalibriBoldNavy11>
+          <CalibriBoldRed11>{startDate}</CalibriBoldRed11>
         </StyledTimelineContent>
       </StyledTimelineItem>
 
@@ -74,7 +74,7 @@ const CustomizedTimeline: React.FC<CustomizedTimelineProps> = ({ startDate, endD
                   <CalibriBoldNavy11>{milestone.description}</CalibriBoldNavy11>
                 </LeftDiv>
                 <RightDiv>
-                  <CalibriBoldNavy11>{milestone.date}</CalibriBoldNavy11>
+                  <CalibriBoldRed11>{milestone.date}</CalibriBoldRed11>
                   {milestone.currentFlag ? (
                     <ArrowContainer>
                       <StyledArrowBackIcon />
@@ -103,7 +103,7 @@ const CustomizedTimeline: React.FC<CustomizedTimelineProps> = ({ startDate, endD
         <StyledTimelineContent>
           <StyledDivEnd>
             <CalibriBoldNavy14>Project End Date</CalibriBoldNavy14>
-            <CalibriBoldNavy11>{endDate}</CalibriBoldNavy11>
+            <CalibriBoldRed11>{endDate}</CalibriBoldRed11>
           </StyledDivEnd>
         </StyledTimelineContent>
       </StyledTimelineItem>

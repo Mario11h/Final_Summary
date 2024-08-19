@@ -192,20 +192,6 @@ const NewProjectForm: React.FC<NewProjectFormProps> = ({
       render={({ handleSubmit }) => (
         <form onSubmit={handleSubmit}>
           <StyledMainBox>
-          <div style={{ position: 'relative', left: 0 }}>
-  <Tooltip title="Cancel" arrow>
-    <IconButton
-      color="secondary"
-      onClick={onCancel}
-      sx={{
-        "&:hover svg": { transform: "scale(1.2)" },
-        transition: "transform 0.3s",
-      }}
-    >
-      <ArrowBackIcon sx={{ color: "rgba(4, 36, 106, 1)" }} />
-    </IconButton>
-  </Tooltip>
-</div>
             <ProjectHeader
               name={initialValues.name}
               code={initialValues.code}
@@ -362,9 +348,9 @@ const NewProjectForm: React.FC<NewProjectFormProps> = ({
                                 />
                               <Button
                                 variant="contained"
-                                color="secondary"
+                                color='error'
                                 sx={{
-                                  backgroundColor: 'rgba(226, 1, 1 , 1)',
+                                  
                                   '&:hover': {
                                     backgroundColor: 'rgba(226, 1, 1, 1)',  
                                     boxShadow: '0 4px 8px rgba(4, 36, 106, 1)',  
@@ -406,19 +392,31 @@ const NewProjectForm: React.FC<NewProjectFormProps> = ({
               
             </StyledContainerBox>
           </StyledMainBox>
-          <Box mt={2} textAlign="right">
-      <Button
-        variant="contained"
-        color="primary"
-        type="submit"
-        sx={{
-          backgroundColor: "rgba(4, 36, 106, 1)",
-        }}
-        disabled={isSubmitting}
-      >
-        {project ? "Update Project" : "Add Project"}
-      </Button>
-    </Box>
+          <Box mt={2} display="flex" justifyContent="space-between" alignItems="center">
+  <div style={{ position: 'relative' }}>
+    <IconButton
+      color="secondary"
+      onClick={onCancel}
+      sx={{
+        "&:hover": { transform: "scale(1.2)" },
+        transition: "transform 0.3s",
+      }}
+    >
+      <Button>Cancel</Button>
+    </IconButton>
+  </div>
+  <Button
+    variant="contained"
+    color="primary"
+    type="submit"
+    sx={{
+      backgroundColor: "rgba(4, 36, 106, 1)",
+    }}
+    disabled={isSubmitting}
+  >
+    {project ? "Update Project" : "Add Project"}
+  </Button>
+</Box>
           {isSubmitting && (
             <Backdrop open={isSubmitting}>
               <CircularProgress color="inherit" />
