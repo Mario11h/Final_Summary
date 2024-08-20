@@ -1,150 +1,132 @@
 import styled from '@emotion/styled';
-import {  Box, Grid, Divider } from '@mui/material';
+import { Box, Grid, Divider } from '@mui/material';
 
+// General styling for container boxes
+export const StyledBox = styled(Box)({
+  padding: '16px',
+  position: 'relative',
+  marginBottom: '20px',
+  maxWidth: '100%',
+  backgroundColor: '#ffffff',
+  borderRadius: '8px',
+  border: '1px solid #e0e0e0',
+  boxShadow: '0 2px 6px rgba(0, 0, 0, 0.1)',
+});
 
+export const StyledGridItem = styled(Grid)({
+  position: 'relative',
+  display: 'flex',
+  flexDirection: 'column',
+  flex: 1,
+});
 
-export const StyledBox = styled(Box)`
-  padding: 16px;
-  position: relative;
-  margin-bottom: 20px;
-  max-width: 100%;
-  background-color: #ffffff; /* White background for contrast */
-  border-radius: 8px; /* Rounded corners */
-  border: 1px solid #e0e0e0; /* Light border for definition */
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-  
+export const StyledContentBox = styled(Box)({
+  display: 'flex',
+  flexDirection: 'column',
+  paddingRight: '24px',
+  paddingLeft: '0',
+  textAlign: 'left',
+  width: '100%',
+  boxSizing: 'border-box',
+});
 
- 
-`;
+export const StyledVerticalDivider = styled(Divider)({
+  position: 'absolute',
+  top: '16px',
+  bottom: '16px',
+  left: '50%',
+  transform: 'translateX(-50%)',
+});
 
-export const StyledGridItem = styled(Grid)`
-  && {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-  }
-`;
+export const StyledEqualContainer = styled(Box)({
+  display: 'flex',
+  flexWrap: 'wrap',
+  gap: '16px',
+  justifyContent: 'space-between',
+  width: '100%',
+});
 
-export const StyledContentBox = styled(Box)`
-  display: flex;
-  flex-direction: column;
-  padding-right: 24px;
-  padding-left: 0;
-  text-align: left;
-  width: 100%;
-  box-sizing: border-box;
-`;
+export const StyledMainBox = styled(Box)({
+  flexGrow: 1,
+  minHeight: '400px',
+  display: 'flex',
+  flexDirection: 'column',
+});
 
-export const StyledVerticalDivider = styled(Divider)`
-  && {
-    position: absolute;
-    top: 16px;
-    bottom: 16px;
-    left: 50%;
-    transform: translateX(-50%);
-  }
-`;
+export const StyledContainerBox = styled(Box)({
+  display: 'flex',
+  width: '100%',
+  minHeight: '600px',
+});
 
-export const StyledEqualContainer = styled(Box)`
-  display: flex;
-  flex-wrap: wrap;
-  gap: 16px;
-  justify-content: space-between;
-  width: 100%;
-`;
+export const StyledMainGridItem = styled(Grid)({
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'space-between',
+  flexGrow: 1,
+  minHeight: '400px',
+});
 
-// export const Styke = styled(Box)`
-//   flex-grow: 1;
-//   min-height: 400px;
-//   display: flex;
-//   flex-direction: column;
-// `;
+export const StyledMilestonesGridItem = styled(Grid)({
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'space-between',
+  flexGrow: 1,
+  minHeight: '400px',
+});
 
-export const StyledMainBox = styled(Box)`
-  flex-grow: 1;
-  min-height: 400px;
-  display: flex;
-  flex-direction: column;
-  
-`;
+export const StyledOverviewBox = styled(Box)({
+  display: 'flex',
+  alignItems: 'right',
+});
 
-export const StyledContainerBox = styled(Box)`
-  display: flex;
-  width: 100%;
-  min-height: 600px;
-`;
+export const StyledTextBox = styled(Box)({
+  marginLeft: '25px',
+  minWidth: '100px',
+  flexGrow: 1,
+});
 
-export const StyledMainGridItem = styled(Grid)`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  flex-grow: 1;
-  min-height: 400px;
-`;
+export const StyledTeamBox = styled(Box)({
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  position: 'relative',
+});
 
-export const StyledMilestonesGridItem = styled(Grid)`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  flex-grow: 1;
-  min-height: 400px;
-`;
+export const StyledSectionBox = styled(Box)({
+  flex: '1 1 45%',
+  minWidth: '300px',
+  padding: '10px',
+  display: 'flex',
+  flexDirection: 'column',
+  boxSizing: 'border-box',
+  backgroundColor: '#ffffff',
+  borderRadius: '8px',
+  border: '1px solid #e0e0e0',
+  boxShadow: '0 2px 6px rgba(0, 0, 0, 0.1)',
+});
 
-export const StyledOverviewBox = styled(Box)`
-  display: flex;
-  align-items: right;
-`;
+export const StyledTitleContainer = styled(Box)({
+  flexGrow: 1,
+  textAlign: 'center',
+});
 
-export const StyledTextBox = styled(Box)`
-  margin-left: 25px;
-  min-width: 100px;
-  flex-grow: 1;
-`;
+export const StyledMilestoneContainer = styled(Box)({
+  padding: '16px',
+  width: '92%',
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  flexDirection: 'column',
+  flexGrow: 1,
+  minHeight: '600px',
+  backgroundColor: '#ffffff',
+  borderRadius: '8px',
+  border: '1px solid #e0e0e0',
+  boxShadow: '0 2px 6px rgba(0, 0, 0, 0.1)',
+});
 
-export const StyledTeamBox = styled(Box)`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-`;
-
-export const StyledSectionBox = styled(Box)`
-  flex: 1 1 45%;
-  min-width: 300px;
-  padding: 10px;
-  display: flex;
-  flex-direction: column;
-  box-sizing: border-box;
-  background-color: #ffffff; /* White background for contrast */
-  border-radius: 8px; /* Rounded corners */
-  border: 1px solid #e0e0e0; /* Light border for definition */
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
- 
-  
-
-`;
-
-export const StyledTitleContainer = styled(Box)`
-  flex-grow: 1;
-  text-align: center;
-`;
-
-export const StyledMilestoneContainer = styled(Box)`
-  padding: 16px;
-  width: 92%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  flex-grow: 1;
-  min-height: 600px;
-  background-color: #ffffff; /* White background for contrast */
-  border-radius: 8px; /* Rounded corners */
-  border: 1px solid #e0e0e0; /* Light border for definition */
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-`;
-
+// Utility functions for budget value box
 const getBackgroundColor = (isActual: boolean, budget_actual_usd: number, budget_planned_usd: number) => {
   if (isActual) {
     return budget_actual_usd > budget_planned_usd ? 'rgba(226, 1, 1, 1)' : 'rgba(4, 164, 132, 1)';
@@ -152,7 +134,6 @@ const getBackgroundColor = (isActual: boolean, budget_actual_usd: number, budget
   return 'rgba(7, 62, 187, 1)';
 };
 
-// Function to get width based on budget
 const getWidth = (isActual: boolean, budget_actual_usd: number, budget_planned_usd: number) => {
   const BASE_BUDGET = 80000;
   const BASE_WIDTH = 75;
@@ -165,86 +146,81 @@ const getWidth = (isActual: boolean, budget_actual_usd: number, budget_planned_u
   return `${newWidth}px`;
 };
 
-// BudgetValueBox styled component
-export const BudgetValueBox = styled(Box)<{ isActual: boolean; budget_actual_usd: number; budget_planned_usd: number }>`
-  display: inline-block;
-  padding: 4px 8px;
-  margin: 4px 0;
-  font-size: 12px;
-  font-family: roboto;
-  font-weight: bold;
-  width: ${({ isActual, budget_actual_usd, budget_planned_usd }) => 
-    getWidth(isActual, budget_actual_usd, budget_planned_usd)};
-  color: white;
-  background-color: ${({ isActual, budget_actual_usd, budget_planned_usd }) => 
-    getBackgroundColor(isActual, budget_actual_usd, budget_planned_usd)};
-  text-align: center; /* Center text horizontally */
-  display: flex; /* Enable flexbox layout */
-  align-items: center; /* Center text vertically */
-  justify-content: center; /* Center text horizontally */
-`;
+// Styled component for budget value box
+export const BudgetValueBox = styled(Box)<{ isActual: boolean; budget_actual_usd: number; budget_planned_usd: number }>(
+  ({ isActual, budget_actual_usd, budget_planned_usd }) => ({
+    display: 'inline-block',
+    padding: '4px 8px',
+    margin: '4px 0',
+    fontSize: '12px',
+    fontFamily: 'roboto',
+    fontWeight: 'bold',
+    width: getWidth(isActual, budget_actual_usd, budget_planned_usd),
+    color: 'white',
+    backgroundColor: getBackgroundColor(isActual, budget_actual_usd, budget_planned_usd),
+    textAlign: 'center',
+  })
+);
 
-// Specific styled components for Actual and Planned budgets
-export const ActualBudgetValueBox = styled(BudgetValueBox)`
-  margin-left: 24px;
-`;
+// Variants of BudgetValueBox
+export const ActualBudgetValueBox = styled(BudgetValueBox)({
+  marginLeft: '24px',
+});
 
-export const PlannedBudgetValueBox = styled(BudgetValueBox)`
-  margin-left: 15px;
-`;
+export const PlannedBudgetValueBox = styled(BudgetValueBox)({
+  marginLeft: '15px',
+});
 
-export const BudgetRow = styled.div`
-  display: flex;
-  align-items: center;
-  margin-bottom: 8px;
-  gap: 8px;
-`;
+// Additional container components
+export const BudgetRow = styled('div')({
+  display: 'flex',
+  alignItems: 'center',
+  marginBottom: '8px',
+  gap: '8px',
+});
 
-export const BudgetContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
+export const BudgetContainer = styled('div')({
+  display: 'flex',
+  flexDirection: 'column',
+});
 
-export const PaginationContainer = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 95.5%;
-  padding-bottom: 0px;
-  position: fixed;
-  bottom: 0;
-  transition: background-color 0.3s ease;
-   background-color: rgba(226, 234, 250, 1); 
-  
-`;
+export const PaginationContainer = styled('div')({
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'space-between',
+  width: '95.5%',
+  paddingBottom: '0px',
+  position: 'fixed',
+  bottom: 0,
+  transition: 'background-color 0.3s ease',
+  backgroundColor: 'rgba(226, 234, 250, 1)',
+});
 
+export const PageNumbers = styled('div')({
+  flex: 1,
+  textAlign: 'center',
+  fontSize: '16px',
+});
 
+export const StyledProjectHeaderBox = styled(Box)({
+  display: 'flex',
+  flexDirection: 'column',
+  width: '100%',
+  boxSizing: 'border-box',
+  padding: '16px',
+});
 
-export const PageNumbers = styled.div`
-  flex: 1;
-  text-align: center;
-  font-size: 16px;
-`;
+export const ProjectName = styled(Box)({
+  fontSize: '1.5rem',
+  fontWeight: 'bold',
+});
 
-export const StyledProjectHeaderBox = styled(Box)`
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  box-sizing: border-box;
-  padding: 16px;
-`;
+export const ProjectCode = styled(Box)({
+  fontSize: '1.2rem',
+  color: 'gray',
+});
 
-export const ProjectName = styled(Box)`
-  font-size: 1.5rem;
-  font-weight: bold;
-`;
-
-export const ProjectCode = styled(Box)`
-  font-size: 1.2rem;
-  color: gray;
-`;
-
-export const OngoingText = styled(Box)`
-  font-size: 1rem;
-  color: rgba(4, 36, 106, 1);
-`;
+export const OngoingText = styled(Box)({
+  fontSize: '1rem',
+  color: 'rgba(4, 36, 106, 1)',
+});
