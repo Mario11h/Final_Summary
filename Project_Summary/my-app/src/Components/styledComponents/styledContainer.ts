@@ -135,9 +135,9 @@ const getBackgroundColor = (isActual: boolean, budget_actual_usd: number, budget
 };
 
 const getWidth = (isActual: boolean, budget_actual_usd: number, budget_planned_usd: number) => {
-  const BASE_BUDGET = 80000;
+  const BASE_BUDGET = 30000;
   const BASE_WIDTH = 75;
-  const WIDTH_INCREMENT = 20;
+  const WIDTH_INCREMENT = 40;
 
   const difference = isActual ? budget_actual_usd - BASE_BUDGET : budget_planned_usd - BASE_BUDGET;
   const increments = Math.floor(difference / 15000);
@@ -188,8 +188,9 @@ export const PaginationContainer = styled('div')({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'space-between',
-  width: '95.5%',
+  width: '95%',
   paddingBottom: '0px',
+   padding: '5px',
   position: 'fixed',
   bottom: 0,
   transition: 'background-color 0.3s ease',

@@ -14,13 +14,13 @@ import MilestonesSection from './Components/MilestonesSection';
 import { Container, Typography, Button, Box, Grid, Backdrop, CircularProgress, Tooltip, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, IconButton } from '@mui/material';
 import { StyledEqualContainer, StyledContainerBox, StyledMainGridItem, StyledMilestonesGridItem, StyledMainBox } from './Components/styledComponents/styledContainer';
 import NewProjectForm from './Components/NewProjectForm';
-import DeleteIcon from '@mui/icons-material/Delete';
 import AddchartIcon from '@mui/icons-material/Addchart';
 import EditIcon from '@mui/icons-material/Edit';
 import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
 import { useReactToPrint } from 'react-to-print';
 import './App.css';
 import { images } from './Components/Assets/DummyData';
+
 const App: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
   const currentPage = useSelector((state: RootState) => state.projects.currentPage);
@@ -33,7 +33,6 @@ const App: React.FC = () => {
   const [printMode, setPrintMode] = useState(false);
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
   const [projectToDelete, setProjectToDelete] = useState<number | null>(null);
-
   const printRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
@@ -196,17 +195,17 @@ const App: React.FC = () => {
     
     <Container style={{minWidth: "100%"}}>
       <Box
-                  sx={{
-                    position: 'absolute',
-                    left: 0,
-                    top: 10,
-                    width: '12%',
-                    height: '8vh',
-                    backgroundImage: `url(${images[0].imageUrl})`,
-                    backgroundSize: 'cover',
-                    backgroundPosition: 'center',
-                  }}
-                />
+             sx={{
+             position: 'absolute',
+             left: 0,
+             top: 10,
+             width: '12%',
+             height: '8vh',
+             backgroundImage: `url(${images[0].imageUrl})`,
+             backgroundSize: 'cover',
+             backgroundPosition: 'center',
+            }}
+           />
 
       <Box display="flex" justifyContent="flex-end" alignItems="center" mb={2}>
 

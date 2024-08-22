@@ -1,21 +1,8 @@
 import React, { useState } from "react";
-import {
-  Button,
-  TextField,
-  Box,
-  FormControlLabel,
-  Grid,
-  FormControl,
-  InputLabel,
-  CircularProgress,
-  Backdrop,
-  IconButton,
-} from "@mui/material";
+import { Button, TextField, Box, FormControlLabel, Grid, FormControl, InputLabel, CircularProgress, Backdrop, IconButton,} from "@mui/material";
 import { Form, Field } from "react-final-form";
 import arrayMutators from "final-form-arrays";
-import {
-  addNewProjectService,
-  updateProjectService,
+import {addNewProjectService,updateProjectService,
   deleteProjectGoalService,
   deleteProjectRiskService,
   deleteProjectMilestoneService,
@@ -26,14 +13,7 @@ import ProjectScopeGoalsSection from "./ProjectScopeGoalsSection";
 import BusinessTeamSection from "./BusinessTeamSection";
 import RiskSection from "./RiskSection";
 import BudgetSection from "./BudgetSection";
-import {
-  StyledEqualContainer,
-  StyledContainerBox,
-  StyledMainGridItem,
-  StyledMilestonesGridItem,
-  StyledMainBox,
-  StyledMilestoneContainer,
-} from "./styledComponents/styledContainer";
+import { StyledEqualContainer, StyledContainerBox, StyledMainGridItem, StyledMilestonesGridItem, StyledMainBox, StyledMilestoneContainer} from "./styledComponents/styledContainer";
 import HubTeamSection from "./HubTeamSection";
 import { FieldArray } from "react-final-form-arrays";
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';

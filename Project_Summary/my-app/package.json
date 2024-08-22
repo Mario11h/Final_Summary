@@ -5,6 +5,9 @@
   "dependencies": {
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.5",
+    "@fortawesome/free-solid-svg-icons": "^6.6.0",
+    "@fortawesome/react-fontawesome": "^0.2.2",
+    "@lottiefiles/react-lottie-player": "^3.5.4",
     "@mui/icons-material": "^5.15.21",
     "@mui/lab": "^5.0.0-alpha.171",
     "@mui/material": "^5.15.21",
@@ -19,6 +22,7 @@
     "axios": "^1.7.2",
     "html2canvas": "^1.4.1",
     "jspdf": "^2.5.1",
+    "lottie-web": "^5.12.2",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-final-form": "^6.5.9",
