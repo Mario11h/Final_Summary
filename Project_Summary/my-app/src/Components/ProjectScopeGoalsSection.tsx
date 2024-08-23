@@ -13,7 +13,7 @@ import {
 } from './styledComponents/styledContainer';
 import InsertChartIcon from '@mui/icons-material/InsertChart';
 import FlagCircleIcon from '@mui/icons-material/FlagCircle';
-import { CalibriText12, BulletedList, CalibriText12P, LabelValueItem } from './styledComponents/styledText';
+import { TextRoboto, BulletedList, CalibriText12P, LabelValueItem } from './styledComponents/styledText';
 import { Grid, TextField, Button } from '@mui/material';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
@@ -126,7 +126,7 @@ const ProjectScopeGoalsSection: React.FC<ProjectScopeGoalsSectionProps> = ({
                 <BulletedList>
                   {goals.map((goal, index) => (
                     <LabelValueItem key={index}>
-                      <CalibriText12>{goal}</CalibriText12>
+                      <TextRoboto>{goal}</TextRoboto>
                     </LabelValueItem>
                   ))}
                 </BulletedList>

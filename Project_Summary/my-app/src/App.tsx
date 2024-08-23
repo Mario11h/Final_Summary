@@ -12,7 +12,7 @@ import RiskSection from './Components/RiskSection';
 import BudgetSection from './Components/BudgetSection';
 import MilestonesSection from './Components/MilestonesSection';
 import { Container, Typography, Button, Box, Grid, Backdrop, CircularProgress, Tooltip, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, IconButton } from '@mui/material';
-import { StyledEqualContainer, StyledContainerBox, StyledMainGridItem, StyledMilestonesGridItem, StyledMainBox } from './Components/styledComponents/styledContainer';
+import { StyledEqualContainer } from './Components/styledComponents/styledContainer';
 import NewProjectForm from './Components/NewProjectForm';
 import AddchartIcon from '@mui/icons-material/Addchart';
 import EditIcon from '@mui/icons-material/Edit';
@@ -108,17 +108,17 @@ const App: React.FC = () => {
     if (!project) return null;
     return (
       <div key={index} className="pdf-page">
-        <StyledMainBox>
+        <Grid>
           <ProjectHeader 
             name={project.name} 
             code={project.code} 
             status={project.status}
             mode="view" 
           />
-          <StyledContainerBox>
+          
             <Grid container spacing={2}>
-              <StyledMainGridItem item xs={12} md={8}>
-                <StyledMainBox>
+              <Grid item xs={12} md={8}>
+                <Grid>
                   <OverviewSection overview={project.description} mode="view" />
                   <Box/>
                   <ProjectScopeGoalsSection scopeDescription={project.scope} goals={project.goals} mode="view" />
@@ -128,20 +128,20 @@ const App: React.FC = () => {
                     <RiskSection risks={project.risks} mode="view" />
                     <BudgetSection budget={project.budget} roi={project.roi} mode="view"  />
                   </StyledEqualContainer>
-                </StyledMainBox>
-              </StyledMainGridItem>
-              <StyledMilestonesGridItem item xs={12} md={4}>
-                <StyledMainBox>
+                </Grid>
+              </Grid>
+              <Grid item xs={12} md={4}>
+                <Grid>
                   <MilestonesSection
                     milestones={project.milestones}
                     startDate={project.startDate}
                     endDate={project.endDate}
                   />
-                </StyledMainBox>
-              </StyledMilestonesGridItem>
+                </Grid>
+              </Grid>
             </Grid>
-          </StyledContainerBox>
-        </StyledMainBox>
+          
+        </Grid>
         {/* Apply the page break after each project */}
         <div className="page-break"></div>
       </div>

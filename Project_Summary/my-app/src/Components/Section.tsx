@@ -1,6 +1,6 @@
 import React from 'react';
-import {StyledContentBox } from './styledComponents/styledContainer';
 import { StyledTitleGreyBackground } from './styledComponents/styledText';
+import { Box } from '@mui/material';
 
 type SectionProps = {
   icon: React.ReactElement;
@@ -12,10 +12,10 @@ const Section: React.FC<SectionProps> = ({ icon, title, content }) => {
   return (
     <>
       {icon}
-      <StyledContentBox>
+      <Box>
         <StyledTitleGreyBackground>{title}</StyledTitleGreyBackground>
         {content}
-      </StyledContentBox>
+      </Box>
     </>
   );
 };

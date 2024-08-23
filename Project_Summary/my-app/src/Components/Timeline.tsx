@@ -1,24 +1,20 @@
 import React from 'react';
 import DirectionsRunIcon from '@mui/icons-material/DirectionsRun';
 import DoneIcon from '@mui/icons-material/Done';
+import { TimelineItem, TimelineSeparator, TimelineContent, timelineItemClasses } from '@mui/lab';
 import {
   StyledTimeline,
-  StyledTimelineItem,
-  StyledTimelineSeparator,
   StyledTimelineConnector,
-  StyledTimelineContent,
   StyledTimelineDot,
   StyledTimelineDotPerson,
   StyledTimelineDotDone,
   StyledDiv,
   StyledDivEnd,
   StyledArrowBackIcon,
-  LeftDiv,
-  RightDiv,
   ArrowContainer,
 } from './styledComponents/StyledTimeline';
 import { CalibriBoldNavy14, CalibriBoldNavy11, CalibriBoldNavy18, CalibriBoldRed11 } from './styledComponents/styledText';
-import { timelineItemClasses } from '@mui/lab/TimelineItem';
+import { Grid } from '@mui/material';
 
 type Milestone = {
   id: number;
@@ -44,69 +40,69 @@ const CustomizedTimeline: React.FC<CustomizedTimelineProps> = ({ startDate, endD
         },
       }}
     >
-      <StyledTimelineItem>
-        <StyledTimelineSeparator>
+      <TimelineItem>
+        <TimelineSeparator>
           <StyledTimelineDotPerson>
-            <DirectionsRunIcon  />
+            <DirectionsRunIcon />
           </StyledTimelineDotPerson>
           <StyledTimelineConnector />
-        </StyledTimelineSeparator>
-        <StyledTimelineContent>
+        </TimelineSeparator>
+        <TimelineContent>
           <CalibriBoldNavy14>Project Start Date</CalibriBoldNavy14>
           <CalibriBoldRed11>{startDate}</CalibriBoldRed11>
-        </StyledTimelineContent>
-      </StyledTimelineItem>
+        </TimelineContent>
+      </TimelineItem>
 
       {milestones && milestones.length > 0 ? (
         milestones.map((milestone, index) => (
-          <StyledTimelineItem key={milestone.id}>
-            <StyledTimelineSeparator>
+          <TimelineItem key={milestone.id}>
+            <TimelineSeparator>
               <StyledTimelineConnector />
               <StyledTimelineDot>
                 <CalibriBoldNavy18>{index + 1}</CalibriBoldNavy18>
               </StyledTimelineDot>
               <StyledTimelineConnector />
-            </StyledTimelineSeparator>
-            <StyledTimelineContent>
+            </TimelineSeparator>
+            <TimelineContent>
               <StyledDiv>
-                <LeftDiv>
+                <Grid>
                   <CalibriBoldNavy14>{milestone.title}</CalibriBoldNavy14>
                   <CalibriBoldNavy11>{milestone.description}</CalibriBoldNavy11>
-                </LeftDiv>
-                <RightDiv>
+                </Grid>
+                <Grid>
                   <CalibriBoldRed11>{milestone.date}</CalibriBoldRed11>
                   {milestone.currentFlag ? (
                     <ArrowContainer>
                       <StyledArrowBackIcon />
                     </ArrowContainer>
                   ) : null}
-                </RightDiv>
+                </Grid>
               </StyledDiv>
-            </StyledTimelineContent>
-          </StyledTimelineItem>
+            </TimelineContent>
+          </TimelineItem>
         ))
       ) : (
-        <StyledTimelineItem>
-          <StyledTimelineContent>
+        <TimelineItem>
+          <TimelineContent>
             <p>No milestones available</p>
-          </StyledTimelineContent>
-        </StyledTimelineItem>
+          </TimelineContent>
+        </TimelineItem>
       )}
 
-      <StyledTimelineItem>
-        <StyledTimelineSeparator>
+      <TimelineItem>
+        <TimelineSeparator>
           <StyledTimelineConnector />
           <StyledTimelineDotDone>
             <DoneIcon />
           </StyledTimelineDotDone>
-        </StyledTimelineSeparator>
-        <StyledTimelineContent>
+        </TimelineSeparator>
+        <TimelineContent>
           <StyledDivEnd>
             <CalibriBoldNavy14>Project End Date</CalibriBoldNavy14>
             <CalibriBoldRed11>{endDate}</CalibriBoldRed11>
           </StyledDivEnd>
-        </StyledTimelineContent>
-      </StyledTimelineItem>
+        </TimelineContent>
+      </TimelineItem>
     </StyledTimeline>
   );
 };

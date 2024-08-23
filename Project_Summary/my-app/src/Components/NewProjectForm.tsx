@@ -13,11 +13,10 @@ import ProjectScopeGoalsSection from "./ProjectScopeGoalsSection";
 import BusinessTeamSection from "./BusinessTeamSection";
 import RiskSection from "./RiskSection";
 import BudgetSection from "./BudgetSection";
-import { StyledEqualContainer, StyledContainerBox, StyledMainGridItem, StyledMilestonesGridItem, StyledMainBox, StyledMilestoneContainer} from "./styledComponents/styledContainer";
+import { StyledEqualContainer, StyledMilestoneContainer} from "./styledComponents/styledContainer";
 import HubTeamSection from "./HubTeamSection";
 import { FieldArray } from "react-final-form-arrays";
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
-
 
 type BusinessTeam = {
   sponsor: string;
@@ -75,7 +74,6 @@ const NewProjectForm: React.FC<NewProjectFormProps> = ({
   onEdit,
   project,
 }) => {
-  const [isSubmitting, setIsSubmitting] = useState(false);
   const initialValues: Project = project || {
     id: 0,
     name: "",
@@ -111,21 +109,12 @@ const NewProjectForm: React.FC<NewProjectFormProps> = ({
   const [milestonesToRemove, setMilestonesToRemove] = useState<number[]>([]);
 
   const handleSubmit = async (values: Project) => {
-    setIsSubmitting(true);
+    console.log('values', values);
+    
     try {
-      console.log("Submitting project data:", values);
-
       if (!project) {
         // Create a new project
         const newProject = await addNewProjectService(values);
-        // await addProjectGoalsService(newProject.id, values.goals);
-        // await addProjectRisksService(newProject.id, values.risks);
-        // await addProjectBusinessTeamService(newProject.id, values.businessTeam);
-        // await addProjectHubTeamService(newProject.id, values.hubTeam);
-        // await addProjectBudgetService(newProject.id, values.budget);
-        // for (const milestone of values.milestones) {
-        //   await addProjectMilestoneService(newProject.id, milestone);
-        // }
         onDone(newProject);
       } else {
         // Update an existing project
@@ -143,30 +132,28 @@ const NewProjectForm: React.FC<NewProjectFormProps> = ({
       }
     } catch (error) {
       console.error("Error handling project data:", error);
-    } finally {
-      setIsSubmitting(false);
-    }
+    } 
   };
 
   return (
     <Form
       onSubmit={handleSubmit}
       initialValues={initialValues}
-      
       mutators={{ ...arrayMutators }}
-      render={({ handleSubmit }) => (
-        <form onSubmit={handleSubmit}>
-          <StyledMainBox>
-            <ProjectHeader
-              name={initialValues.name}
-              code={initialValues.code}
-              status={initialValues.status}
-              mode="edit"
-            />
-            <StyledContainerBox>
+      render={({ handleSubmit, submitting, pristine, values }) => {
+        const isFormValid = Object.values(values).every(value => value !== "" && value !== undefined);
+        return (
+          <form onSubmit={handleSubmit}>
+            <Grid>
+              <ProjectHeader
+                name={initialValues.name}
+                code={initialValues.code}
+                status={initialValues.status}
+                mode="edit"
+              />
               <Grid container spacing={2}>
-                <StyledMainGridItem item xs={12} md={8}>
-                  <StyledMainBox>
+                <Grid item xs={12} md={8}>
+                  <Grid>
                     <OverviewSection
                       overview={initialValues.description}
                       mode="edit"
@@ -220,9 +207,9 @@ const NewProjectForm: React.FC<NewProjectFormProps> = ({
                         mode="edit"
                       />
                     </StyledEqualContainer>
-                  </StyledMainBox>
-                </StyledMainGridItem>
-                <StyledMilestonesGridItem item xs={12} md={4}>
+                  </Grid>
+                </Grid>
+                <Grid item xs={12} md={4}>
                   <StyledMilestoneContainer>
                     <Field name="startDate">
                       {({ input, meta }) => (
@@ -315,7 +302,6 @@ const NewProjectForm: React.FC<NewProjectFormProps> = ({
                                 variant="contained"
                                 color='error'
                                 sx={{
-                                  
                                   '&:hover': {
                                     backgroundColor: 'rgba(226, 1, 1, 1)',  
                                     boxShadow: '0 4px 8px rgba(4, 36, 106, 1)',  
@@ -352,43 +338,42 @@ const NewProjectForm: React.FC<NewProjectFormProps> = ({
                       )}
                     </FieldArray>
                   </StyledMilestoneContainer>
-                </StyledMilestonesGridItem>
+                </Grid>
               </Grid>
-              
-            </StyledContainerBox>
-          </StyledMainBox>
-          <Box mt={2} display="flex" justifyContent="space-between" alignItems="center">
-  <div style={{ position: 'relative' }}>
-    <IconButton
-      color="secondary"
-      onClick={onCancel}
-      sx={{
-        "&:hover": { transform: "scale(1.2)" },
-        transition: "transform 0.3s",
+            </Grid>
+            <Box mt={2} display="flex" justifyContent="space-between" alignItems="center">
+              <div style={{ position: 'relative' }}>
+                <Button
+                  color="secondary"
+                  onClick={onCancel}
+                  sx={{
+                    "&:hover": { transform: "scale(1.2)" },
+                    transition: "transform 0.3s",
+                  }}
+                >
+                  <Button>Cancel</Button>
+                </Button>
+              </div>
+              <Button
+                variant="contained"
+                color="primary"
+                type="submit"
+                sx={{
+                  backgroundColor: "rgba(4, 36, 106, 1)",
+                }}
+                disabled={submitting || pristine || !isFormValid}
+              >
+                {submitting ? "Submitting..." : project ? "Update Project" : "Add Project"}
+              </Button>
+            </Box>
+            {submitting && (
+              <Backdrop open={submitting}>
+                <CircularProgress color="inherit" />
+              </Backdrop>
+            )}
+          </form>
+        );
       }}
-    >
-      <Button>Cancel</Button>
-    </IconButton>
-  </div>
-  <Button
-    variant="contained"
-    color="primary"
-    type="submit"
-    sx={{
-      backgroundColor: "rgba(4, 36, 106, 1)",
-    }}
-    disabled={isSubmitting}
-  >
-    {project ? "Update Project" : "Add Project"}
-  </Button>
-</Box>
-          {isSubmitting && (
-            <Backdrop open={isSubmitting}>
-              <CircularProgress color="inherit" />
-            </Backdrop>
-          )}
-        </form>
-      )}
     />
   );
 };

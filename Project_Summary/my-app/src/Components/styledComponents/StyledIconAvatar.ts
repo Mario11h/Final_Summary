@@ -5,36 +5,33 @@ export const StyledIconNoBackground = styled(Box)({
   display: 'inline-flex',
   alignItems: 'center',
   justifyContent: 'center',
-  width: '40px', // Size for the background circle
-  height: '40px', // Size for the background circle
+  width: '40px',
+  height: '40px', 
   borderRadius: '50%',
   backgroundColor: 'rgba(4, 36, 106, 1)',
   color: 'white',
-  flexShrink: 0, // Prevent shrinking
 });
 
 export const StyledIconGreyBackground = styled(Box)({
   display: 'inline-flex',
   alignItems: 'center',
   justifyContent: 'center',
-  width: '40px', // Size for the background circle
-  height: '40px', // Size for the background circle
+  width: '40px',
+  height: '40px',
   borderRadius: '50%',
-  backgroundColor: '#D3D3D3', // Grey background
-  color: 'rgba(4, 36, 106, 1)', // Set default color
-  flexShrink: 0, // Prevent shrinking
+  backgroundColor: '#D3D3D3', 
+  color: 'rgba(4, 36, 106, 1)',
 });
 
 export const StyledIconGreenBackground = styled(Box)({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
-  width: '40px', // Size for the background circle
-  height: '40px', // Size for the background circle
+  width: '40px', 
+  height: '40px',
   borderRadius: '50%',
-  backgroundColor: 'rgba(4, 164, 132, 1)', // Green background
-  color: 'white', // Set default color
-  flexShrink: 0, // Prevent shrinking
+  backgroundColor: 'rgba(4, 164, 132, 1)', 
+  color: 'white', 
   position: 'absolute',
   top: '-30px',
   right: '8px',

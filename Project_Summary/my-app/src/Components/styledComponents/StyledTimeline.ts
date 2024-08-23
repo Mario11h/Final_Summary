@@ -1,38 +1,19 @@
 import styled from '@emotion/styled';
 import Timeline from '@mui/lab/Timeline';
-import TimelineItem from '@mui/lab/TimelineItem';
-import TimelineSeparator from '@mui/lab/TimelineSeparator';
 import TimelineConnector from '@mui/lab/TimelineConnector';
-import TimelineContent from '@mui/lab/TimelineContent';
 import TimelineDot from '@mui/lab/TimelineDot';
 import WestIcon from '@mui/icons-material/West';
 
 export const StyledTimeline = styled(Timeline)({
-  padding: 0,
-  margin: 0,
   width: '100%',
 });
 
-export const StyledTimelineItem = styled(TimelineItem)({
-  display: 'flex',
-  alignItems: 'flex-start',
-  flexDirection: 'row',
-});
-
-export const StyledTimelineSeparator = styled(TimelineSeparator)({
-  flex: 0,
-});
 
 export const StyledTimelineConnector = styled(TimelineConnector)({
   backgroundColor: 'black',
-  minHeight: '20px', // Adjust the height as needed
+  minHeight: '20px', 
 });
 
-export const StyledTimelineContent = styled(TimelineContent)({
-  padding: '6px 16px',
-  flex: 1,
-  textAlign: 'left',
-});
 
 export const StyledTimelineDotPerson = styled(TimelineDot)({
   backgroundColor: 'rgba(4, 36, 106, 1)',
@@ -75,22 +56,9 @@ export const StyledArrowBackIcon = styled(WestIcon)({
   fontSize: '2rem',
 });
 
-export const LeftDiv = styled.div({
-  maxWidth: '50%',
-  wordWrap: 'break-word',
-  overflowWrap: 'break-word',
-});
-
-export const RightDiv = styled.div({
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'space-between',
-  paddingRight: '8px',
-});
 
 export const ArrowContainer = styled.div({
   position: 'absolute',
-  left: '80%',
+  right: '100px',
   bottom: '-10px',
-  transform: 'translateX(-200%)',
 });

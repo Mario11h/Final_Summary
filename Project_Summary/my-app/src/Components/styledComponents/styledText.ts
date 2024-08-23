@@ -30,7 +30,7 @@ export const ProjectCode = styled(Typography)({
 });
 
 // Calibri font styled component
-export const CalibriText12 = styled(Typography)({
+export const TextRoboto = styled(Typography)({
   fontFamily: 'roboto',
   fontSize: '14px',
   color: '#000',
@@ -88,7 +88,7 @@ export const OngoingText = styled(Typography)<{ status: string }>(({ status }) =
       case 'ONGOING':
         return 'rgba(226, 1, 1, 0.5)';
       case 'ON HOLD':
-        return 'rgba(198, 213, 245, 1)';
+        return 'rgba(7, 62, 183, 1)';
       case 'FINISHED':
         return 'rgba(4, 164, 132, 1)';
       case 'REQUESTED':
@@ -150,7 +150,8 @@ export const StyledTitleOver = styled(Typography)({
   fontWeight: 'bold', 
   fontFamily: 'roboto',
   marginBottom: '10px', 
-  display: 'flex',
+  marginLeft: '50px',
+  marginTop:'-28px'
 });
 
 // Milestone styled component

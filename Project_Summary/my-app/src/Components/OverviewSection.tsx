@@ -1,9 +1,9 @@
 import React from 'react';
 import { Field } from 'react-final-form';
-import { TextField } from '@mui/material';
-import { CalibriText12, StyledTitleOver } from './styledComponents/styledText';
+import { Grid, TextField } from '@mui/material';
+import { StyledTitleOver, TextRoboto } from './styledComponents/styledText';
 import { StyledIconGreyBackground } from './styledComponents/StyledIconAvatar';
-import { StyledBox, StyledOverviewBox, StyledTextBox } from './styledComponents/styledContainer';
+import { StyledBox} from './styledComponents/styledContainer';
 import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 
 type OverviewSectionProps = {
@@ -14,11 +14,10 @@ type OverviewSectionProps = {
 const OverviewSection: React.FC<OverviewSectionProps> = ({ overview, mode }) => {
   return (
     <StyledBox>
-      <StyledOverviewBox>
         <StyledIconGreyBackground>
           <TrendingUpIcon />
         </StyledIconGreyBackground>
-        <StyledTextBox>
+        <Grid>
           <StyledTitleOver>OVERVIEW</StyledTitleOver>
           {mode === 'edit' ? (
             <Field name="overview" initialValue={overview}>
@@ -27,8 +26,8 @@ const OverviewSection: React.FC<OverviewSectionProps> = ({ overview, mode }) => 
                   {...input}
                   placeholder="Overview Text"
                   fullWidth
-                      multiline
-                      rows={4}
+                  multiline
+                  rows={4}
                   variant="standard"
                   error={meta.touched && meta.error}
                   helperText={meta.touched && meta.error}
@@ -40,10 +39,9 @@ const OverviewSection: React.FC<OverviewSectionProps> = ({ overview, mode }) => 
               )}
             </Field>
           ) : (
-            <CalibriText12>{overview}</CalibriText12>
+            <TextRoboto>{overview}</TextRoboto>
           )}
-        </StyledTextBox>
-      </StyledOverviewBox>
+        </Grid>
     </StyledBox>
   );
 };

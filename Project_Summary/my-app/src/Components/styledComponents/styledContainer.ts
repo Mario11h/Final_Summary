@@ -6,28 +6,11 @@ export const StyledBox = styled(Box)({
   padding: '16px',
   position: 'relative',
   marginBottom: '20px',
-  maxWidth: '100%',
-  backgroundColor: '#ffffff',
-  borderRadius: '8px',
   border: '1px solid #e0e0e0',
-  boxShadow: '0 2px 6px rgba(0, 0, 0, 0.1)',
 });
 
 export const StyledGridItem = styled(Grid)({
   position: 'relative',
-  display: 'flex',
-  flexDirection: 'column',
-  flex: 1,
-});
-
-export const StyledContentBox = styled(Box)({
-  display: 'flex',
-  flexDirection: 'column',
-  paddingRight: '24px',
-  paddingLeft: '0',
-  textAlign: 'left',
-  width: '100%',
-  boxSizing: 'border-box',
 });
 
 export const StyledVerticalDivider = styled(Divider)({
@@ -46,46 +29,6 @@ export const StyledEqualContainer = styled(Box)({
   width: '100%',
 });
 
-export const StyledMainBox = styled(Box)({
-  flexGrow: 1,
-  minHeight: '400px',
-  display: 'flex',
-  flexDirection: 'column',
-});
-
-export const StyledContainerBox = styled(Box)({
-  display: 'flex',
-  width: '100%',
-  minHeight: '600px',
-});
-
-export const StyledMainGridItem = styled(Grid)({
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'space-between',
-  flexGrow: 1,
-  minHeight: '400px',
-});
-
-export const StyledMilestonesGridItem = styled(Grid)({
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'space-between',
-  flexGrow: 1,
-  minHeight: '400px',
-});
-
-export const StyledOverviewBox = styled(Box)({
-  display: 'flex',
-  alignItems: 'right',
-});
-
-export const StyledTextBox = styled(Box)({
-  marginLeft: '25px',
-  minWidth: '100px',
-  flexGrow: 1,
-});
-
 export const StyledTeamBox = styled(Box)({
   display: 'flex',
   alignItems: 'center',
@@ -95,7 +38,6 @@ export const StyledTeamBox = styled(Box)({
 
 export const StyledSectionBox = styled(Box)({
   flex: '1 1 45%',
-  minWidth: '300px',
   padding: '10px',
   display: 'flex',
   flexDirection: 'column',
@@ -162,7 +104,6 @@ export const BudgetValueBox = styled(Box)<{ isActual: boolean; budget_actual_usd
   })
 );
 
-// Variants of BudgetValueBox
 export const ActualBudgetValueBox = styled(BudgetValueBox)({
   marginLeft: '24px',
 });
