@@ -17,6 +17,7 @@ import { StyledEqualContainer, StyledMilestoneContainer} from "./styledComponent
 import HubTeamSection from "./HubTeamSection";
 import { FieldArray } from "react-final-form-arrays";
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
+import validateProjectForm from './Validation/ValidationProjectForm';
 
 type BusinessTeam = {
   sponsor: string;
@@ -139,6 +140,7 @@ const NewProjectForm: React.FC<NewProjectFormProps> = ({
     <Form
       onSubmit={handleSubmit}
       initialValues={initialValues}
+      validate={validateProjectForm}
       mutators={{ ...arrayMutators }}
       render={({ handleSubmit, submitting, pristine, values }) => {
         const isFormValid = Object.values(values).every(value => value !== "" && value !== undefined);
