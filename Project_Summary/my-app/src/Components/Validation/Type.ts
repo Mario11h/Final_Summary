@@ -17,6 +17,7 @@ export type BusinessTeam = {
   };
   
   export type Milestone = {
+    id: number;
     title: string;
     description: string;
     date: Date;

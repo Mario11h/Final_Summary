@@ -4,13 +4,7 @@ import LowerSection from './lowerSection';
 import { BulletedList, Label, Value } from './styledComponents/styledText';
 import { TextField } from '@mui/material';
 import { Field } from 'react-final-form';
-
-type HubTeam = {
-  pm: string;
-  dev: string;
-  ba: string;
-  qa?: string;
-};
+import { HubTeam } from './Validation/Type';
 
 type HubTeamSectionProps = {
   hubTeam: HubTeam;

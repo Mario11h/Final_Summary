@@ -15,14 +15,7 @@ import {
 } from './styledComponents/StyledTimeline';
 import { CalibriBoldNavy14, CalibriBoldNavy11, CalibriBoldNavy18, CalibriBoldRed11 } from './styledComponents/styledText';
 import { Grid } from '@mui/material';
-
-type Milestone = {
-  id: number;
-  title: string;
-  description: string;
-  date: string;
-  currentFlag: boolean;
-};
+import { Milestone } from './Validation/Type';
 
 type CustomizedTimelineProps = {
   startDate: string;
@@ -70,7 +63,7 @@ const CustomizedTimeline: React.FC<CustomizedTimelineProps> = ({ startDate, endD
                   <CalibriBoldNavy11>{milestone.description}</CalibriBoldNavy11>
                 </Grid>
                 <Grid>
-                  <CalibriBoldRed11>{milestone.date}</CalibriBoldRed11>
+                <CalibriBoldRed11>{milestone.date.toString()}</CalibriBoldRed11>
                   {milestone.currentFlag ? (
                     <ArrowContainer>
                       <StyledArrowBackIcon />

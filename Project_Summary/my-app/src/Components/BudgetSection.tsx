@@ -10,11 +10,9 @@ import {
 } from './styledComponents/styledContainer';
 import { Field } from 'react-final-form';
 import { TextField, Box } from '@mui/material';
+import { Budget } from './Validation/Type';
 
-type Budget = {
-  actual?: number;
-  planned?: number;
-};
+
 
 interface BudgetSectionProps {
   budget: Budget;

@@ -4,12 +4,7 @@ import GroupsIcon from '@mui/icons-material/Groups';
 import LowerSection from './lowerSection';
 import { BulletedList, Label, Value } from './styledComponents/styledText';
 import { TextField } from '@mui/material';
-
-type BusinessTeam = {
-  sponsor: string;
-  businessOwner: string;
-  productOwner: string;
-};
+import { BusinessTeam } from './Validation/Type';
 
 type BusinessTeamSectionProps = {
   businessTeam: BusinessTeam;

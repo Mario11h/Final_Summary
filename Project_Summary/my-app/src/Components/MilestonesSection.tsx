@@ -2,13 +2,7 @@ import React from 'react';
 import CustomizedTimeline from './Timeline'; // Adjust the import path as needed
 import { MilestoneText } from './styledComponents/styledText';
 import {StyledMilestoneContainer} from './styledComponents/styledContainer'
-type Milestone = {
-  id: number;
-  title: string;
-  description: string;
-  date: string;
-  currentFlag: boolean;
-};
+import { Milestone } from './Validation/Type';
 
 type MilestonesSectionProps = {
   milestones: Milestone[];
