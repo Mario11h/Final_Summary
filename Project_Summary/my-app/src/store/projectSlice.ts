@@ -24,7 +24,7 @@ type Budget = {
 type Milestone = {
   title: string;
   description: string;
-  date: string;
+  date: Date;
   currentFlag: boolean;
 };
 
@@ -32,6 +32,7 @@ type Project = {
   id:number;
   name: string;
   code: string;
+  overview: string;
   status: string;
   description: string;
   scope: string;
@@ -41,8 +42,8 @@ type Project = {
   risks: string[];
   roi: string;
   budget: Budget;
-  startDate: string;
-  endDate: string;
+  startDate: Date;
+  endDate: Date;
   milestones: Milestone[];
 };
 
@@ -69,8 +70,8 @@ export const loadProjects = createAsyncThunk('projects/loadProjects', async () =
   // Simulate an async operation
   return new Promise<Project[]>((resolve) => {
     setTimeout(() => {
-      // Cast the localProjectsData to Project[] to ensure type compatibility
-      resolve(localProjectsData as Project[]);
+      // Cast the localProjectsData to unknown first, then to Project[]
+      resolve(localProjectsData as unknown as Project[]);
     }, 500);
   });
 });

@@ -19,7 +19,7 @@ export type BusinessTeam = {
   export type Milestone = {
     title: string;
     description: string;
-    date: string;
+    date: Date;
     currentFlag: boolean;
   };
   
@@ -27,6 +27,7 @@ export type BusinessTeam = {
     id: number;
     name: string;
     code: string;
+    overview: string;
     status: string;
     description: string;
     scope: string;
@@ -36,7 +37,7 @@ export type BusinessTeam = {
     risks: string[];
     roi: string;
     budget: Budget;
-    startDate: string;
-    endDate: string;
+    startDate: Date;
+    endDate: Date;
     milestones: Milestone[];
   };

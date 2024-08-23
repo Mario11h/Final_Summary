@@ -4,6 +4,7 @@ export const ProjectValidationSchema = Yup.object().shape({
   name: Yup.string().required('Project name is required'),
   code: Yup.string().required('Project code is required'),
   status: Yup.string().required('Project status is required'),
+  overview: Yup.string().required('Project overview is required'),
   description: Yup.string().required('Project description is required'),
   scope: Yup.string().required('Project scope is required'),
   goals: Yup.array().of(

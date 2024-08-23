@@ -1,7 +1,6 @@
 // src/validateProjectForm.ts
 import { ProjectValidationSchema } from './ValidationSchema'; // Make sure this path is correct
 import { Project } from './Type';
-import { BusinessTeam } from './Type'; 
 import * as Yup from 'yup';
 
 const validateProjectForm = async (values: Partial<Project>): Promise<Record<string, string>> => {

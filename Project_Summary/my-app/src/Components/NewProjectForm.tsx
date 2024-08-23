@@ -18,49 +18,7 @@ import HubTeamSection from "./HubTeamSection";
 import { FieldArray } from "react-final-form-arrays";
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import validateProjectForm from './Validation/ValidationProjectForm';
-
-type BusinessTeam = {
-  sponsor: string;
-  businessOwner: string;
-  productOwner: string;
-};
-
-type HubTeam = {
-  pm: string;
-  dev: string;
-  ba: string;
-  qa?: string;
-};
-
-type Budget = {
-  actual?: number;
-  planned?: number;
-};
-
-type Milestone = {
-  title: string;
-  description: string;
-  date: string;
-  currentFlag: boolean;
-};
-
-type Project = {
-  id: number;
-  name: string;
-  code: string;
-  status: string;
-  description: string;
-  scope: string;
-  goals: string[];
-  businessTeam: BusinessTeam;
-  hubTeam: HubTeam;
-  risks: string[];
-  roi: string;
-  budget: Budget;
-  startDate: string;
-  endDate: string;
-  milestones: Milestone[];
-};
+import { Project } from './Validation/Type';
 
 interface NewProjectFormProps {
   onCancel: () => void;
@@ -79,6 +37,7 @@ const NewProjectForm: React.FC<NewProjectFormProps> = ({
     id: 0,
     name: "",
     code: "",
+    overview: "",
     status: "",
     description: "",
     scope: "",
@@ -100,8 +59,8 @@ const NewProjectForm: React.FC<NewProjectFormProps> = ({
       actual: 0,
       planned: 0,
     },
-    startDate: "",
-    endDate: "",
+    startDate: new Date(),
+    endDate: new Date(),
     milestones: [],
   };
 
