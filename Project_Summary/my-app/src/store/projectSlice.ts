@@ -35,7 +35,6 @@ type Project = {
   code: string;
   overview: string;
   status: string;
-  description: string;
   scope: string;
   goals: string[];
   businessTeam: BusinessTeam;
