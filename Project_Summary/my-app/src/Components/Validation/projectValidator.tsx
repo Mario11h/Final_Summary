@@ -1,5 +1,5 @@
 // src/validateProjectForm.ts
-import { ProjectValidationSchema } from './ValidationSchema'; // Make sure this path is correct
+import { ProjectValidationSchema } from './SchemaValidator'; // Make sure this path is correct
 import { Project } from './Type';
 import * as Yup from 'yup';
 
