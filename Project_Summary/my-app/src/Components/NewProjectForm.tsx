@@ -30,7 +30,7 @@ const NewProjectForm: React.FC<NewProjectFormProps> = ({
     id: 0,
     name: "",
     code: "",
-    overview: "",
+    description: "",
     status: "",
     scope: "",
     goals: [""],
@@ -128,7 +128,7 @@ const NewProjectForm: React.FC<NewProjectFormProps> = ({
                   <Grid item xs={12} md={8}>
                     <Grid>
                       <OverviewSection
-                        overview={initialValues.overview}
+                        description={initialValues.description}
                         mode="edit"
                       />
                       <Box mt={4} />

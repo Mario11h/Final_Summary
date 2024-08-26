@@ -86,13 +86,13 @@ export const OngoingText = styled(Typography)<{ status: string }>(({ status }) =
   backgroundColor: (() => {
     switch (status) {
       case 'ONGOING':
-        return 'rgba(226, 1, 1, 0.5)';
+        return 'rgba(226, 1, 1, 1)';
       case 'ON HOLD':
         return 'rgba(7, 62, 183, 1)';
       case 'FINISHED':
         return 'rgba(4, 164, 132, 1)';
       case 'REQUESTED':
-        return 'rgba(226, 1, 1, 1)';
+        return 'rgba(61, 34, 53, 1)';
       default:
         return 'transparent';
     }

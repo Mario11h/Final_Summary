@@ -33,7 +33,7 @@ type Project = {
   id:number;
   name: string;
   code: string;
-  overview: string;
+  description: string;
   status: string;
   scope: string;
   goals: string[];

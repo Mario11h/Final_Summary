@@ -7,11 +7,11 @@ import { StyledBox} from './styledComponents/styledContainer';
 import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 
 type OverviewSectionProps = {
-  overview: string;
+  description: string;
   mode: 'view' | 'edit';
 };
 
-const OverviewSection: React.FC<OverviewSectionProps> = ({ overview, mode }) => {
+const OverviewSection: React.FC<OverviewSectionProps> = ({ description, mode }) => {
   return (
     <StyledBox>
         <StyledIconGreyBackground>
@@ -20,7 +20,7 @@ const OverviewSection: React.FC<OverviewSectionProps> = ({ overview, mode }) => 
         <Grid>
           <StyledTitleOver>OVERVIEW</StyledTitleOver>
           {mode === 'edit' ? (
-            <Field name="overview" initialValue={overview}>
+            <Field name="overview" initialValue={description}>
               {({ input,meta }) => (
                 <TextField
                   {...input}
@@ -39,7 +39,7 @@ const OverviewSection: React.FC<OverviewSectionProps> = ({ overview, mode }) => 
               )}
             </Field>
           ) : (
-            <TextRoboto>{overview}</TextRoboto>
+            <TextRoboto>{description}</TextRoboto>
           )}
         </Grid>
     </StyledBox>

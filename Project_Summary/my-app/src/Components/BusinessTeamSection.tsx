@@ -5,7 +5,7 @@ import GroupsOutlinedIcon from '@mui/icons-material/GroupsOutlined';
 import ContentPasteSearchIcon from '@mui/icons-material/ContentPasteSearch';
 import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
 import LowerSection from './lowerSection';
-import { BulletedList, Label, Value } from './styledComponents/styledText';
+import { BulletedList, CalibriText12Navy, Label, TextRoboto, Value } from './styledComponents/styledText';
 import { TextField, Button, Box } from '@mui/material';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
@@ -297,17 +297,21 @@ const BudgetSection: React.FC<BudgetSectionProps> = ({ budget, roi, mode }) => {
                   </Field>
                 </PlannedBudgetValueBox>
               </BudgetRow>
-              {roi && (
-                <BudgetRow>
-                  <Label>ROI:</Label>
-                  <TextField
-                    name="roi"
-                    defaultValue={roi}
-                    variant="standard"
-                    fullWidth
-                  />
-                </BudgetRow>
-              )}
+              <BudgetRow style={{ marginTop: '16px' }}>
+                <Label>ROI:</Label>
+                <Field name="roi" initialValue={roi}>
+                  {({ input, meta }) => (
+                    <TextField
+                      {...input}
+                      variant="standard"
+                      fullWidth
+                      error={meta.touched && meta.error}
+                      helperText={meta.touched && meta.error}
+                      style={{ marginLeft: '8px' }}
+                    />
+                  )}
+                </Field>
+              </BudgetRow>
             </>
           ) : (
             <>
@@ -331,18 +335,12 @@ const BudgetSection: React.FC<BudgetSectionProps> = ({ budget, roi, mode }) => {
                   {plannedBudget}
                 </PlannedBudgetValueBox>
               </BudgetRow>
-              {roi && (
-                <BudgetRow>
-                  <Label>ROI:</Label>
-                  <ActualBudgetValueBox 
-                    isActual={true} 
-                    budget_actual_usd={actualBudget || 0} 
-                    budget_planned_usd={plannedBudget || 0}
-                  >
-                    {roi}
-                  </ActualBudgetValueBox>
-                </BudgetRow>
-              )}
+              <BudgetRow style={{ marginTop: '16px' }}>
+                <Label>ROI:</Label>
+                <Box style={{ marginLeft: '8px' }}>
+                  <TextRoboto>{roi}</TextRoboto>
+                </Box>
+              </BudgetRow>
             </>
           )}
         </BudgetContainer>

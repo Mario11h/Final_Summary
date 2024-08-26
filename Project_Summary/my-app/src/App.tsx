@@ -117,7 +117,7 @@ const App: React.FC = () => {
             <Grid container spacing={2}>
               <Grid item xs={12} md={8}>
                 <Grid>
-                  <OverviewSection overview={project.description} mode="view" />
+                  <OverviewSection description={project.description} mode="view" />
                   <Box/>
                   <ProjectScopeGoalsSection scopeDescription={project.scope} goals={project.goals} mode="view" />
                   <StyledEqualContainer>
