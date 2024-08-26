@@ -13,6 +13,7 @@ const Pagination: React.FC = () => {
   const currentPage = useSelector((state: RootState) => state.projects.currentPage);
   const totalProjects = useSelector((state: RootState) => state.projects.projects.length);
   
+  console.log('currentPage', currentPage);
   const handleNextPage = () => {
     if (currentPage < totalProjects) {
       dispatch(setCurrentPage(currentPage + 1));

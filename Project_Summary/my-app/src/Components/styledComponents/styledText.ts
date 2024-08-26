@@ -92,7 +92,7 @@ export const OngoingText = styled(Typography)<{ status: string }>(({ status }) =
       case 'FINISHED':
         return 'rgba(4, 164, 132, 1)';
       case 'REQUESTED':
-        return 'rgba(61, 34, 53, 1)';
+        return 'rgba(61, 34, 53, 0.7)';
       default:
         return 'transparent';
     }

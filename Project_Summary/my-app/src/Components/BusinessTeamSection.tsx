@@ -1,5 +1,4 @@
 import React from 'react';
-import { Field } from 'react-final-form';
 import GroupsIcon from '@mui/icons-material/Groups';
 import GroupsOutlinedIcon from '@mui/icons-material/GroupsOutlined';
 import ContentPasteSearchIcon from '@mui/icons-material/ContentPasteSearch';
@@ -46,48 +45,30 @@ const BusinessTeamSection: React.FC<BusinessTeamSectionProps> = ({ businessTeam,
           <BulletedList>
             <div style={{ display: 'flex', alignItems: 'center', marginBottom: '8px' }}>
               <Label><li>Sponsor:</li></Label>
-              <Field name="businessTeam.sponsor" initialValue={team.sponsor}>
-                {({ input, meta }) => (
-                  <TextField
-                    {...input}
-                    variant="standard"
-                    fullWidth
-                    style={{ marginLeft: '8px' }}
-                    error={meta.touched && meta.error}
-                    helperText={meta.touched && meta.error}
-                  />
-                )}
-              </Field>
+              <TextField
+                variant="standard"
+                fullWidth
+                style={{ marginLeft: '8px' }}
+                defaultValue={team.sponsor}
+              />
             </div>
             <div style={{ display: 'flex', alignItems: 'center', marginBottom: '8px' }}>
               <Label><li>Business Owner:</li></Label>
-              <Field name="businessTeam.businessOwner" initialValue={team.businessOwner}>
-                {({ input, meta }) => (
-                  <TextField
-                    {...input}
-                    variant="standard"
-                    fullWidth
-                    style={{ marginLeft: '8px' }}
-                    error={meta.touched && meta.error}
-                    helperText={meta.touched && meta.error}
-                  />
-                )}
-              </Field>
+              <TextField
+                variant="standard"
+                fullWidth
+                style={{ marginLeft: '8px' }}
+                defaultValue={team.businessOwner}
+              />
             </div>
             <div style={{ display: 'flex', alignItems: 'center', marginBottom: '8px' }}>
               <Label><li>Product Owner:</li></Label>
-              <Field name="businessTeam.productOwner" initialValue={team.productOwner}>
-                {({ input, meta }) => (
-                  <TextField
-                    {...input}
-                    variant="standard"
-                    fullWidth
-                    style={{ marginLeft: '8px' }}
-                    error={meta.touched && meta.error}
-                    helperText={meta.touched && meta.error}
-                  />
-                )}
-              </Field>
+              <TextField
+                variant="standard"
+                fullWidth
+                style={{ marginLeft: '8px' }}
+                defaultValue={team.productOwner}
+              />
             </div>
           </BulletedList>
         ) : (
@@ -118,18 +99,12 @@ const HubTeamSection: React.FC<HubTeamSectionProps> = ({ hubTeam, mode }) => (
         <div style={{ display: 'flex', alignItems: 'center', marginBottom: '8px' }}>
           <Label><li>PM:</li></Label>
           {mode === 'edit' ? (
-            <Field name="hubTeam.pm">
-              {({ input, meta }) => (
-                <TextField
-                  {...input}
-                  variant="standard"
-                  fullWidth
-                  error={meta.touched && meta.error}
-                  helperText={meta.touched && meta.error}
-                  style={{ marginLeft: '8px' }}
-                />
-              )}
-            </Field>
+            <TextField
+              variant="standard"
+              fullWidth
+              style={{ marginLeft: '8px' }}
+              defaultValue={hubTeam.pm}
+            />
           ) : (
             <Value>{hubTeam.pm || 'N/A'}</Value>
           )}
@@ -137,18 +112,12 @@ const HubTeamSection: React.FC<HubTeamSectionProps> = ({ hubTeam, mode }) => (
         <div style={{ display: 'flex', alignItems: 'center', marginBottom: '8px' }}>
           <Label><li>Dev:</li></Label>
           {mode === 'edit' ? (
-            <Field name="hubTeam.dev">
-              {({ input, meta }) => (
-                <TextField
-                  {...input}
-                  variant="standard"
-                  fullWidth
-                  error={meta.touched && meta.error}
-                  helperText={meta.touched && meta.error}
-                  style={{ marginLeft: '8px' }}
-                />
-              )}
-            </Field>
+            <TextField
+              variant="standard"
+              fullWidth
+              style={{ marginLeft: '8px' }}
+              defaultValue={hubTeam.dev}
+            />
           ) : (
             <Value>{hubTeam.dev || 'N/A'}</Value>
           )}
@@ -156,18 +125,12 @@ const HubTeamSection: React.FC<HubTeamSectionProps> = ({ hubTeam, mode }) => (
         <div style={{ display: 'flex', alignItems: 'center', marginBottom: '8px' }}>
           <Label><li>BA:</li></Label>
           {mode === 'edit' ? (
-            <Field name="hubTeam.ba">
-              {({ input, meta }) => (
-                <TextField
-                  {...input}
-                  variant="standard"
-                  fullWidth
-                  error={meta.touched && meta.error}
-                  helperText={meta.touched && meta.error}
-                  style={{ marginLeft: '8px' }}
-                />
-              )}
-            </Field>
+            <TextField
+              variant="standard"
+              fullWidth
+              style={{ marginLeft: '8px' }}
+              defaultValue={hubTeam.ba}
+            />
           ) : (
             <Value>{hubTeam.ba || 'N/A'}</Value>
           )}
@@ -175,18 +138,12 @@ const HubTeamSection: React.FC<HubTeamSectionProps> = ({ hubTeam, mode }) => (
         <div style={{ display: 'flex', alignItems: 'center', marginBottom: '8px' }}>
           <Label><li>QA:</li></Label>
           {mode === 'edit' ? (
-            <Field name="hubTeam.qa">
-              {({ input, meta }) => (
-                <TextField
-                  {...input}
-                  variant="standard"
-                  fullWidth
-                  error={meta.touched && meta.error}
-                  helperText={meta.touched && meta.error}
-                  style={{ marginLeft: '8px' }}
-                />
-              )}
-            </Field>
+            <TextField
+              variant="standard"
+              fullWidth
+              style={{ marginLeft: '8px' }}
+              defaultValue={hubTeam.qa}
+            />
           ) : (
             <Value>{hubTeam.qa || 'N/A'}</Value>
           )}
@@ -205,18 +162,12 @@ const RiskSection: React.FC<RiskSectionProps> = ({ risks, mode, addRiskField, re
       mode === 'edit' ? (
         <div key={index} style={{ display: 'flex', alignItems: 'center', marginBottom: '8px' }}>
           <Label>Risk Issue:</Label>
-          <Field name={`risks[${index}]`}>
-            {({ input, meta }) => (
-              <TextField
-                {...input}
-                variant="standard"
-                fullWidth
-                error={meta.touched && meta.error}
-                helperText={meta.touched && meta.error}
-                style={{ marginLeft: '8px' }}
-              />
-            )}
-          </Field>
+          <TextField
+            variant="standard"
+            fullWidth
+            style={{ marginLeft: '8px' }}
+            defaultValue={risk}
+          />
           <Button
             onClick={() => removeRisk && removeRisk(index)}
             variant="text"
@@ -264,17 +215,11 @@ const BudgetSection: React.FC<BudgetSectionProps> = ({ budget, roi, mode }) => {
                   budget_actual_usd={actualBudget || 0} 
                   budget_planned_usd={plannedBudget || 0}
                 >
-                  <Field name="budget.actual" initialValue={actualBudget}>
-                    {({ input, meta }) => (
-                      <TextField
-                        {...input}
-                        variant="standard"
-                        fullWidth
-                        error={meta.touched && meta.error}
-                        helperText={meta.touched && meta.error}
-                      />
-                    )}
-                  </Field>
+                  <TextField
+                    variant="standard"
+                    fullWidth
+                    defaultValue={actualBudget}
+                  />
                 </ActualBudgetValueBox>
               </BudgetRow>
               <BudgetRow>
@@ -284,33 +229,21 @@ const BudgetSection: React.FC<BudgetSectionProps> = ({ budget, roi, mode }) => {
                   budget_actual_usd={actualBudget || 0} 
                   budget_planned_usd={plannedBudget || 0}
                 >
-                  <Field name="budget.planned" initialValue={plannedBudget}>
-                    {({ input, meta }) => (
-                      <TextField
-                        {...input}
-                        variant="standard"
-                        fullWidth
-                        error={meta.touched && meta.error}
-                        helperText={meta.touched && meta.error}
-                      />
-                    )}
-                  </Field>
+                  <TextField
+                    variant="standard"
+                    fullWidth
+                    defaultValue={plannedBudget}
+                  />
                 </PlannedBudgetValueBox>
               </BudgetRow>
               <BudgetRow style={{ marginTop: '16px' }}>
                 <Label>ROI:</Label>
-                <Field name="roi" initialValue={roi}>
-                  {({ input, meta }) => (
-                    <TextField
-                      {...input}
-                      variant="standard"
-                      fullWidth
-                      error={meta.touched && meta.error}
-                      helperText={meta.touched && meta.error}
-                      style={{ marginLeft: '8px' }}
-                    />
-                  )}
-                </Field>
+                <TextField
+                  variant="standard"
+                  fullWidth
+                  defaultValue={roi}
+                  style={{ marginLeft: '8px' }}
+                />
               </BudgetRow>
             </>
           ) : (
@@ -336,7 +269,7 @@ const BudgetSection: React.FC<BudgetSectionProps> = ({ budget, roi, mode }) => {
                 </PlannedBudgetValueBox>
               </BudgetRow>
               <BudgetRow style={{ marginTop: '16px' }}>
-                <Label>ROI:</Label>
+                <CalibriText12Navy>ROI:</CalibriText12Navy>
                 <Box style={{ marginLeft: '8px' }}>
                   <TextRoboto>{roi}</TextRoboto>
                 </Box>

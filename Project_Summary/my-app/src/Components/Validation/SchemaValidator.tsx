@@ -5,23 +5,23 @@ export const ProjectValidationSchema = Yup.object().shape({
   code: Yup.string().required('Project code is required'),
   status: Yup.string().required('Project status is required'),
   description: Yup.string(),
-  scope: Yup.string().required('Project scope is required'),
+  scope: Yup.string(),
   goals: Yup.array().of(
-    Yup.string().required('Goal is required')
+    Yup.string()
   ),
   risks: Yup.array().of(
-    Yup.string().required('Risk is required')
+    Yup.string()
   ),
   businessTeam: Yup.object().shape({
-    sponsor: Yup.string().required('Sponsor is required'),
-    businessOwner: Yup.string().required('Business owner is required'),
-    productOwner: Yup.string().required('Product owner is required')
+    sponsor: Yup.string(),
+    businessOwner: Yup.string(),
+    productOwner: Yup.string()
   }),
   hubTeam: Yup.object().shape({
-    pm: Yup.string().required('PM is required'),
-    dev: Yup.string().required('Dev team member is required'),
-    ba: Yup.string().required('BA is required'),
-    qa: Yup.string().notRequired(),  // Optional field
+    pm: Yup.string(),
+    dev: Yup.string(),
+    ba: Yup.string(),
+    qa: Yup.string(),
   }),
   budget: Yup.object().shape({
     actual: Yup.number().positive('Actual budget must be a positive number'),
@@ -41,7 +41,7 @@ export const ProjectValidationSchema = Yup.object().shape({
     .required('End date is required'),
   milestones: Yup.array().of(
     Yup.object().shape({
-      title: Yup.string().required('Milestone title is required'),
+      title: Yup.string(),
       description: Yup.string(),
       date: Yup.date()
         .nullable() // Allow null values
@@ -51,5 +51,5 @@ export const ProjectValidationSchema = Yup.object().shape({
       currentFlag: Yup.boolean()
     })
   ),
-  roi: Yup.string(), // Optional field
+  roi: Yup.string(), 
 });

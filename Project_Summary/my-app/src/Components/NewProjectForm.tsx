@@ -111,6 +111,7 @@ const NewProjectForm: React.FC<NewProjectFormProps> = ({
         validate={validateProjectForm}
         mutators={{ ...arrayMutators }}
         render={({ handleSubmit, submitting, pristine, values }) => {
+          console.log('pristine', pristine);
           const isFormValid = Object.values(values).every(value => value !== "" && value !== undefined);
           return (
             <form onSubmit={(e) => {
@@ -332,7 +333,7 @@ const NewProjectForm: React.FC<NewProjectFormProps> = ({
                   color="primary"
                   type="button" // Change to button to prevent immediate submission
                   onClick={() => handleOpenDialog(!!project)} // Open dialog
-                  disabled={submitting || pristine || !isFormValid}
+                  disabled={submitting || pristine}
                 >
                   {submitting ? "Submitting..." : project ? "Update Project" : "Add Project"}
                 </Button>

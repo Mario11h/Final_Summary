@@ -19,7 +19,7 @@
         "risks": ["File formatting ( customer to CMA and vice versa)", "Trades can have live interaction", "Dispatch the bids to their respective trade lines"],
         "roi": "",
         "budget": {
-            "actual": 500,
+            "actual": 30000,
             "planned": 10000
         },
         "startDate": "00-00-00",
