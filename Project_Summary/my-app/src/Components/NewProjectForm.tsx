@@ -6,11 +6,8 @@ import { addNewProjectService, updateProjectService, deleteProjectGoalService, d
 import ProjectHeader from "./ProjectHeader";
 import OverviewSection from "./OverviewSection";
 import ProjectScopeGoalsSection from "./ProjectScopeGoalsSection";
-import BusinessTeamSection from "./BusinessTeamSection";
-import RiskSection from "./RiskSection";
-import BudgetSection from "./BudgetSection";
 import { StyledEqualContainer, StyledMilestoneContainer } from "./styledComponents/styledContainer";
-import HubTeamSection from "./HubTeamSection";
+import { BusinessTeamSection, HubTeamSection, RiskSection, BudgetSection } from "./BusinessTeamSection";
 import { FieldArray } from "react-final-form-arrays";
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import validateProjectForm from './Validation/projectValidator';

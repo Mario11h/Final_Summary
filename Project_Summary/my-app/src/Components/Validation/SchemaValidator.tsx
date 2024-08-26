@@ -24,18 +24,32 @@ export const ProjectValidationSchema = Yup.object().shape({
     qa: Yup.string().notRequired(),  // Optional field
   }),
   budget: Yup.object().shape({
-    actual: Yup.number().positive('Actual budget must be a positive number').notRequired(),
-    planned: Yup.number().positive('Planned budget must be a positive number').notRequired()
+    actual: Yup.number().positive('Actual budget must be a positive number'),
+    planned: Yup.number().positive('Planned budget must be a positive number')
   }),
-  startDate: Yup.date().required('Start date is required'),
-  endDate: Yup.date().required('End date is required'),
+  startDate: Yup.date()
+    .nullable()
+    .transform((value, originalValue) => {
+      return originalValue === '' || originalValue === '00-00-00' ? null : value;
+    })
+    .required('Start date is required'),
+  endDate: Yup.date()
+    .nullable()
+    .transform((value, originalValue) => {
+      return originalValue === '' || originalValue === '00-00-00' ? null : value;
+    })
+    .required('End date is required'),
   milestones: Yup.array().of(
     Yup.object().shape({
       title: Yup.string().required('Milestone title is required'),
-      description: Yup.string().required('Milestone description is required'),
-      date: Yup.date().required('Milestone date is required'),
+      description: Yup.string(),
+      date: Yup.date()
+        .nullable() // Allow null values
+        .transform((value, originalValue) => {
+          return originalValue === '' ? null : value; // Convert empty string to null
+        }),
       currentFlag: Yup.boolean()
     })
   ),
-  roi: Yup.string().notRequired(), // Optional field
+  roi: Yup.string(), // Optional field
 });

@@ -3,13 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { loadProjects, setCurrentPage } from './store/projectSlice';
 import { RootState, AppDispatch } from './store/store';
 import Pagination from './Components/Pagination';
-import ProjectHeader from './Components/ProjectHeader';
-import OverviewSection from './Components/OverviewSection';
 import ProjectScopeGoalsSection from './Components/ProjectScopeGoalsSection';
-import BusinessTeamSection from './Components/BusinessTeamSection';
-import HubTeamSection from './Components/HubTeamSection';
-import RiskSection from './Components/RiskSection';
-import BudgetSection from './Components/BudgetSection';
+import { BusinessTeamSection, HubTeamSection, RiskSection, BudgetSection } from './Components/BusinessTeamSection';
 import MilestonesSection from './Components/MilestonesSection';
 import { Container, Typography, Button, Box, Grid, Backdrop, CircularProgress, Tooltip, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, IconButton } from '@mui/material';
 import { StyledEqualContainer } from './Components/styledComponents/styledContainer';
@@ -20,6 +15,9 @@ import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
 import { useReactToPrint } from 'react-to-print';
 import './App.css';
 import { images } from './Components/Assets/DummyData';
+import ProjectHeader from './Components/ProjectHeader';
+import OverviewSection from './Components/OverviewSection';
+
 
 const App: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
