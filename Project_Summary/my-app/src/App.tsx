@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { loadProjects, setCurrentPage } from './store/projectSlice';
-import { RootState, AppDispatch } from './store/store';
+import { loadProjects, setCurrentPage } from './features/projectSlice';
+import { RootState, AppDispatch } from './features/store';
 import Pagination from './Components/Pagination';
 import ProjectScopeGoalsSection from './Components/ProjectScopeGoalsSection';
 import { BusinessTeamSection, HubTeamSection, RiskSection, BudgetSection } from './Components/BusinessTeamSection';
@@ -17,7 +17,7 @@ import './App.css';
 import { images } from './Components/Assets/DummyData';
 import ProjectHeader from './Components/ProjectHeader';
 import OverviewSection from './Components/OverviewSection';
-
+import NamesMenu from './Components/NamesMenu';
 
 const App: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -107,45 +107,45 @@ const App: React.FC = () => {
     return (
       <div key={index} className="pdf-page">
         <Grid>
-          <ProjectHeader 
-            name={project.name} 
-            code={project.code} 
+          <ProjectHeader
+            name={project.name}
+            code={project.code}
             status={project.status}
-            mode="view" 
+            mode="view"
           />
-          
-            <Grid container spacing={2}>
-              <Grid item xs={12} md={8}>
-                <Grid>
-                  <OverviewSection description={project.description} mode="view" />
-                  <Box/>
-                  <ProjectScopeGoalsSection scopeDescription={project.scope} goals={project.goals} mode="view" />
-                  <StyledEqualContainer>
-                    <BusinessTeamSection businessTeam={project.businessTeam} mode="view" />
-                    <HubTeamSection hubTeam={project.hubTeam} mode="view" />
-                    <RiskSection risks={project.risks} mode="view" />
-                    <BudgetSection budget={project.budget} roi={project.roi} mode="view"  />
-                  </StyledEqualContainer>
-                </Grid>
-              </Grid>
-              <Grid item xs={12} md={4}>
-                <Grid>
-                  <MilestonesSection
-                    milestones={project.milestones}
-                    startDate={project.startDate}
-                    endDate={project.endDate}
-                  />
-                </Grid>
+
+          <Grid container spacing={2}>
+            <Grid item xs={12} md={8}>
+              <Grid>
+                <OverviewSection description={project.description} mode="view" />
+                <Box />
+                <ProjectScopeGoalsSection scopeDescription={project.scope} goals={project.goals} mode="view" />
+                <StyledEqualContainer>
+                  <BusinessTeamSection businessTeam={project.businessTeam} mode="view" />
+                  <HubTeamSection hubTeam={project.hubTeam} mode="view" />
+                  <RiskSection risks={project.risks} mode="view" />
+                  <BudgetSection budget={project.budget} roi={project.roi} mode="view" />
+                </StyledEqualContainer>
               </Grid>
             </Grid>
-          
+            <Grid item xs={12} md={4}>
+              <Grid>
+                <MilestonesSection
+                  milestones={project.milestones}
+                  startDate={project.startDate}
+                  endDate={project.endDate}
+                />
+              </Grid>
+            </Grid>
+          </Grid>
+
         </Grid>
         {/* Apply the page break after each project */}
         <div className="page-break"></div>
       </div>
     );
   };
-  
+
   const currentProject = projects[currentPage - 1];
   console.log('Current Project:', currentProject);
 
@@ -153,17 +153,17 @@ const App: React.FC = () => {
 
   if (isLoading) {
     content = <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
-    <div>Loading...</div>
-    <CircularProgress />
-  </Box>
+      <div>Loading...</div>
+      <CircularProgress />
+    </Box>
   } else if (error) {
     content = <Typography>{error}</Typography>;
   } else if (projects.length > 0) {
     if (isAddingProject) {
       content = (
-        <NewProjectForm 
-          onCancel={handleCancelAddProject} 
-          onDone={handleDoneAddProject} 
+        <NewProjectForm
+          onCancel={handleCancelAddProject}
+          onDone={handleDoneAddProject}
           onEdit={handleDoneEditProject}
           project={isEditing ? currentProject : undefined}
         />
@@ -190,41 +190,41 @@ const App: React.FC = () => {
   }
 
   return (
-    
-    <Container style={{minWidth: "100%"}}>
+
+    <Container style={{ minWidth: "100%" }}>
       <Box
-             sx={{
-             position: 'absolute',
-             left: 0,
-             top: 10,
-             width: '12%',
-             height: '8vh',
-             backgroundImage: `url(${images[0].imageUrl})`,
-             backgroundSize: 'cover',
-             backgroundPosition: 'center',
-            }}
-           />
+        sx={{
+          position: 'absolute',
+          left: 0,
+          top: 10,
+          width: '12%',
+          height: '8vh',
+          backgroundImage: `url(${images[0].imageUrl})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+        }}
+      />
 
       <Box display="flex" justifyContent="flex-end" alignItems="center" mb={2}>
 
-      <Tooltip title="Add New Project" arrow>
+        <Tooltip title="Add New Project" arrow>
           <IconButton
             color="primary"
             onClick={handleAddProject}
             disabled={isAddingProject || isEditing}
             size="large"
-            sx={{ '&:hover svg': { transform: 'scale(1.2)' }, transition: 'transform 0.3s',color: 'rgba(4, 36, 106, 1)' }}
+            sx={{ '&:hover svg': { transform: 'scale(1.2)' }, transition: 'transform 0.3s', color: 'rgba(4, 36, 106, 1)' }}
           >
             <AddchartIcon />
           </IconButton>
         </Tooltip>
-        
+
         <Tooltip title="Edit Project" arrow>
           <IconButton
             color="primary"
             onClick={handleEditProject}
             disabled={isAddingProject || isEditing}
-            sx={{ '&:hover svg': { transform: 'scale(1.2)' }, transition: 'transform 0.3s',color: 'rgba(4, 36, 106, 1)' }}
+            sx={{ '&:hover svg': { transform: 'scale(1.2)' }, transition: 'transform 0.3s', color: 'rgba(4, 36, 106, 1)' }}
             size="large"
           >
             <EditIcon />
@@ -235,14 +235,15 @@ const App: React.FC = () => {
             color="primary"
             onClick={handlePrintClick}
             disabled={isAddingProject || isEditing}
-            sx={{ '&:hover svg': { transform: 'scale(1.2)' }, transition: 'transform 0.3s',color: 'rgba(4, 36, 106, 1)' }}
+            sx={{ '&:hover svg': { transform: 'scale(1.2)' }, transition: 'transform 0.3s', color: 'rgba(4, 36, 106, 1)' }}
             size="large"
           >
             <PictureAsPdfIcon />
           </IconButton>
         </Tooltip>
+        <NamesMenu />
       </Box>
-      
+
       {isDeleting && (
         <Backdrop open>
           <CircularProgress color="inherit" />

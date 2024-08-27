@@ -20,8 +20,6 @@ export const ProjectValidationSchema = Yup.object().shape({
   hubTeam: Yup.object().shape({
     pm: Yup.string(),
     dev: Yup.string(),
-    ba: Yup.string(),
-    qa: Yup.string(),
   }),
   budget: Yup.object().shape({
     actual: Yup.number().positive('Actual budget must be a positive number'),

@@ -12,8 +12,6 @@ type BusinessTeam = {
 type HubTeam = {
   pm: string;
   dev: string;
-  ba: string;
-  qa?: string;
 };
 
 type Budget = {

@@ -42,8 +42,6 @@ const NewProjectForm: React.FC<NewProjectFormProps> = ({
     hubTeam: {
       pm: "",
       dev: "",
-      ba: "",
-      qa: "",
     },
     risks: [""],
     roi: "",
@@ -318,7 +316,7 @@ const NewProjectForm: React.FC<NewProjectFormProps> = ({
               <Box mt={2} display="flex" justifyContent="space-between" alignItems="center">
                 <div style={{ position: 'relative' }}>
                   <Button
-                    color="secondary"
+                    color="primary"
                     onClick={onCancel}
                     sx={{
                       "&:hover": { transform: "scale(1.2)" },

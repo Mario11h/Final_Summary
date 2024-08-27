@@ -13,8 +13,7 @@
         },
         "hubTeam": {
             "pm": "",
-            "dev": "",
-            "ba": ""
+            "dev": ""
         },
         "risks": ["File formatting ( customer to CMA and vice versa)", "Trades can have live interaction", "Dispatch the bids to their respective trade lines"],
         "roi": "",
@@ -59,9 +58,7 @@
         },
         "hubTeam": {
             "pm": "EL WADI Georges",
-            "dev": "ARJA Diala, JOUMAA Walaa",
-            "ba": "AKL Victor",
-            "qa": "AL SIBLANI Rania"
+            "dev": "ARJA Diala, JOUMAA Walaa"
         },
         "risks": ["The project missed a Front-end developer for multiple sprints", "Change and missing business requirements"],
         "roi": "$1.4 M Increase in revenue within the next 2 years",
@@ -103,9 +100,7 @@
         },
         "hubTeam": {
             "pm": "AL HADDAD Amin",
-            "dev": "ARJA Diala, HOUBEIKA William",
-            "ba": "AKL Victor",
-            "qa": "SHATILA Mouhamad"
+            "dev": "ARJA Diala, HOUBEIKA William"
         },
         "risks": ["The project missed a Front-end developer for 2 sprints (4 weeks) due to an emergency medical case and is behind schedule", "Mitigation Plan: Strengthen the front-end development team by reallocating resources and assigning additional developers to catch up on the backlog and get back on schedule."],
         "roi": "Saving of 123 man- days/year (61500 USD) by reducing manual efforts spent by ARO Logistics and HO Logistics teams",

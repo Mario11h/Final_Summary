@@ -156,46 +156,7 @@ const HubTeamSection: React.FC<HubTeamSectionProps> = ({ hubTeam, mode }) => (
             <Value>{hubTeam.dev || 'N/A'}</Value>
           )}
         </div>
-        <div style={{ display: 'flex', alignItems: 'center', marginBottom: '8px' }}>
-          <Label><li>BA:</li></Label>
-          {mode === 'edit' ? (
-            <Field name="hubTeam.ba">
-                {({ input, meta }) => (
-            <TextField
-            {...input}
-              name="ba"
-              variant="standard"
-              fullWidth
-              error={meta.touched && meta.error}
-              helperText={meta.touched && meta.error}
-              style={{ marginLeft: '8px' }}
-              defaultValue={hubTeam.ba}
-            />)}
-            </Field>
-          ) : (
-            <Value>{hubTeam.ba || 'N/A'}</Value>
-          )}
-        </div>
-        <div style={{ display: 'flex', alignItems: 'center', marginBottom: '8px' }}>
-          <Label><li>QA:</li></Label>
-          {mode === 'edit' ? (
-             <Field name="hubTeam.qa">
-              {({ input, meta }) => (
-            <TextField
-            {...input}
-              name="qa"
-              variant="standard"
-              fullWidth
-              error={meta.touched && meta.error}
-              helperText={meta.touched && meta.error}
-              style={{ marginLeft: '8px' }}
-              defaultValue={hubTeam.qa}
-            />)} 
-            </Field>
-          ) : (
-            <Value>{hubTeam.qa || 'N/A'}</Value>
-          )}
-        </div>
+       
       </BulletedList>
     )}
   />

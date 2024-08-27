@@ -7,8 +7,6 @@ export type BusinessTeam = {
   export type HubTeam = {
     pm: string;
     dev: string;
-    ba: string;
-    qa?: string;
   };
   
   export type Budget = {
