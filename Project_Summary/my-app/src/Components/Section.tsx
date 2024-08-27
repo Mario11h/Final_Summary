@@ -11,9 +11,11 @@ type SectionProps = {
 const Section: React.FC<SectionProps> = ({ icon, title, content }) => {
   return (
     <>
-      {icon}
-      <Box>
+      <Box display="flex" alignItems="center" >
+        <Box >{icon}</Box>
         <StyledTitleGreyBackground>{title}</StyledTitleGreyBackground>
+      </Box>
+      <Box marginRight={4}>
         {content}
       </Box>
     </>

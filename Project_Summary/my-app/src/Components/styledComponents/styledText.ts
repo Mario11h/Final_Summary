@@ -2,16 +2,11 @@ import styled from '@emotion/styled';
 import { Typography } from '@mui/material';
 
 export const StyledTitleGreyBackground = styled(Typography)({
-  backgroundColor: '#D3D3D3',
   color: '#003366',
   padding: '5px 10px',
   fontSize: '18px', 
   fontWeight: 'bold', 
   fontFamily: 'roboto',
-  display: 'flex',
-  width: 'fit-content', 
-  alignSelf: 'flex-start',
-  marginLeft: '10px',
 });
 
 export const ProjectName = styled(Typography)({

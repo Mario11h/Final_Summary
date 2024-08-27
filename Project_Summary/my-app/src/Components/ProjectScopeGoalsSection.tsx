@@ -73,11 +73,9 @@ const ProjectScopeGoalsSection: React.FC<ProjectScopeGoalsSectionProps> = ({
         <StyledGridItem item xs={12} md={6}>
           <Section
             icon={
-              <StyledIconBox>
-                <StyledIconNoBackground>
-                  <FlagCircleIcon />
-                </StyledIconNoBackground>
-              </StyledIconBox>
+              <StyledIconNoBackground>
+                <FlagCircleIcon />
+              </StyledIconNoBackground>
             }
             title="Project Goals"
             content={
@@ -97,7 +95,7 @@ const ProjectScopeGoalsSection: React.FC<ProjectScopeGoalsSectionProps> = ({
                             helperText={meta.touched && meta.error}
                             InputProps={{
                               disableUnderline: true,
-                              style: { fontSize: 'inherit', fontWeight: 'inherit', paddingLeft:'15px'},
+                              style: { fontSize: 'inherit', fontWeight: 'inherit', paddingLeft: '15px' },
                             }}
                             margin="normal"
                           />

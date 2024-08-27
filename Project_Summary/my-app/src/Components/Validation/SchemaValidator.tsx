@@ -28,17 +28,15 @@ export const ProjectValidationSchema = Yup.object().shape({
     planned: Yup.number().positive('Planned budget must be a positive number')
   }),
   startDate: Yup.date()
-    .nullable()
-    .transform((value, originalValue) => {
-      return originalValue === '' || originalValue === '00-00-00' ? null : value;
-    })
-    .required('Start date is required'),
-  endDate: Yup.date()
-    .nullable()
-    .transform((value, originalValue) => {
-      return originalValue === '' || originalValue === '00-00-00' ? null : value;
-    })
-    .required('End date is required'),
+  .nullable()
+  .transform((value, originalValue) => {
+    return originalValue === '' || originalValue === '00-00-00' ? null : value;
+  }),
+endDate: Yup.date()
+  .nullable()
+  .transform((value, originalValue) => {
+    return originalValue === '' || originalValue === '00-00-00' ? null : value;
+  }),
   milestones: Yup.array().of(
     Yup.object().shape({
       title: Yup.string(),

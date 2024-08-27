@@ -10,6 +10,7 @@ export const StyledIconNoBackground = styled(Box)({
   borderRadius: '50%',
   backgroundColor: 'rgba(4, 36, 106, 1)',
   color: 'white',
+  marginLeft:'15px',
 });
 
 export const StyledIconGreyBackground = styled(Box)({
@@ -27,15 +28,13 @@ export const StyledIconGreenBackground = styled(Box)({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
-  width: '40px', 
+  width: '40px',
   height: '40px',
   borderRadius: '50%',
   backgroundColor: 'rgba(4, 164, 132, 1)', 
-  color: 'white', 
-  position: 'absolute',
-  top: '-30px',
-  right: '8px',
+  color: 'white',
 });
+
 
 export const StyledIconBox = styled(Box)({
   position: 'absolute',

@@ -333,7 +333,7 @@ const NewProjectForm: React.FC<NewProjectFormProps> = ({
                   color="primary"
                   type="button" // Change to button to prevent immediate submission
                   onClick={() => handleOpenDialog(!!project)} // Open dialog
-                  disabled={submitting || pristine}
+                  disabled={submitting || pristine }
                 >
                   {submitting ? "Submitting..." : project ? "Update Project" : "Add Project"}
                 </Button>
