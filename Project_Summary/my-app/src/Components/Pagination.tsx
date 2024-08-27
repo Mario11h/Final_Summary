@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setCurrentPage } from '../features/projectSlice';
-import { RootState, AppDispatch } from '../features/store';
+import { RootState, AppDispatch } from '../store';
 import { StyledButton } from './styledComponents/styledButtons';
 import {PaginationContainer, PageNumbers} from './styledComponents/styledContainer'
 import ArrowLeftIcon from '@mui/icons-material/ArrowLeft';

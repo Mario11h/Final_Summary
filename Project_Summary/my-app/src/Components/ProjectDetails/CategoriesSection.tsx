@@ -4,12 +4,12 @@ import GroupsOutlinedIcon from '@mui/icons-material/GroupsOutlined';
 import ContentPasteSearchIcon from '@mui/icons-material/ContentPasteSearch';
 import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
 import LowerSection from './lowerSection';
-import { BulletedList, CalibriText12Navy, Label, TextRoboto, Value } from './styledComponents/styledText';
+import { BulletedList, CalibriText12Navy, Label, TextRoboto, Value } from '../styledComponents/styledText';
 import { TextField, Button, Box } from '@mui/material';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
-import { HubTeam, BusinessTeam, Budget } from './Validation/Type';
-import { BudgetRow, BudgetContainer, ActualBudgetValueBox, PlannedBudgetValueBox } from './styledComponents/styledContainer';
+import { HubTeam, BusinessTeam, Budget } from '../Validation/Type';
+import { BudgetRow, BudgetContainer, ActualBudgetValueBox, PlannedBudgetValueBox } from '../styledComponents/styledContainer';
 import { Field } from 'react-final-form';
 
 type BusinessTeamSectionProps = {

@@ -3,11 +3,11 @@ import { Button, TextField, Box, FormControlLabel, Grid, FormControl, InputLabel
 import { Form, Field } from "react-final-form";
 import arrayMutators from "final-form-arrays";
 import { addNewProjectService, updateProjectService, deleteProjectGoalService, deleteProjectRiskService, deleteProjectMilestoneService } from "./projectService";
-import ProjectHeader from "./ProjectHeader";
-import OverviewSection from "./OverviewSection";
-import ProjectScopeGoalsSection from "./ProjectScopeGoalsSection";
+import ProjectHeader from "./ProjectDetails/ProjectHeader";
+import OverviewSection from "./ProjectDetails/OverviewSection";
+import ProjectScopeGoalsSection from "./ProjectDetails/ProjectScopeGoalsSection";
 import { StyledEqualContainer, StyledMilestoneContainer } from "./styledComponents/styledContainer";
-import { BusinessTeamSection, HubTeamSection, RiskSection, BudgetSection } from "./BusinessTeamSection";
+import { BusinessTeamSection, HubTeamSection, RiskSection, BudgetSection } from "./ProjectDetails/CategoriesSection";
 import { FieldArray } from "react-final-form-arrays";
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import validateProjectForm from './Validation/projectValidator';

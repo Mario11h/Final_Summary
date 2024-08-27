@@ -1,9 +1,9 @@
 import React from 'react';
 import { Field } from 'react-final-form';
 import { Grid, TextField } from '@mui/material';
-import { StyledTitleOver, TextRoboto } from './styledComponents/styledText';
-import { StyledIconGreyBackground } from './styledComponents/StyledIconAvatar';
-import { StyledBox} from './styledComponents/styledContainer';
+import { StyledTitleOver, TextRoboto } from '../styledComponents/styledText';
+import { StyledIconGreyBackground } from '../styledComponents/StyledIconAvatar';
+import { StyledBox} from '../styledComponents/styledContainer';
 import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 
 type OverviewSectionProps = {

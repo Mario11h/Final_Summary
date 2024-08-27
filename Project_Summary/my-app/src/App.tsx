@@ -1,11 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { loadProjects, setCurrentPage } from './features/projectSlice';
-import { RootState, AppDispatch } from './features/store';
+import { RootState, AppDispatch } from './store';
 import Pagination from './Components/Pagination';
-import ProjectScopeGoalsSection from './Components/ProjectScopeGoalsSection';
-import { BusinessTeamSection, HubTeamSection, RiskSection, BudgetSection } from './Components/BusinessTeamSection';
-import MilestonesSection from './Components/MilestonesSection';
+import ProjectScopeGoalsSection from './Components/ProjectDetails/ProjectScopeGoalsSection';
+import { BusinessTeamSection, HubTeamSection, RiskSection, BudgetSection } from './Components/ProjectDetails/CategoriesSection';
+import MilestonesSection from './Components/Timeline/MilestonesSection';
 import { Container, Typography, Button, Box, Grid, Backdrop, CircularProgress, Tooltip, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, IconButton } from '@mui/material';
 import { StyledEqualContainer } from './Components/styledComponents/styledContainer';
 import NewProjectForm from './Components/NewProjectForm';
@@ -15,8 +15,8 @@ import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
 import { useReactToPrint } from 'react-to-print';
 import './App.css';
 import { images } from './Components/Assets/DummyData';
-import ProjectHeader from './Components/ProjectHeader';
-import OverviewSection from './Components/OverviewSection';
+import ProjectHeader from './Components/ProjectDetails/ProjectHeader';
+import OverviewSection from './Components/ProjectDetails/OverviewSection';
 import NamesMenu from './Components/NamesMenu';
 
 const App: React.FC = () => {

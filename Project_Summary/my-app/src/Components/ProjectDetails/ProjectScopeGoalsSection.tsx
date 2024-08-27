@@ -5,15 +5,15 @@ import {
   StyledIconGreenBackground,
   StyledIconNoBackground,
   StyledIconBox,
-} from './styledComponents/StyledIconAvatar';
+} from '../styledComponents/StyledIconAvatar';
 import {
   StyledBox,
   StyledGridItem,
   StyledVerticalDivider,
-} from './styledComponents/styledContainer';
+} from '../styledComponents/styledContainer';
 import InsertChartIcon from '@mui/icons-material/InsertChart';
 import FlagCircleIcon from '@mui/icons-material/FlagCircle';
-import { TextRoboto, BulletedList, CalibriText12P, LabelValueItem } from './styledComponents/styledText';
+import { TextRoboto, BulletedList, CalibriText12P, LabelValueItem } from '../styledComponents/styledText';
 import { Grid, TextField, Button } from '@mui/material';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';

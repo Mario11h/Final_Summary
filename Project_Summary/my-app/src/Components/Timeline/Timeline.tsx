@@ -12,10 +12,10 @@ import {
   StyledDivEnd,
   StyledArrowBackIcon,
   ArrowContainer,
-} from './styledComponents/StyledTimeline';
-import { CalibriBoldNavy14, CalibriBoldNavy11, CalibriBoldNavy18, CalibriBoldRed11 } from './styledComponents/styledText';
+} from '../styledComponents/StyledTimeline';
+import { CalibriBoldNavy14, CalibriBoldNavy11, CalibriBoldNavy18, CalibriBoldRed11 } from '../styledComponents/styledText';
 import { Grid } from '@mui/material';
-import { Milestone } from './Validation/Type';
+import { Milestone } from '../Validation/Type';
 
 type CustomizedTimelineProps = {
   startDate: string;

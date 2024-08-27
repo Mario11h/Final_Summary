@@ -5,8 +5,8 @@ import {
   ProjectName,
   ProjectCode,
   OngoingText,
-} from "./styledComponents/styledText";
-import { StyledProjectHeaderBox } from "./styledComponents/styledBoxes";
+} from "../styledComponents/styledText";
+import { StyledProjectHeaderBox } from "../styledComponents/styledBoxes";
 
 type ProjectHeaderProps = {
   name: string;

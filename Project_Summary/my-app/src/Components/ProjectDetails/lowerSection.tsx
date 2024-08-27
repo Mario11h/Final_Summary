@@ -4,9 +4,9 @@ import {
   StyledSectionBox,
   StyledTeamBox,
   StyledTitleContainer
-} from './styledComponents/styledContainer';
-import { StyledTitle } from './styledComponents/styledText';
-import { StyledIconMulIcon } from './styledComponents/StyledIconAvatar';
+} from '../styledComponents/styledContainer';
+import { StyledTitle } from '../styledComponents/styledText';
+import { StyledIconMulIcon } from '../styledComponents/StyledIconAvatar';
 
 type LowerSectionProps<T> = {
   title: string;

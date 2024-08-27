@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyledTitleGreyBackground } from './styledComponents/styledText';
+import { StyledTitleGreyBackground } from '../styledComponents/styledText';
 import { Box } from '@mui/material';
 
 type SectionProps = {
