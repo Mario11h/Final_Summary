@@ -18,7 +18,7 @@ export type BusinessTeam = {
     id: number;
     title: string;
     description: string;
-    date: Date;
+    date: string;
     currentFlag: boolean;
   };
   
@@ -35,7 +35,7 @@ export type BusinessTeam = {
     risks: string[];
     roi: string;
     budget: Budget;
-    startDate: Date;
-    endDate: Date;
+    startDate: string;
+    endDate: string;
     milestones: Milestone[];
   };

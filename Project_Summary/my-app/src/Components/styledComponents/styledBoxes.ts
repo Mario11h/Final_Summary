@@ -9,7 +9,6 @@ export const StyledProjectHeaderBox = styled(Box)({
   padding: '8px 16px',
   marginBottom: '24px',
   minHeight: '35px',
-
-  boxSizing: 'border-box', // Include padding and border in the element's total width and height
+  boxSizing: 'border-box', 
 });
 

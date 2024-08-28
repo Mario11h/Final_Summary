@@ -101,6 +101,11 @@ const App: React.FC = () => {
       handleDeleteProject(projectToDelete);
     }
   };
+  const convertProjectDatesToString = (project: any) => ({
+    ...project,
+    startDate: typeof project.startDate === 'string' ? project.startDate : project.startDate.toISOString(),
+    endDate: typeof project.endDate === 'string' ? project.endDate : project.endDate.toISOString(),
+  });
 
   const renderProject = (project: any, index?: number) => {
     if (!project) return null;
@@ -165,7 +170,7 @@ const App: React.FC = () => {
           onCancel={handleCancelAddProject}
           onDone={handleDoneAddProject}
           onEdit={handleDoneEditProject}
-          project={isEditing ? currentProject : undefined}
+          project={isEditing ? convertProjectDatesToString(currentProject) : undefined}
         />
       );
     } else {

@@ -12,6 +12,7 @@ import { FieldArray } from "react-final-form-arrays";
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import validateProjectForm from './Validation/projectValidator';
 import { Project } from './Validation/Type';
+import dayjs from 'dayjs';
 
 interface NewProjectFormProps {
   onCancel: () => void;
@@ -49,8 +50,8 @@ const NewProjectForm: React.FC<NewProjectFormProps> = ({
       actual: 0,
       planned: 0,
     },
-    startDate: new Date(),
-    endDate: new Date(),
+    startDate: dayjs().format('YYYY-MM-DD'),
+    endDate: dayjs().add(3, 'month').format("YYYY-MM-DD"),
     milestones: [],
   };
 
@@ -195,6 +196,7 @@ const NewProjectForm: React.FC<NewProjectFormProps> = ({
                               fullWidth
                               error={meta.touched && meta.error}
                               helperText={meta.touched && meta.error}
+                              value={dayjs(input.value).format('YYYY-MM-DD')}
                             />
                           </FormControl>
                         )}
@@ -211,6 +213,7 @@ const NewProjectForm: React.FC<NewProjectFormProps> = ({
                               fullWidth
                               error={meta.touched && meta.error}
                               helperText={meta.touched && meta.error}
+                              value={dayjs(input.value).format('YYYY-MM-DD')}
                             />
                           </FormControl>
                         )}
@@ -256,6 +259,7 @@ const NewProjectForm: React.FC<NewProjectFormProps> = ({
                                         fullWidth
                                         error={meta.touched && meta.error}
                                         helperText={meta.touched && meta.error}
+                                        value={dayjs(input.value).format('YYYY-MM-DD')}
                                       />
                                     </FormControl>
                                   )}

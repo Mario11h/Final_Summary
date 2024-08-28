@@ -25,12 +25,12 @@ export const ProjectValidationSchema = Yup.object().shape({
     actual: Yup.number().positive('Actual budget must be a positive number'),
     planned: Yup.number().positive('Planned budget must be a positive number')
   }),
-  startDate: Yup.date()
+  startDate: Yup.string()
   .nullable()
   .transform((value, originalValue) => {
     return originalValue === '' || originalValue === '00-00-00' ? null : value;
   }),
-endDate: Yup.date()
+endDate: Yup.string()
   .nullable()
   .transform((value, originalValue) => {
     return originalValue === '' || originalValue === '00-00-00' ? null : value;
@@ -39,7 +39,7 @@ endDate: Yup.date()
     Yup.object().shape({
       title: Yup.string(),
       description: Yup.string(),
-      date: Yup.date()
+      date: Yup.string()
         .nullable() // Allow null values
         .transform((value, originalValue) => {
           return originalValue === '' ? null : value; // Convert empty string to null
