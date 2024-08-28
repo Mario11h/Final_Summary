@@ -305,12 +305,14 @@ const BudgetSection: React.FC<BudgetSectionProps> = ({ budget, roi, mode }) => {
                   {plannedBudget}
                 </PlannedBudgetValueBox>
               </BudgetRow>
-              <BudgetRow style={{ marginTop: '16px' }}>
-                <CalibriText12Navy>ROI:</CalibriText12Navy>
-                <Box style={{ marginLeft: '8px' }}>
-                  <TextRoboto>{roi}</TextRoboto>
-                </Box>
-              </BudgetRow>
+              {roi && (
+                <BudgetRow style={{ marginTop: '16px' }}>
+                  <CalibriText12Navy>ROI:</CalibriText12Navy>
+                  <Box style={{ marginLeft: '8px' }}>
+                    <TextRoboto>{roi}</TextRoboto>
+                  </Box>
+                </BudgetRow>
+              )}
             </>
           )}
         </BudgetContainer>

@@ -22,6 +22,12 @@ const validateProjectForm = async (values: Partial<Project>): Promise<Record<str
     }
   }
 };
-
+export const generateLabel = (label: string, isRequired: boolean) => {
+  return (
+    <span>
+      {label} {isRequired && <span style={{ color: "red" }}>*</span>}
+    </span>
+  );
+};
 
 export default validateProjectForm;

@@ -1,12 +1,13 @@
 import React from "react";
 import { Field } from "react-final-form";
-import { TextField, Box, MenuItem, Select } from "@mui/material";
+import { TextField, Box, MenuItem, Select, FormControl, InputLabel } from "@mui/material";
 import {
   ProjectName,
   ProjectCode,
   OngoingText,
 } from "../styledComponents/styledText";
 import { StyledProjectHeaderBox } from "../styledComponents/styledBoxes";
+import { generateLabel } from "../Validation/projectValidator"; // Import the helper function
 
 type ProjectHeaderProps = {
   name: string;
@@ -40,7 +41,8 @@ const ProjectHeader: React.FC<ProjectHeaderProps> = ({
                       disableUnderline: true,
                       style: { fontSize: "inherit", fontWeight: "inherit" },
                     }}
-                    sx={{width:'145%'}}
+                    label={generateLabel("Project Name", true)}
+                    sx={{ width: '145%' }}
                   />
                 )}
               </Field>
@@ -59,6 +61,7 @@ const ProjectHeader: React.FC<ProjectHeaderProps> = ({
                       disableUnderline: true,
                       style: { fontSize: "inherit", fontWeight: "inherit" },
                     }}
+                    label={generateLabel("Project Code", true)}
                   />
                 )}
               </Field>
@@ -74,24 +77,28 @@ const ProjectHeader: React.FC<ProjectHeaderProps> = ({
       </Box>
       {mode === "edit" ? (
         <OngoingText status={status}>
-          <Field name="status" initialValue={status}>
-            {({ input }) => (
+        <Field name="status" initialValue={status}>
+          {({ input }) => (
+            <FormControl fullWidth variant="standard" sx={{ width: '100%' }}>
+              <InputLabel shrink>{generateLabel("Status", true)}</InputLabel>
               <Select
                 {...input}
-                fullWidth
-                variant="standard"
                 displayEmpty
                 value={input.value}
                 style={{ fontSize: "inherit", fontWeight: "inherit" }}
               >
+                <MenuItem value="">
+                  <em>None</em>
+                </MenuItem>
                 <MenuItem value="REQUESTED">Requested</MenuItem>
                 <MenuItem value="ONGOING">Ongoing</MenuItem>
                 <MenuItem value="ON HOLD">On Hold</MenuItem>
                 <MenuItem value="FINISHED">Finished</MenuItem>
               </Select>
-            )}
-          </Field>
-        </OngoingText>
+            </FormControl>
+          )}
+        </Field>
+      </OngoingText>
       ) : (
         <OngoingText status={status}>{status}</OngoingText>
       )}
