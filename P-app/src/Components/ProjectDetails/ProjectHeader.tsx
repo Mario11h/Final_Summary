@@ -7,17 +7,17 @@ import {
   OngoingText,
 } from "../styledComponents/styledText";
 import { StyledProjectHeaderBox } from "../styledComponents/styledBoxes";
-import { generateLabel } from "../Validation/projectValidator"; // Import the helper function
+import { generateLabel } from "../Validation/projectValidator"; 
 
 type ProjectHeaderProps = {
-  name: string;
+  projectName: string;
   code: string;
   status: string;
   mode: "view" | "edit";
 };
 
 const ProjectHeader: React.FC<ProjectHeaderProps> = ({
-  name,
+  projectName,
   code,
   status,
   mode,
@@ -28,7 +28,7 @@ const ProjectHeader: React.FC<ProjectHeaderProps> = ({
         {mode === "edit" ? (
           <>
             <ProjectName>
-              <Field name="name" initialValue={name}>
+              <Field name="name" initialValue={projectName}>
                 {({ input, meta }) => (
                   <TextField
                     {...input}
@@ -70,7 +70,7 @@ const ProjectHeader: React.FC<ProjectHeaderProps> = ({
           </>
         ) : (
           <>
-            <ProjectName>{name}</ProjectName>
+            <ProjectName>{projectName}</ProjectName>
             <ProjectCode>{code}</ProjectCode>
           </>
         )}

@@ -1,7 +1,7 @@
 import * as Yup from 'yup';
 
 export const ProjectValidationSchema = Yup.object().shape({
-  name: Yup.string().required('Project name is required'),
+  projectName: Yup.string().required('Project name is required'),
   code: Yup.string().required('Project code is required'),
   status: Yup.string().required('Project status is required'),
   description: Yup.string(),
@@ -12,18 +12,18 @@ export const ProjectValidationSchema = Yup.object().shape({
   risks: Yup.array().of(
     Yup.string()
   ),
-  businessTeam: Yup.object().shape({
+
     sponsor: Yup.string(),
     businessOwner: Yup.string(),
-    productOwner: Yup.string()
-  }),
+    productOwner: Yup.string(),
+  
   hubTeam: Yup.object().shape({
     pm: Yup.string(),
-    dev: Yup.string(),
+    deliveryTeam: Yup.string(),
   }),
   budget: Yup.object().shape({
-    actual: Yup.number().positive('Actual budget must be a positive number'),
-    planned: Yup.number().positive('Planned budget must be a positive number')
+    actualBudget: Yup.number().positive('Actual budget must be a positive number'),
+    allocatedBudget: Yup.number().positive('Planned budget must be a positive number')
   }),
   startDate: Yup.string()
   .nullable()
@@ -37,14 +37,14 @@ endDate: Yup.string()
   }),
   milestones: Yup.array().of(
     Yup.object().shape({
-      title: Yup.string(),
-      description: Yup.string(),
-      date: Yup.string()
+      milestoneTitle: Yup.string(),
+      milestoneDescription: Yup.string(),
+      milestoneDeliveryDate: Yup.string()
         .nullable() // Allow null values
         .transform((value, originalValue) => {
           return originalValue === '' ? null : value; // Convert empty string to null
         }),
-      currentFlag: Yup.boolean()
+        milestoneStatus: Yup.string()
     })
   ),
   roi: Yup.string(), 

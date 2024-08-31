@@ -8,12 +8,15 @@ import { BulletedList, CalibriText12Navy, Label, TextRoboto, Value } from '../st
 import { TextField, Button, Box } from '@mui/material';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
-import { HubTeam, BusinessTeam, Budget } from '../Validation/Type';
+import { HubTeam, Budget } from '../Validation/Type';
 import { BudgetRow, BudgetContainer, ActualBudgetValueBox, PlannedBudgetValueBox } from '../styledComponents/styledContainer';
 import { Field } from 'react-final-form';
 
+
 type BusinessTeamSectionProps = {
-  businessTeam: BusinessTeam;
+  sponsor: string;
+  businessOwner: string;
+  productOwner: string;
   mode: 'view' | 'edit';
 };
 
@@ -35,18 +38,18 @@ interface BudgetSectionProps {
   mode: 'view' | 'edit';
 }
 
-const BusinessTeamSection: React.FC<BusinessTeamSectionProps> = ({ businessTeam, mode }) => {
+const BusinessTeamSection: React.FC<BusinessTeamSectionProps> = ({ sponsor, businessOwner, productOwner, mode }) => {
   return (
     <LowerSection
       title="Business Team"
       icon={GroupsIcon}
-      data={[businessTeam]}
-      renderItem={(team: BusinessTeam) =>
+      data={[{ sponsor, businessOwner, productOwner }]}
+      renderItem={(team) =>
         mode === 'edit' ? (
           <BulletedList>
             <div style={{ display: 'flex', alignItems: 'center', marginBottom: '8px' }}>
               <Label><li>Sponsor:</li></Label>
-              <Field name="businessTeam.sponsor" initialValue={team.sponsor}>
+              <Field name="sponsor" initialValue={sponsor}>
               {({ input, meta }) => (
               <TextField
               {...input}
@@ -56,13 +59,13 @@ const BusinessTeamSection: React.FC<BusinessTeamSectionProps> = ({ businessTeam,
                 error={meta.touched && meta.error}
                     helperText={meta.touched && meta.error}
                 style={{ marginLeft: '8px' }}
-                defaultValue={team.sponsor}
+                defaultValue={sponsor}
               /> )}
               </Field>
             </div>
             <div style={{ display: 'flex', alignItems: 'center', marginBottom: '8px' }}>
               <Label><li>Business Owner:</li></Label>
-              <Field name="businessTeam.businessOwner" initialValue={team.businessOwner}>
+              <Field name="businessOwner" initialValue={businessOwner}>
                 {({ input, meta }) => (
               <TextField
               {...input}
@@ -72,13 +75,13 @@ const BusinessTeamSection: React.FC<BusinessTeamSectionProps> = ({ businessTeam,
                 error={meta.touched && meta.error}
                     helperText={meta.touched && meta.error}
                 style={{ marginLeft: '8px' }}
-                defaultValue={team.businessOwner}
+                defaultValue={businessOwner}
               /> )}
               </Field>
             </div>
             <div style={{ display: 'flex', alignItems: 'center', marginBottom: '8px' }}>
               <Label><li>Product Owner:</li></Label>
-              <Field name="businessTeam.productOwner" initialValue={team.productOwner}>
+              <Field name="productOwner" initialValue={productOwner}>
               {({ input, meta }) => (
               <TextField
                 {...input}
@@ -87,7 +90,7 @@ const BusinessTeamSection: React.FC<BusinessTeamSectionProps> = ({ businessTeam,
                 error={meta.touched && meta.error}
                 helperText={meta.touched && meta.error}
                 style={{ marginLeft: '8px' }}
-                defaultValue={team.productOwner}
+                defaultValue={productOwner}
               /> )}
               </Field>
             </div>
@@ -95,13 +98,13 @@ const BusinessTeamSection: React.FC<BusinessTeamSectionProps> = ({ businessTeam,
         ) : (
           <BulletedList>
             <div style={{ display: 'flex', alignItems: 'center', marginBottom: '8px' }}>
-              <Label><li>Sponsor:</li></Label> <Value>{team.sponsor}</Value>
+              <Label><li>Sponsor:</li></Label> <Value>{sponsor}</Value>
             </div>
             <div style={{ display: 'flex', alignItems: 'center', marginBottom: '8px' }}>
-              <Label><li>Business Owner:</li></Label> <Value>{team.businessOwner}</Value>
+              <Label><li>Business Owner:</li></Label> <Value>{businessOwner}</Value>
             </div>
             <div style={{ display: 'flex', alignItems: 'center', marginBottom: '8px' }}>
-              <Label><li>Product Owner:</li></Label> <Value>{team.productOwner}</Value>
+              <Label><li>Product Owner:</li></Label> <Value>{productOwner}</Value>
             </div>
           </BulletedList>
         )
@@ -137,9 +140,9 @@ const HubTeamSection: React.FC<HubTeamSectionProps> = ({ hubTeam, mode }) => (
           )}
         </div>
         <div style={{ display: 'flex', alignItems: 'center', marginBottom: '8px' }}>
-          <Label><li>Dev:</li></Label>
+          <Label><li>DeliveryTeam:</li></Label>
           {mode === 'edit' ? (
-            <Field name='hubTeam.dev'>
+            <Field name='hubTeam.deliveryTeam'>
               {({ input, meta }) => (
             <TextField
             {...input}
@@ -147,13 +150,13 @@ const HubTeamSection: React.FC<HubTeamSectionProps> = ({ hubTeam, mode }) => (
               variant="standard"
               fullWidth
               style={{ marginLeft: '8px' }}
-              defaultValue={hubTeam.dev}
+              defaultValue={hubTeam.deliveryTeam}
               error={meta.touched && meta.error}
                   helperText={meta.touched && meta.error}
             />)}
             </Field>
           ) : (
-            <Value>{hubTeam.dev || 'N/A'}</Value>
+            <Value>{hubTeam.deliveryTeam || 'N/A'}</Value>
           )}
         </div>
        
@@ -214,8 +217,8 @@ const RiskSection: React.FC<RiskSectionProps> = ({ risks, mode, addRiskField, re
 );
 
 const BudgetSection: React.FC<BudgetSectionProps> = ({ budget, roi, mode }) => {
-  const actualBudget = budget.actual;
-  const plannedBudget = budget.planned;
+  const actualBudget = budget.actualBudget;
+  const plannedBudget = budget.allocatedBudget;
 
   return (
     <LowerSection
@@ -232,11 +235,11 @@ const BudgetSection: React.FC<BudgetSectionProps> = ({ budget, roi, mode }) => {
                   isActual={true}
                   budget_actual_usd={actualBudget || 0}
                   budget_planned_usd={plannedBudget || 0}
-                > <Field name="budget.actual" initialValue={actualBudget}>
+                > <Field name="budget.actualBudget" initialValue={actualBudget}>
                   {({ input, meta }) => (
                   <TextField
                   {...input}
-                    name="budget.actual"
+                    name="budget.actualBudget"
                     variant="standard"
                     fullWidth
                     error={meta.touched && meta.error}
@@ -252,11 +255,11 @@ const BudgetSection: React.FC<BudgetSectionProps> = ({ budget, roi, mode }) => {
                   isActual={false}
                   budget_actual_usd={actualBudget || 0}
                   budget_planned_usd={plannedBudget || 0}
-                > <Field name="budget.planned" initialValue={plannedBudget}>
+                > <Field name="budget.allocatedBudget" initialValue={plannedBudget}>
                   {({ input, meta }) => (
                   <TextField
                   {...input}
-                    name="budget.planned"
+                    name="budget.allocatedBudget"
                     variant="standard"
                     fullWidth
                     error={meta.touched && meta.error}

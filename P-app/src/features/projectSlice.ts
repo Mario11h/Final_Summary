@@ -1,41 +1,38 @@
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 
 // Import the local JSON data
-import localProjectsData from '../data.json';
+import localProjectsData from '../api/data.json';
 
-type BusinessTeam = {
-  sponsor: string;
-  businessOwner: string;
-  productOwner: string;
-};
 
 type HubTeam = {
   pm: string;
-  dev: string;
+  deliveryTeam: string;
 };
 
 type Budget = {
-  actual?: number;
-  planned?: number;
+  actualBudget?: number;
+  allocatedBudget?: number;
 };
 
 type Milestone = {
   id: number;
-  title: string;
-  description: string;
-  date: Date;
-  currentFlag: boolean;
+  milestoneTitle: string;
+  milestoneDescription: string;
+  milestoneDeliveryDate: Date;
+  milestoneStatus: string;
 };
 
 type Project = {
   id:number;
-  name: string;
+  projectName: string;
   code: string;
   description: string;
   status: string;
   scope: string;
   goals: string[];
-  businessTeam: BusinessTeam;
+  sponsor: string;
+  businessOwner: string;
+  productOwner: string;
   hubTeam: HubTeam;
   risks: string[];
   roi: string;

@@ -77,12 +77,12 @@ const getBackgroundColor = (isActual: boolean, budget_actual_usd: number, budget
 };
 
 const getWidth = (isActual: boolean, budget_actual_usd: number, budget_planned_usd: number) => {
-  const BASE_BUDGET = 30000;
+  const BASE_BUDGET = 150000;
   const BASE_WIDTH = 75;
   const WIDTH_INCREMENT = 40;
 
   const difference = isActual ? budget_actual_usd - BASE_BUDGET : budget_planned_usd - BASE_BUDGET;
-  const increments = Math.floor(difference / 15000);
+  const increments = Math.floor(difference / 75000);
   const newWidth = BASE_WIDTH + increments * WIDTH_INCREMENT;
 
   return `${newWidth}px`;

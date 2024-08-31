@@ -29,26 +29,26 @@ const NewProjectForm: React.FC<NewProjectFormProps> = ({
 }) => {
   const initialValues: Project = project || {
     id: 0,
-    name: "",
+    projectName: "",
     code: "",
     description: "",
     status: "",
     scope: "",
     goals: [""],
-    businessTeam: {
+    
       sponsor: "",
       businessOwner: "",
       productOwner: "",
-    },
+    
     hubTeam: {
       pm: "",
-      dev: "",
+      deliveryTeam: "",
     },
     risks: [""],
     roi: "",
     budget: {
-      actual: 0,
-      planned: 0,
+      actualBudget: 0,
+      allocatedBudget: 0,
     },
     startDate: dayjs().format('YYYY-MM-DD'),
     endDate: dayjs().add(3, 'month').format("YYYY-MM-DD"),
@@ -119,7 +119,7 @@ const NewProjectForm: React.FC<NewProjectFormProps> = ({
             }}>
               <Grid>
                 <ProjectHeader
-                  name={initialValues.name}
+                  projectName={initialValues.projectName}
                   code={initialValues.code}
                   status={initialValues.status}
                   mode="edit"
@@ -150,10 +150,14 @@ const NewProjectForm: React.FC<NewProjectFormProps> = ({
                       </FieldArray>
 
                       <StyledEqualContainer>
+                      // ... existing code ...
                         <BusinessTeamSection
-                          businessTeam={initialValues.businessTeam}
+                          sponsor={initialValues.sponsor}
+                          businessOwner={initialValues.businessOwner}
+                          productOwner={initialValues.productOwner}
                           mode="edit"
                         />
+// ... existing code ...
                         <HubTeamSection
                           hubTeam={initialValues.hubTeam}
                           mode="edit"
@@ -223,7 +227,7 @@ const NewProjectForm: React.FC<NewProjectFormProps> = ({
                           <>
                             {fields.map((name, index) => (
                               <Box key={index} mt={2} >
-                                <Field name={`${name}.title`}>
+                                <Field name={`${name}.milestoneTitle`}>
                                   {({ input, meta }) => (
                                     <FormControl fullWidth margin="normal">
                                       <TextField
@@ -236,12 +240,12 @@ const NewProjectForm: React.FC<NewProjectFormProps> = ({
                                     </FormControl>
                                   )}
                                 </Field>
-                                <Field name={`${name}.description`}>
+                                <Field name={`${name}.milestoneDescription`}>
                                   {({ input, meta }) => (
                                     <FormControl fullWidth margin="normal">
                                       <TextField
                                         {...input}
-                                        label="Description"
+                                        label="milestoneDescription"
                                         fullWidth
                                         error={meta.touched && meta.error}
                                         helperText={meta.touched && meta.error}
@@ -249,13 +253,13 @@ const NewProjectForm: React.FC<NewProjectFormProps> = ({
                                     </FormControl>
                                   )}
                                 </Field>
-                                <Field name={`${name}.date`}>
+                                <Field name={`${name}.milestoneDeliveryDate`}>
                                   {({ input, meta }) => (
                                     <FormControl fullWidth margin="normal">
                                       <TextField
                                         {...input}
                                         type="date"
-                                        label="Date"
+                                        label="milestoneDeliveryDate"
                                         fullWidth
                                         error={meta.touched && meta.error}
                                         helperText={meta.touched && meta.error}
@@ -267,7 +271,7 @@ const NewProjectForm: React.FC<NewProjectFormProps> = ({
                                 <FormControlLabel
                                   control={
                                     <Field
-                                      name={`${name}.currentFlag`}
+                                      name={`${name}.milestoneStatus`}
                                       component="input"
                                       type="checkbox"
                                     />
@@ -301,10 +305,10 @@ const NewProjectForm: React.FC<NewProjectFormProps> = ({
                               color="primary"
                               onClick={() =>
                                 fields.push({
-                                  title: "",
-                                  description: "",
-                                  date: "",
-                                  currentFlag: false,
+                                  milestoneTitle: "",
+                                  milestoneDescription: "",
+                                  milestoneDeliveryDate: "",
+                                  milestoneStatus: false,
                                 })
                               }
                             >

@@ -1,36 +1,33 @@
-export type BusinessTeam = {
-    sponsor: string;
-    businessOwner: string;
-    productOwner: string;
-  };
   
   export type HubTeam = {
     pm: string;
-    dev: string;
+    deliveryTeam: string;
   };
   
   export type Budget = {
-    actual?: number;
-    planned?: number;
+    actualBudget?: number;
+    allocatedBudget?: number;
   };
   
   export type Milestone = {
     id: number;
-    title: string;
-    description: string;
-    date: string;
-    currentFlag: boolean;
+    milestoneTitle: string;
+    milestoneDescription: string;
+    milestoneDeliveryDate: string;
+    milestoneStatus: string;
   };
   
   export type Project = {
     id: number;
-    name: string;
+    projectName: string;
     code: string;
     description: string;
     status: string;
     scope: string;
     goals: string[];
-    businessTeam: BusinessTeam;
+    sponsor: string;
+  businessOwner: string;
+  productOwner: string;
     hubTeam: HubTeam;
     risks: string[];
     roi: string;

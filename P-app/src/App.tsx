@@ -113,7 +113,7 @@ const App: React.FC = () => {
       <div key={index} className="pdf-page">
         <Grid>
           <ProjectHeader
-            name={project.name}
+            projectName={project.projectName}
             code={project.code}
             status={project.status}
             mode="view"
@@ -126,7 +126,11 @@ const App: React.FC = () => {
                 <Box />
                 <ProjectScopeGoalsSection scopeDescription={project.scope} goals={project.goals} mode="view" />
                 <StyledEqualContainer>
-                  <BusinessTeamSection businessTeam={project.businessTeam} mode="view" />
+                <BusinessTeamSection 
+                    sponsor={project.sponsor} 
+                    businessOwner={project.businessOwner} 
+                    productOwner={project.productOwner} 
+                    mode="view" />
                   <HubTeamSection hubTeam={project.hubTeam} mode="view" />
                   <RiskSection risks={project.risks} mode="view" />
                   <BudgetSection budget={project.budget} roi={project.roi} mode="view" />

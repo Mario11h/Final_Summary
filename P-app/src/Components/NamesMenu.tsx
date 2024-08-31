@@ -68,7 +68,7 @@ export default function LongMenu() {
         ) : (
           projects.map((project) => (
             <MenuItem key={project.id} onClick={handleClose}>
-              {project.name}
+              {project.projectName}
             </MenuItem>
           ))
         )}
