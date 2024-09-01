@@ -8,7 +8,6 @@ import { BulletedList, CalibriText12Navy, Label, TextRoboto, Value } from '../st
 import { TextField, Button, Box } from '@mui/material';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
-import { HubTeam, Budget } from '../Validation/Type';
 import { BudgetRow, BudgetContainer, ActualBudgetValueBox, PlannedBudgetValueBox } from '../styledComponents/styledContainer';
 import { Field } from 'react-final-form';
 
@@ -21,7 +20,8 @@ type BusinessTeamSectionProps = {
 };
 
 type HubTeamSectionProps = {
-  hubTeam: HubTeam;
+  pm: string;
+  deliveryTeam: string;
   mode: 'view' | 'edit';
 };
 
@@ -33,7 +33,8 @@ type RiskSectionProps = {
 };
 
 interface BudgetSectionProps {
-  budget: Budget;
+  actualBudget?: number;
+  allocatedBudget?: number;
   roi?: string;
   mode: 'view' | 'edit';
 }
@@ -113,17 +114,17 @@ const BusinessTeamSection: React.FC<BusinessTeamSectionProps> = ({ sponsor, busi
   );
 };
 
-const HubTeamSection: React.FC<HubTeamSectionProps> = ({ hubTeam, mode }) => (
+const HubTeamSection: React.FC<HubTeamSectionProps> = ({ pm,deliveryTeam, mode }) => (
   <LowerSection
     title="HUB Team"
     icon={GroupsOutlinedIcon}
-    data={[hubTeam]}
+    data={[pm,deliveryTeam]}
     renderItem={() => (
       <BulletedList>
         <div style={{ display: 'flex', alignItems: 'center', marginBottom: '8px' }}>
           <Label><li>PM:</li></Label>
           {mode === 'edit' ? (
-            <Field name='hubTeam.pm'>
+            <Field name='pm'>
               {({ input, meta }) => (
                 <TextField
                 {...input}
@@ -132,17 +133,17 @@ const HubTeamSection: React.FC<HubTeamSectionProps> = ({ hubTeam, mode }) => (
                   helperText={meta.touched && meta.error}
                   fullWidth
                   style={{ marginLeft: '8px' }}
-                  defaultValue={hubTeam.pm}
+                  defaultValue={pm}
                 />)}
             </Field>
           ) : (
-            <Value>{hubTeam.pm || 'N/A'}</Value>
+            <Value>{pm || 'N/A'}</Value>
           )}
         </div>
         <div style={{ display: 'flex', alignItems: 'center', marginBottom: '8px' }}>
           <Label><li>DeliveryTeam:</li></Label>
           {mode === 'edit' ? (
-            <Field name='hubTeam.deliveryTeam'>
+            <Field name='deliveryTeam'>
               {({ input, meta }) => (
             <TextField
             {...input}
@@ -150,13 +151,13 @@ const HubTeamSection: React.FC<HubTeamSectionProps> = ({ hubTeam, mode }) => (
               variant="standard"
               fullWidth
               style={{ marginLeft: '8px' }}
-              defaultValue={hubTeam.deliveryTeam}
+              defaultValue={deliveryTeam}
               error={meta.touched && meta.error}
                   helperText={meta.touched && meta.error}
             />)}
             </Field>
           ) : (
-            <Value>{hubTeam.deliveryTeam || 'N/A'}</Value>
+            <Value>{deliveryTeam || 'N/A'}</Value>
           )}
         </div>
        
@@ -216,15 +217,14 @@ const RiskSection: React.FC<RiskSectionProps> = ({ risks, mode, addRiskField, re
   </LowerSection>
 );
 
-const BudgetSection: React.FC<BudgetSectionProps> = ({ budget, roi, mode }) => {
-  const actualBudget = budget.actualBudget;
-  const plannedBudget = budget.allocatedBudget;
+const BudgetSection: React.FC<BudgetSectionProps> = ({ actualBudget, allocatedBudget, roi, mode }) => {
+  
 
   return (
     <LowerSection
       title="HUB Project Budget"
       icon={CurrencyExchangeIcon}
-      data={[budget]}
+      data={[actualBudget,allocatedBudget]}
       renderItem={() => (
         <BudgetContainer>
           {mode === 'edit' ? (
@@ -234,12 +234,12 @@ const BudgetSection: React.FC<BudgetSectionProps> = ({ budget, roi, mode }) => {
                 <ActualBudgetValueBox
                   isActual={true}
                   budget_actual_usd={actualBudget || 0}
-                  budget_planned_usd={plannedBudget || 0}
-                > <Field name="budget.actualBudget" initialValue={actualBudget}>
+                  budget_planned_usd={allocatedBudget || 0}
+                > <Field name="actualBudget" initialValue={actualBudget}>
                   {({ input, meta }) => (
                   <TextField
                   {...input}
-                    name="budget.actualBudget"
+                    name="actualBudget"
                     variant="standard"
                     fullWidth
                     error={meta.touched && meta.error}
@@ -254,17 +254,17 @@ const BudgetSection: React.FC<BudgetSectionProps> = ({ budget, roi, mode }) => {
                 <PlannedBudgetValueBox
                   isActual={false}
                   budget_actual_usd={actualBudget || 0}
-                  budget_planned_usd={plannedBudget || 0}
-                > <Field name="budget.allocatedBudget" initialValue={plannedBudget}>
+                  budget_planned_usd={allocatedBudget || 0}
+                > <Field name="allocatedBudget" initialValue={allocatedBudget}>
                   {({ input, meta }) => (
                   <TextField
                   {...input}
-                    name="budget.allocatedBudget"
+                    name="allocatedBudget"
                     variant="standard"
                     fullWidth
                     error={meta.touched && meta.error}
                       helperText={meta.touched && meta.error}
-                    defaultValue={plannedBudget}
+                    defaultValue={allocatedBudget}
                   /> )}
                   </Field>
                 </PlannedBudgetValueBox>
@@ -275,7 +275,7 @@ const BudgetSection: React.FC<BudgetSectionProps> = ({ budget, roi, mode }) => {
                 {({ input, meta }) => (
                 <TextField
                 {...input}
-                  name='budget.roi'
+                  name='roi'
                   variant="standard"
                   fullWidth
                   error={meta.touched && meta.error}
@@ -293,7 +293,7 @@ const BudgetSection: React.FC<BudgetSectionProps> = ({ budget, roi, mode }) => {
                 <ActualBudgetValueBox
                   isActual={true}
                   budget_actual_usd={actualBudget || 0}
-                  budget_planned_usd={plannedBudget || 0}
+                  budget_planned_usd={allocatedBudget || 0}
                 >
                   {actualBudget}
                 </ActualBudgetValueBox>
@@ -303,9 +303,9 @@ const BudgetSection: React.FC<BudgetSectionProps> = ({ budget, roi, mode }) => {
                 <PlannedBudgetValueBox
                   isActual={false}
                   budget_actual_usd={actualBudget || 0}
-                  budget_planned_usd={plannedBudget || 0}
+                  budget_planned_usd={allocatedBudget || 0}
                 >
-                  {plannedBudget}
+                  {allocatedBudget}
                 </PlannedBudgetValueBox>
               </BudgetRow>
               {roi && (

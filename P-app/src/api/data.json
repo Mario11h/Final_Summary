@@ -12,24 +12,20 @@
             "Digitalized tool to sell used containers",
             "Increase in sales of used containers."
         ],
-        
-            "sponsor": "sponsorName",
-            "businessOwner": "businessOwner",
-            "productOwner": "productOwner",
-        
-        "hubTeam": {
-            "pm": "PM PM",
-            "deliveryTeam": "AAA,BBB,CCC"
-        },
+        "sponsor": "sponsorName",
+        "businessOwner": "businessOwner",
+        "productOwner": "productOwner",
+        "pm": "PM PM",
+        "deliveryTeam": "AAA,BBB,CCC",
         "risks": [
             "The project missed a Front-end developer for multiple sprints",
             "Change and missing business requirements"
         ],
         "roi": "$1.4 M Increase in revenue within the next 2 years",
-        "budget": {
+        
             "actualBudget": "120000",
-            "allocatedBudget": "200000"
-        },
+            "allocatedBudget": "200000",
+        
         "startDate": "2024-01-01",
         "endDate": "2024-12-31",
         "milestones": [
@@ -66,23 +62,18 @@
             "Optimize the weekly container forecast collection and consolidation process",
             "Enhance accuracy, and productivity by reducing manual efforts"
         ],
-        "businessTeam": {
-            "sponsor": "sponsorName",
-            "businessOwner": "businessOwner",
-            "productOwner": "productOwner"
-        },
-        "hubTeam": {
-            "pm": "PM PM",
-            "deliveryTeam": "AAA,BBB,CCC"
-        },
+        "sponsor": "sponsorName",
+        "businessOwner": "businessOwner",
+        "productOwner": "productOwner",
+        "pm": "PM PM",
+        "deliveryTeam": "AAA,BBB,CCC",
         "risks": [
             "No available frontend resource"
         ],
         "roi": "Saving of 123 man- days/year (61500 USD) by reducing manual efforts spent by ARO Logistics and HO Logistics teams",
-        "budget": {
+        
             "allocatedBudget": "200000",
-            "actualBudget": "120000"
-        },
+            "actualBudget": "120000",
         "startDate": "2024-01-01",
         "endDate": "2024-12-31",
         "milestones": [

@@ -126,14 +126,19 @@ const App: React.FC = () => {
                 <Box />
                 <ProjectScopeGoalsSection scopeDescription={project.scope} goals={project.goals} mode="view" />
                 <StyledEqualContainer>
-                <BusinessTeamSection 
-                    sponsor={project.sponsor} 
-                    businessOwner={project.businessOwner} 
-                    productOwner={project.productOwner} 
+                  <BusinessTeamSection
+                    sponsor={project.sponsor}
+                    businessOwner={project.businessOwner}
+                    productOwner={project.productOwner}
                     mode="view" />
-                  <HubTeamSection hubTeam={project.hubTeam} mode="view" />
+                  <HubTeamSection
+                    pm={project.pm}
+                    deliveryTeam={project.deliveryTeam} mode="view" />
                   <RiskSection risks={project.risks} mode="view" />
-                  <BudgetSection budget={project.budget} roi={project.roi} mode="view" />
+                  <BudgetSection 
+                  actualBudget={project.actualBudget}
+                  allocatedBudget={project.allocatedBudget}
+                   roi={project.roi} mode="view" />
                 </StyledEqualContainer>
               </Grid>
             </Grid>

@@ -35,21 +35,15 @@ const NewProjectForm: React.FC<NewProjectFormProps> = ({
     status: "",
     scope: "",
     goals: [""],
-    
-      sponsor: "",
-      businessOwner: "",
-      productOwner: "",
-    
-    hubTeam: {
-      pm: "",
-      deliveryTeam: "",
-    },
+    sponsor: "",
+    businessOwner: "",
+    productOwner: "",
+    pm: "",
+    deliveryTeam: "",
     risks: [""],
     roi: "",
-    budget: {
-      actualBudget: 0,
-      allocatedBudget: 0,
-    },
+    actualBudget: 0,
+    allocatedBudget: 0,
     startDate: dayjs().format('YYYY-MM-DD'),
     endDate: dayjs().add(3, 'month').format("YYYY-MM-DD"),
     milestones: [],
@@ -63,7 +57,7 @@ const NewProjectForm: React.FC<NewProjectFormProps> = ({
 
   const handleSubmit = async (values: Project) => {
     console.log('values', values);
-    
+
     try {
       if (!project) {
         // Create a new project
@@ -85,7 +79,7 @@ const NewProjectForm: React.FC<NewProjectFormProps> = ({
       }
     } catch (error) {
       console.error("Error handling project data:", error);
-    } 
+    }
   };
 
   const handleOpenDialog = (isUpdate: boolean) => {
@@ -150,17 +144,19 @@ const NewProjectForm: React.FC<NewProjectFormProps> = ({
                       </FieldArray>
 
                       <StyledEqualContainer>
-                      // ... existing code ...
+
                         <BusinessTeamSection
                           sponsor={initialValues.sponsor}
                           businessOwner={initialValues.businessOwner}
                           productOwner={initialValues.productOwner}
                           mode="edit"
                         />
-// ... existing code ...
+                        
                         <HubTeamSection
-                          hubTeam={initialValues.hubTeam}
+                          pm={initialValues.pm}
+                          deliveryTeam={initialValues.pm}
                           mode="edit"
+
                         />
                         <FieldArray name="risks">
                           {({ fields }) => (
@@ -179,7 +175,8 @@ const NewProjectForm: React.FC<NewProjectFormProps> = ({
                         </FieldArray>
 
                         <BudgetSection
-                          budget={initialValues.budget}
+                          actualBudget={initialValues.actualBudget}
+                          allocatedBudget={initialValues.allocatedBudget}
                           roi={initialValues.roi}
                           mode="edit"
                         />
@@ -283,8 +280,8 @@ const NewProjectForm: React.FC<NewProjectFormProps> = ({
                                   color='error'
                                   sx={{
                                     '&:hover': {
-                                      backgroundColor: 'rgba(226, 1, 1, 1)',  
-                                      boxShadow: '0 4px 8px rgba(4, 36, 106, 1)',  
+                                      backgroundColor: 'rgba(226, 1, 1, 1)',
+                                      boxShadow: '0 4px 8px rgba(4, 36, 106, 1)',
                                     },
                                   }}
                                   onClick={() => {
@@ -339,7 +336,7 @@ const NewProjectForm: React.FC<NewProjectFormProps> = ({
                   color="primary"
                   type="button" // Change to button to prevent immediate submission
                   onClick={() => handleOpenDialog(!!project)} // Open dialog
-                  disabled={submitting || pristine }
+                  disabled={submitting || pristine}
                 >
                   {submitting ? "Submitting..." : project ? "Update Project" : "Add Project"}
                 </Button>
@@ -353,7 +350,7 @@ const NewProjectForm: React.FC<NewProjectFormProps> = ({
           );
         }}
       />
-      
+
       <Dialog open={dialogOpen} onClose={handleCloseDialog}>
         <DialogTitle>{isUpdating ? "Confirm Update" : "Confirm Addition"}</DialogTitle>
         <DialogContent>

@@ -4,16 +4,6 @@ import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 import localProjectsData from '../api/data.json';
 
 
-type HubTeam = {
-  pm: string;
-  deliveryTeam: string;
-};
-
-type Budget = {
-  actualBudget?: number;
-  allocatedBudget?: number;
-};
-
 type Milestone = {
   id: number;
   milestoneTitle: string;
@@ -33,10 +23,12 @@ type Project = {
   sponsor: string;
   businessOwner: string;
   productOwner: string;
-  hubTeam: HubTeam;
+  pm: string;
+  deliveryTeam: string;
   risks: string[];
   roi: string;
-  budget: Budget;
+  actualBudget?: number;
+  allocatedBudget?: number;
   startDate: Date;
   endDate: Date;
   milestones: Milestone[];
