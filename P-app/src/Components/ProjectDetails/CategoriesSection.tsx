@@ -118,7 +118,7 @@ const HubTeamSection: React.FC<HubTeamSectionProps> = ({ pm,deliveryTeam, mode }
   <LowerSection
     title="HUB Team"
     icon={GroupsOutlinedIcon}
-    data={[pm,deliveryTeam]}
+    data={[pm]}
     renderItem={() => (
       <BulletedList>
         <div style={{ display: 'flex', alignItems: 'center', marginBottom: '8px' }}>
@@ -219,12 +219,11 @@ const RiskSection: React.FC<RiskSectionProps> = ({ risks, mode, addRiskField, re
 
 const BudgetSection: React.FC<BudgetSectionProps> = ({ actualBudget, allocatedBudget, roi, mode }) => {
   
-
   return (
     <LowerSection
       title="HUB Project Budget"
       icon={CurrencyExchangeIcon}
-      data={[actualBudget,allocatedBudget]}
+      data={[actualBudget]}
       renderItem={() => (
         <BudgetContainer>
           {mode === 'edit' ? (

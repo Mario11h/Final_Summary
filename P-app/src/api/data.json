@@ -22,10 +22,8 @@
             "Change and missing business requirements"
         ],
         "roi": "$1.4 M Increase in revenue within the next 2 years",
-        
-            "actualBudget": "120000",
-            "allocatedBudget": "200000",
-        
+        "actualBudget": "120000",
+        "allocatedBudget": "200000",
         "startDate": "2024-01-01",
         "endDate": "2024-12-31",
         "milestones": [
@@ -71,9 +69,8 @@
             "No available frontend resource"
         ],
         "roi": "Saving of 123 man- days/year (61500 USD) by reducing manual efforts spent by ARO Logistics and HO Logistics teams",
-        
-            "allocatedBudget": "200000",
-            "actualBudget": "120000",
+        "allocatedBudget": "200000",
+        "actualBudget": "120000",
         "startDate": "2024-01-01",
         "endDate": "2024-12-31",
         "milestones": [
