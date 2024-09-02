@@ -1,97 +1,139 @@
 [
-    {
-        "createdAt": "27-08-2024 2:19:19",
-        "updatedAt": "27-08-2024 2:31:35",
-        "id": 5,
-        "projectName": "Act Selling Platform",
-        "code": "ASP",
-        "status": "ONGOING",
-        "description": "An overview of the project",
-        "scope": "The scope of the project",
-        "goals": [
-            "Digitalized tool to sell used containers",
-            "Increase in sales of used containers."
-        ],
-        "sponsor": "sponsorName",
-        "businessOwner": "businessOwner",
-        "productOwner": "productOwner",
-        "pm": "PM PM",
-        "deliveryTeam": "AAA,BBB,CCC",
-        "risks": [
-            "The project missed a Front-end developer for multiple sprints",
-            "Change and missing business requirements"
-        ],
-        "roi": "$1.4 M Increase in revenue within the next 2 years",
-        "actualBudget": "120000",
-        "allocatedBudget": "200000",
-        "startDate": "2024-01-01",
-        "endDate": "2024-12-31",
-        "milestones": [
-            {
-                "milestoneTitle": "Milestone Title1",
-                "milestoneDescription": "Milestone Description1",
-                "milestoneDeliveryDate": "2024-06-01",
-                "milestoneStatus": "FINISHED"
-            },
-            {
-                "milestoneTitle": "Milestone Title2",
-                "milestoneDescription": "Milestone Description2",
-                "milestoneDeliveryDate": "2024-07-01",
-                "milestoneStatus": "ONGOING"
-            },
-            {
-                "milestoneTitle": "Milestone Title3",
-                "milestoneDescription": "Milestone Description3",
-                "milestoneDeliveryDate": "2024-08-01",
-                "milestoneStatus": "PLANNED"
-            }
-        ]
-    },
-    {
-        "createdAt": "28-08-2024 6:27:07",
-        "updatedAt": "28-08-2024 6:27:07",
-        "id": 6,
-        "projectName": "new project",
-        "code": "NEW",
-        "status": "ONGOING",
-        "description": "new overview of the project",
-        "scope": "The scope of the project",
-        "goals": [
-            "Optimize the weekly container forecast collection and consolidation process",
-            "Enhance accuracy, and productivity by reducing manual efforts"
-        ],
-        "sponsor": "sponsorName",
-        "businessOwner": "businessOwner",
-        "productOwner": "productOwner",
-        "pm": "PM PM",
-        "deliveryTeam": "AAA,BBB,CCC",
-        "risks": [
-            "No available frontend resource"
-        ],
-        "roi": "Saving of 123 man- days/year (61500 USD) by reducing manual efforts spent by ARO Logistics and HO Logistics teams",
-        "allocatedBudget": "200000",
-        "actualBudget": "120000",
-        "startDate": "2024-01-01",
-        "endDate": "2024-12-31",
-        "milestones": [
-            {
-                "milestoneTitle": "New Title1",
-                "milestoneDescription": "Milestone Description1",
-                "milestoneDeliveryDate": "2024-06-01",
-                "milestoneStatus": "FINISHED"
-            },
-            {
-                "milestoneTitle": "New Title2",
-                "milestoneDescription": "Milestone Description2",
-                "milestoneDeliveryDate": "2024-07-01",
-                "milestoneStatus": "ONGOING"
-            },
-            {
-                "milestoneTitle": "New Title3",
-                "milestoneDescription": "Milestone Description3",
-                "milestoneDeliveryDate": "2024-08-01",
-                "milestoneStatus": "PLANNED"
-            }
-        ]
-    }
+  {
+    "createdAt": "27-08-2024 2:19:19",
+    "updatedAt": "27-08-2024 2:31:35",
+    "id": 5,
+    "projectName": "Updated Project Name",
+    "code": "ASP",
+    "status": "ONGOING",
+    "description": "An overview of the project",
+    "scope": "The scope of the project",
+    "goals": [
+      "Digitalized tool to sell used containers",
+      "Increase in sales of used containers."
+    ],
+    "sponsor": "sponsorName",
+    "businessOwner": "businessOwner",
+    "productOwner": "productOwner",
+    "pm": "PM PM",
+    "deliveryTeam": "AAA,BBB,CCC",
+    "risks": [
+      "The project missed a Front-end developer for multiple sprints",
+      "Change and missing business requirements"
+    ],
+    "roi": "$1.4 M Increase in revenue within the next 2 years",
+    "actualBudget": "120000",
+    "allocatedBudget": "200000",
+    "startDate": "2024-01-01",
+    "endDate": "2024-12-31",
+    "milestones": [
+      {
+        "milestoneTitle": "Milestone Title1",
+        "milestoneDescription": "Milestone Description1",
+        "milestoneDeliveryDate": "2024-06-01",
+        "milestoneStatus": "FINISHED"
+      },
+      {
+        "milestoneTitle": "Milestone Title2",
+        "milestoneDescription": "Milestone Description2",
+        "milestoneDeliveryDate": "2024-07-01",
+        "milestoneStatus": "ONGOING"
+      },
+      {
+        "milestoneTitle": "Milestone Title3",
+        "milestoneDescription": "Milestone Description3",
+        "milestoneDeliveryDate": "2024-08-01",
+        "milestoneStatus": "PLANNED"
+      }
+    ]
+  },
+  {
+    "createdAt": "28-08-2024 6:27:07",
+    "updatedAt": "28-08-2024 6:27:07",
+    "id": 6,
+    "projectName": "new project",
+    "code": "NEW",
+    "status": "ONGOING",
+    "description": "new overview of the project",
+    "scope": "The scope of the project",
+    "goals": [
+      "Optimize the weekly container forecast collection and consolidation process",
+      "Enhance accuracy, and productivity by reducing manual efforts"
+    ],
+    "sponsor": "sponsorName",
+    "businessOwner": "businessOwner",
+    "productOwner": "productOwner",
+    "pm": "PM PM",
+    "deliveryTeam": "AAA,BBB,CCC",
+    "risks": [
+      "No available frontend resource"
+    ],
+    "roi": "Saving of 123 man- days/year (61500 USD) by reducing manual efforts spent by ARO Logistics and HO Logistics teams",
+    "allocatedBudget": "200000",
+    "actualBudget": "120000",
+    "startDate": "2024-01-01",
+    "endDate": "2024-12-31",
+    "milestones": [
+      {
+        "milestoneTitle": "New Title1",
+        "milestoneDescription": "Milestone Description1",
+        "milestoneDeliveryDate": "2024-06-01",
+        "milestoneStatus": "FINISHED"
+      },
+      {
+        "milestoneTitle": "New Title2",
+        "milestoneDescription": "Milestone Description2",
+        "milestoneDeliveryDate": "2024-07-01",
+        "milestoneStatus": "ONGOING"
+      },
+      {
+        "milestoneTitle": "New Title3",
+        "milestoneDescription": "Milestone Description3",
+        "milestoneDeliveryDate": "2024-08-01",
+        "milestoneStatus": "PLANNED"
+      }
+    ]
+  },
+  {
+    "projectName": "New Project",
+    "code": "NP",
+    "status": "PLANNED",
+    "description": "Description of the new project",
+    "scope": "Scope of the new project",
+    "goals": [
+      "Goal 1 for the new project",
+      "Goal 2 for the new project"
+    ],
+    "sponsor": "Sponsor Name",
+    "businessOwner": "Business Owner Name",
+    "productOwner": "Product Owner Name",
+    "pm": "Project Manager Name",
+    "deliveryTeam": "Team A, Team B",
+    "risks": [
+      "Risk 1",
+      "Risk 2"
+    ],
+    "roi": "Expected ROI",
+    "actualBudget": "100000",
+    "allocatedBudget": "150000",
+    "startDate": "2024-01-01",
+    "endDate": "2024-12-31",
+    "milestones": [
+      {
+        "milestoneTitle": "Milestone 1",
+        "milestoneDescription": "Description for Milestone 1",
+        "milestoneDeliveryDate": "2024-03-01",
+        "milestoneStatus": "PLANNED"
+      },
+      {
+        "milestoneTitle": "Milestone 2",
+        "milestoneDescription": "Description for Milestone 2",
+        "milestoneDeliveryDate": "2024-06-01",
+        "milestoneStatus": "PLANNED"
+      }
+    ],
+    "id": 7,
+    "createdAt": "02/09/2024, 4:07:33 PM",
+    "updatedAt": "02/09/2024, 4:07:33 PM"
+  }
 ]

@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Button, TextField, Box, FormControlLabel, Grid, FormControl, InputLabel, CircularProgress, Backdrop, IconButton, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from "@mui/material";
 import { Form, Field } from "react-final-form";
 import arrayMutators from "final-form-arrays";
-import { addNewProjectService } from "./projectService";
 import ProjectHeader from "./ProjectDetails/ProjectHeader";
 import OverviewSection from "./ProjectDetails/OverviewSection";
 import ProjectScopeGoalsSection from "./ProjectDetails/ProjectScopeGoalsSection";
@@ -61,9 +60,10 @@ const NewProjectForm: React.FC<NewProjectFormProps> = ({
     try {
       if (!project) {
         // Create a new project
-        const newProject = await addNewProjectService(values);
+        const newProject: Project = { ...values, id: Date.now() }; // Create new project object
         onDone(newProject);
       } else {
+     
 
         onEdit();
       }
