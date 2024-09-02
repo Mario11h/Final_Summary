@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Button, TextField, Box, FormControlLabel, Grid, FormControl, InputLabel, CircularProgress, Backdrop, IconButton, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from "@mui/material";
 import { Form, Field } from "react-final-form";
 import arrayMutators from "final-form-arrays";
-import { addNewProjectService, updateProjectService, deleteProjectGoalService, deleteProjectRiskService, deleteProjectMilestoneService } from "./projectService";
+import { addNewProjectService, updateProjectService } from "./projectService";
 import ProjectHeader from "./ProjectDetails/ProjectHeader";
 import OverviewSection from "./ProjectDetails/OverviewSection";
 import ProjectScopeGoalsSection from "./ProjectDetails/ProjectScopeGoalsSection";
@@ -64,17 +64,7 @@ const NewProjectForm: React.FC<NewProjectFormProps> = ({
         const newProject = await addNewProjectService(values);
         onDone(newProject);
       } else {
-        // Update an existing project
-        await updateProjectService(values.id, values);
-        for (const goalId of goalsToRemove) {
-          await deleteProjectGoalService(values.id, goalId);
-        }
-        for (const riskId of risksToRemove) {
-          await deleteProjectRiskService(values.id, riskId);
-        }
-        for (const milestoneId of milestonesToRemove) {
-          await deleteProjectMilestoneService(values.id, milestoneId);
-        }
+
         onEdit();
       }
     } catch (error) {

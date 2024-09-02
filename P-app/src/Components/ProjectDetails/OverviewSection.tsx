@@ -5,7 +5,7 @@ import { StyledTitleOver, TextRoboto } from '../styledComponents/styledText';
 import { StyledIconGreyBackground } from '../styledComponents/StyledIconAvatar';
 import { StyledBox} from '../styledComponents/styledContainer';
 import TrendingUpIcon from '@mui/icons-material/TrendingUp';
-
+import { generateLabel } from "../Validation/projectValidator";
 type OverviewSectionProps = {
   description: string;
   mode: 'view' | 'edit';
@@ -20,7 +20,7 @@ const OverviewSection: React.FC<OverviewSectionProps> = ({ description, mode }) 
         <Grid>
           <StyledTitleOver>OVERVIEW</StyledTitleOver>
           {mode === 'edit' ? (
-            <Field name="overview" initialValue={description}>
+            <Field name="description" initialValue={description}>
               {({ input,meta }) => (
                 <TextField
                   {...input}
@@ -35,6 +35,7 @@ const OverviewSection: React.FC<OverviewSectionProps> = ({ description, mode }) 
                     disableUnderline: true,
                     style: { fontSize: 'inherit', fontWeight: 'inherit' }
                   }}
+                  label={generateLabel("Project Overview", true)}
                 />
               )}
             </Field>

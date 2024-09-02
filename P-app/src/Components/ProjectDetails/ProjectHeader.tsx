@@ -28,7 +28,7 @@ const ProjectHeader: React.FC<ProjectHeaderProps> = ({
         {mode === "edit" ? (
           <>
             <ProjectName>
-              <Field name="name" initialValue={projectName}>
+              <Field name="projectName" initialValue={projectName}>
                 {({ input, meta }) => (
                   <TextField
                     {...input}
@@ -77,14 +77,15 @@ const ProjectHeader: React.FC<ProjectHeaderProps> = ({
       </Box>
       {mode === "edit" ? (
         <OngoingText status={status}>
-        <Field name="status" initialValue={status}>
-          {({ input }) => (
+        <Field name="milestoneStatus" initialValue={status}>
+          {({ input,meta }) => (
             <FormControl fullWidth variant="standard" sx={{ width: '100%' }}>
               <InputLabel shrink>{generateLabel("Status", true)}</InputLabel>
               <Select
                 {...input}
                 displayEmpty
                 value={input.value}
+                error={meta.touched && meta.error}
                 style={{ fontSize: "inherit", fontWeight: "inherit" }}
               >
                 <MenuItem value="">

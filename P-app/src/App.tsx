@@ -29,8 +29,8 @@ const App: React.FC = () => {
   const [isEditing, setIsEditing] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
   const [printMode, setPrintMode] = useState(false);
-  const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
-  const [projectToDelete, setProjectToDelete] = useState<number | null>(null);
+ 
+ 
   const printRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
@@ -77,30 +77,8 @@ const App: React.FC = () => {
     setIsAddingProject(true);
   };
 
-  const handleDeleteProject = async (projectId: number) => {
-    setIsDeleting(true);
-    // Implement delete logic here
-    dispatch(setCurrentPage(1));
-    await dispatch(loadProjects());
-    setIsDeleting(false);
-    setDeleteDialogOpen(false);
-  };
-
-  const openDeleteDialog = (projectId: number) => {
-    setProjectToDelete(projectId);
-    setDeleteDialogOpen(true);
-  };
-
-  const closeDeleteDialog = () => {
-    setDeleteDialogOpen(false);
-    setProjectToDelete(null);
-  };
-
-  const confirmDeleteProject = () => {
-    if (projectToDelete !== null) {
-      handleDeleteProject(projectToDelete);
-    }
-  };
+ 
+   
   const convertProjectDatesToString = (project: any) => ({
     ...project,
     startDate: typeof project.startDate === 'string' ? project.startDate : project.startDate.toISOString(),
@@ -277,26 +255,6 @@ const App: React.FC = () => {
           content
         )}
       </div>
-
-      <Dialog
-        open={deleteDialogOpen}
-        onClose={closeDeleteDialog}
-      >
-        <DialogTitle>Confirm Deletion</DialogTitle>
-        <DialogContent>
-          <DialogContentText>
-            Are you sure you want to delete this project? This action cannot be undone.
-          </DialogContentText>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={closeDeleteDialog} color="primary">
-            Cancel
-          </Button>
-          <Button onClick={confirmDeleteProject} color="error">
-            Delete
-          </Button>
-        </DialogActions>
-      </Dialog>
     </Container>
   );
 };

@@ -17,7 +17,7 @@ import { TextRoboto, BulletedList, CalibriText12P, LabelValueItem } from '../sty
 import { Grid, TextField, Button } from '@mui/material';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
-
+import { generateLabel } from "../Validation/projectValidator";
 type ProjectScopeGoalsSectionProps = {
   scopeDescription: string;
   goals: string[];
@@ -60,6 +60,7 @@ const ProjectScopeGoalsSection: React.FC<ProjectScopeGoalsSectionProps> = ({
                         disableUnderline: true,
                         style: { fontSize: 'inherit', fontWeight: 'inherit' },
                       }}
+                      
                     />
                   )}
                 </Field>

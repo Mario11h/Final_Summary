@@ -1,19 +1,16 @@
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
-
-// Import the local JSON data
 import localProjectsData from '../api/data.json';
-
 
 type Milestone = {
   id: number;
   milestoneTitle: string;
   milestoneDescription: string;
-  milestoneDeliveryDate: Date;
+  milestoneDeliveryDate: string;
   milestoneStatus: string;
 };
 
 type Project = {
-  id:number;
+  id: number;
   projectName: string;
   code: string;
   description: string;
@@ -29,12 +26,10 @@ type Project = {
   roi: string;
   actualBudget?: number;
   allocatedBudget?: number;
-  startDate: Date;
-  endDate: Date;
+  startDate: string;
+  endDate: string;
   milestones: Milestone[];
 };
-
-
 
 // Define the state type
 interface ProjectState {
@@ -52,16 +47,33 @@ const initialState: ProjectState = {
   currentPage: 1,
 };
 
-// Update the loadProjects thunk
-export const loadProjects = createAsyncThunk('projects/loadProjects', async () => {
-  // Simulate an async operation
-  return new Promise<Project[]>((resolve) => {
-    setTimeout(() => {
-      // Cast the localProjectsData to unknown first, then to Project[]
-      resolve(localProjectsData as unknown as Project[]);
-    }, 500);
-  });
-});
+// Async thunk to load projects (simulate API call)
+export const loadProjects = createAsyncThunk<Project[], void, { rejectValue: string }>(
+  'projects/loadProjects',
+  async (_, { rejectWithValue }) => {
+    try {
+      // Simulate loading local projects data synchronously
+      const projects = localProjectsData as unknown as Project[];
+      return projects;
+    } catch (error: any) {
+      return rejectWithValue(error.message || 'Failed to load projects');
+    }
+  }
+);
+
+// Async thunk to update a project
+export const updateProject = createAsyncThunk<Project, Project, { rejectValue: string }>(
+  'projects/updateProject',
+  async (updatedProject, { rejectWithValue }) => {
+    try {
+      // Simulate API call or logic to update project
+      // Replace this with actual API request if needed
+      return updatedProject;
+    } catch (error: any) {
+      return rejectWithValue(error.message || 'Failed to update project');
+    }
+  }
+);
 
 // Create the slice
 const projectSlice = createSlice({
@@ -74,8 +86,10 @@ const projectSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
+      // Handle loading projects
       .addCase(loadProjects.pending, (state) => {
         state.isLoading = true;
+        state.error = null;
       })
       .addCase(loadProjects.fulfilled, (state, action) => {
         state.isLoading = false;
@@ -83,9 +97,25 @@ const projectSlice = createSlice({
       })
       .addCase(loadProjects.rejected, (state, action) => {
         state.isLoading = false;
-        state.error = action.error.message || 'Failed to load projects';
+        state.error = action.payload || 'Failed to load projects';
+      })
+      // Handle updating a project
+      .addCase(updateProject.pending, (state) => {
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(updateProject.fulfilled, (state, action) => {
+        state.isLoading = false;
+        const index = state.projects.findIndex((project) => project.id === action.payload.id);
+        if (index !== -1) {
+          state.projects[index] = action.payload;
+        }
+      })
+      .addCase(updateProject.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload || 'Failed to update project';
       });
-  }
+  },
 });
 
 // Export the actions and reducer
