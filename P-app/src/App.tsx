@@ -6,7 +6,7 @@ import Pagination from './Components/Pagination';
 import ProjectScopeGoalsSection from './Components/ProjectDetails/ProjectScopeGoalsSection';
 import { BusinessTeamSection, HubTeamSection, RiskSection, BudgetSection } from './Components/ProjectDetails/CategoriesSection';
 import MilestonesSection from './Components/Timeline/MilestonesSection';
-import { Container, Typography, Button, Box, Grid, Backdrop, CircularProgress, Tooltip, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, IconButton } from '@mui/material';
+import { Container, Typography, Box, Grid, Backdrop, CircularProgress, Tooltip, IconButton } from '@mui/material';
 import { StyledEqualContainer } from './Components/styledComponents/styledContainer';
 import NewProjectForm from './Components/NewProjectForm';
 import AddchartIcon from '@mui/icons-material/Addchart';
