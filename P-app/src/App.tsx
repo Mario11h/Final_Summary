@@ -170,6 +170,11 @@ const App: React.FC = () => {
     );
   };
 
+  // Render all projects for printing
+  const renderAllProjects = () => {
+    return projects.map((project, index) => renderProject(project, index));
+  };
+
   const currentProject = projects[currentPage - 1];
   console.log('Current Project:', currentProject);
 
@@ -289,7 +294,7 @@ const App: React.FC = () => {
       </Backdrop>
 
       <div ref={printRef} style={{ display: printMode ? 'block' : 'none' }}>
-        {renderProject(currentProject)}
+        {renderAllProjects()}
       </div>
 
       <Box>

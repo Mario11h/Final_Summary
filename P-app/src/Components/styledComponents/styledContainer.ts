@@ -106,6 +106,7 @@ export const BudgetValueBox = styled(Box)<{ isActual: boolean; budget_actual_usd
 
 export const ActualBudgetValueBox = styled(BudgetValueBox)({
   marginLeft: '24px',
+  color: 'white',
 });
 
 export const PlannedBudgetValueBox = styled(BudgetValueBox)({

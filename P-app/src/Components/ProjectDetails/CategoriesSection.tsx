@@ -242,7 +242,7 @@ const BudgetSection: React.FC<BudgetSectionProps> = ({ actualBudget, allocatedBu
                     variant="standard"
                     fullWidth
                     error={meta.touched && meta.error}
-                      helperText={meta.touched && meta.error}
+                    helperText={meta.touched && meta.error}
                     defaultValue={actualBudget}
                   /> )}
                   </Field>

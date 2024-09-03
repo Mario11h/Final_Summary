@@ -17,7 +17,7 @@ import axios from 'axios';
 interface NewProjectFormProps {
   onCancel: () => void;
   onDone: (newProject: Project) => void;
-  onEdit: () => void;
+  onEdit: (updatedProject: Project) => void;
   project?: Project;
 }
 
@@ -55,24 +55,27 @@ const NewProjectForm: React.FC<NewProjectFormProps> = ({
   const [dialogOpen, setDialogOpen] = useState(false);
   const [isUpdating, setIsUpdating] = useState(false);
   const [formValues, setFormValues] = useState<Project | null>(null);
+
   const handleSubmit = async (values: Project) => {
     console.log('values', values);
 
     try {
       if (!project) {
         const response = await axios.post('http://127.0.0.1:5000/api/projects', values, {
-          headers: {
-            'Content-Type': 'application/json',
-          },
+          headers: { 'Content-Type': 'application/json' },
         });
 
-        const newProject = response.data; // Assuming the backend returns the newly created project
-        console.log('data:',response.data)
+        const newProject = response.data;
+        console.log('data:', response.data);
         onDone(newProject);
       } else {
-     
+        const response = await axios.put(`http://127.0.0.1:5000/api/projects/${project.id}`, values, {
+          headers: { 'Content-Type': 'application/json' },
+        });
 
-        onEdit();
+        const updatedProject = response.data;
+        console.log('updated data:', response.data);
+        onEdit(updatedProject);
       }
     } catch (error) {
       console.error("Error handling project data:", error);
@@ -109,7 +112,7 @@ const NewProjectForm: React.FC<NewProjectFormProps> = ({
           return (
             <form onSubmit={(e) => {
               e.preventDefault();
-              handleOpenDialog(!!project,values); // Open dialog for update if project exists
+              handleOpenDialog(!!project, values);
             }}>
               <Grid>
                 <ProjectHeader
@@ -242,7 +245,7 @@ const NewProjectForm: React.FC<NewProjectFormProps> = ({
                                     <FormControl fullWidth margin="normal">
                                       <TextField
                                         {...input}
-                                        label="description"
+                                        label="Description"
                                         fullWidth
                                         error={meta.touched && meta.error}
                                         helperText={meta.touched && meta.error}
@@ -256,7 +259,7 @@ const NewProjectForm: React.FC<NewProjectFormProps> = ({
                                       <TextField
                                         {...input}
                                         type="date"
-                                        label="deliveryDate"
+                                        label="Delivery Date"
                                         fullWidth
                                         error={meta.touched && meta.error}
                                         helperText={meta.touched && meta.error}
@@ -332,11 +335,11 @@ const NewProjectForm: React.FC<NewProjectFormProps> = ({
                   </Button>
                 </div>
                 <Button
-                    variant="contained"
-                    color="primary"
-                    type="submit"
-                    disabled={submitting || pristine}
-                  >
+                  variant="contained"
+                  color="primary"
+                  type="submit"
+                  disabled={submitting || pristine}
+                >
                   {submitting ? "Submitting..." : project ? "Update Project" : "Add Project"}
                 </Button>
               </Box>
@@ -361,7 +364,7 @@ const NewProjectForm: React.FC<NewProjectFormProps> = ({
           <Button onClick={handleCloseDialog} color="primary">
             Cancel
           </Button>
-          <Button onClick={handleConfirm}  color="primary">
+          <Button onClick={handleConfirm} color="primary">
             {isUpdating ? "Submit" : "Add"}
           </Button>
         </DialogActions>

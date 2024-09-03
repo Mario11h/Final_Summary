@@ -4,22 +4,21 @@ import IconButton from '@mui/material/IconButton';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
-import { RootState, AppDispatch } from '../store';  
-import { fetchProjects } from '../features/projectSlice'; 
+import { useNavigate } from 'react-router-dom';
+import { RootState, AppDispatch } from '../store';
+import { fetchProjects } from '../features/projectSlice';
 
 const ITEM_HEIGHT = 48;
 
 export default function LongMenu() {
-  // Use the typed dispatch
   const dispatch: AppDispatch = useDispatch();
-
-  // Fetch the projects from the Redux store
+  const navigate = useNavigate();
   const projects = useSelector((state: RootState) => state.projects.projects);
   const isLoading = useSelector((state: RootState) => state.projects.isLoading);
 
   useEffect(() => {
     if (projects.length === 0) {
-      dispatch(fetchProjects());  // Dispatch the thunk correctly
+      dispatch(fetchProjects());
     }
   }, [dispatch, projects.length]);
 
@@ -32,6 +31,12 @@ export default function LongMenu() {
 
   const handleClose = () => {
     setAnchorEl(null);
+  };
+
+  const handleProjectClick = (projectId: number) => {
+    // Convert projectId from number to string before navigating
+    navigate(`/projects/${projectId.toString()}`);
+    handleClose();
   };
 
   return (
@@ -67,7 +72,7 @@ export default function LongMenu() {
           <MenuItem disabled>Loading...</MenuItem>
         ) : (
           projects.map((project) => (
-            <MenuItem key={project.id} onClick={handleClose}>
+            <MenuItem key={project.id} onClick={() => handleProjectClick(project.id)}>
               {project.name}
             </MenuItem>
           ))
