@@ -5,7 +5,7 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { RootState, AppDispatch } from '../store';  
-import { loadProjects } from '../features/projectSlice'; 
+import { fetchProjects } from '../features/projectSlice'; 
 
 const ITEM_HEIGHT = 48;
 
@@ -19,7 +19,7 @@ export default function LongMenu() {
 
   useEffect(() => {
     if (projects.length === 0) {
-      dispatch(loadProjects());  // Dispatch the thunk correctly
+      dispatch(fetchProjects());  // Dispatch the thunk correctly
     }
   }, [dispatch, projects.length]);
 
@@ -68,7 +68,7 @@ export default function LongMenu() {
         ) : (
           projects.map((project) => (
             <MenuItem key={project.id} onClick={handleClose}>
-              {project.projectName}
+              {project.name}
             </MenuItem>
           ))
         )}

@@ -10,14 +10,14 @@ import { StyledProjectHeaderBox } from "../styledComponents/styledBoxes";
 import { generateLabel } from "../Validation/projectValidator"; 
 
 type ProjectHeaderProps = {
-  projectName: string;
+  name: string;
   code: string;
   status: string;
   mode: "view" | "edit";
 };
 
 const ProjectHeader: React.FC<ProjectHeaderProps> = ({
-  projectName,
+  name,
   code,
   status,
   mode,
@@ -28,7 +28,7 @@ const ProjectHeader: React.FC<ProjectHeaderProps> = ({
         {mode === "edit" ? (
           <>
             <ProjectName>
-              <Field name="projectName" initialValue={projectName}>
+              <Field name="name" initialValue={name}>
                 {({ input, meta }) => (
                   <TextField
                     {...input}
@@ -70,14 +70,14 @@ const ProjectHeader: React.FC<ProjectHeaderProps> = ({
           </>
         ) : (
           <>
-            <ProjectName>{projectName}</ProjectName>
+            <ProjectName>{name}</ProjectName>
             <ProjectCode>{code}</ProjectCode>
           </>
         )}
       </Box>
       {mode === "edit" ? (
         <OngoingText status={status}>
-        <Field name="milestoneStatus" initialValue={status}>
+        <Field name="status" initialValue={status}>
           {({ input,meta }) => (
             <FormControl fullWidth variant="standard" sx={{ width: '100%' }}>
               <InputLabel shrink>{generateLabel("Status", true)}</InputLabel>

@@ -59,13 +59,13 @@ const CustomizedTimeline: React.FC<CustomizedTimelineProps> = ({ startDate, endD
             <TimelineContent>
               <StyledDiv>
                 <Grid>
-                  <CalibriBoldNavy14>{milestone.milestoneTitle}</CalibriBoldNavy14>
-                  <CalibriBoldNavy11>{milestone.milestoneDescription}</CalibriBoldNavy11>
+                  <CalibriBoldNavy14>{milestone.title}</CalibriBoldNavy14>
+                  <CalibriBoldNavy11>{milestone.description}</CalibriBoldNavy11>
                 </Grid>
                 
                 <Grid>
-  <CalibriBoldRed11>{milestone.milestoneDeliveryDate}</CalibriBoldRed11>
-  {milestone.milestoneStatus === "ONGOING" ? (
+  <CalibriBoldRed11>{milestone.deliveryDate}</CalibriBoldRed11>
+  {milestone.status === "ONGOING" ? (
     <ArrowContainer>
       <StyledArrowBackIcon />
     </ArrowContainer>

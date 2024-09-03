@@ -3,7 +3,7 @@
     "createdAt": "27-08-2024 2:19:19",
     "updatedAt": "27-08-2024 2:31:35",
     "id": 5,
-    "projectName": "Updated Project Name",
+    "name": "CMA-CGM",
     "code": "ASP",
     "status": "ONGOING",
     "description": "An overview of the project",
@@ -28,22 +28,22 @@
     "endDate": "2024-12-31",
     "milestones": [
       {
-        "milestoneTitle": "Milestone Title1",
-        "milestoneDescription": "Milestone Description1",
-        "milestoneDeliveryDate": "2024-06-01",
-        "milestoneStatus": "FINISHED"
+        "title": "Milestone Title1",
+        "description": "Milestone Description1",
+        "deliveryDate": "2024-06-01",
+        "status": "FINISHED"
       },
       {
-        "milestoneTitle": "Milestone Title2",
-        "milestoneDescription": "Milestone Description2",
-        "milestoneDeliveryDate": "2024-07-01",
-        "milestoneStatus": "ONGOING"
+        "title": "Milestone Title2",
+        "description": "Milestone Description2",
+        "deliveryDate": "2024-07-01",
+        "status": "ONGOING"
       },
       {
-        "milestoneTitle": "Milestone Title3",
-        "milestoneDescription": "Milestone Description3",
-        "milestoneDeliveryDate": "2024-08-01",
-        "milestoneStatus": "PLANNED"
+        "title": "Milestone Title3",
+        "description": "Milestone Description3",
+        "deliveryDate": "2024-08-01",
+        "status": "PLANNED"
       }
     ]
   },
@@ -51,7 +51,7 @@
     "createdAt": "28-08-2024 6:27:07",
     "updatedAt": "28-08-2024 6:27:07",
     "id": 6,
-    "projectName": "new project",
+    "name": "new project",
     "code": "NEW",
     "status": "ONGOING",
     "description": "new overview of the project",
@@ -75,27 +75,27 @@
     "endDate": "2024-12-31",
     "milestones": [
       {
-        "milestoneTitle": "New Title1",
-        "milestoneDescription": "Milestone Description1",
-        "milestoneDeliveryDate": "2024-06-01",
-        "milestoneStatus": "FINISHED"
+        "title": "New Title1",
+        "description": "Milestone Description1",
+        "deliveryDate": "2024-06-01",
+        "status": "FINISHED"
       },
       {
-        "milestoneTitle": "New Title2",
-        "milestoneDescription": "Milestone Description2",
-        "milestoneDeliveryDate": "2024-07-01",
-        "milestoneStatus": "ONGOING"
+        "title": "New Title2",
+        "description": "Milestone Description2",
+        "deliveryDate": "2024-07-01",
+        "status": "ONGOING"
       },
       {
-        "milestoneTitle": "New Title3",
-        "milestoneDescription": "Milestone Description3",
-        "milestoneDeliveryDate": "2024-08-01",
-        "milestoneStatus": "PLANNED"
+        "title": "New Title3",
+        "description": "Milestone Description3",
+        "deliveryDate": "2024-08-01",
+        "status": "PLANNED"
       }
     ]
   },
   {
-    "projectName": "New Project",
+    "name": "New Project",
     "code": "NP",
     "status": "PLANNED",
     "description": "Description of the new project",
@@ -120,16 +120,16 @@
     "endDate": "2024-12-31",
     "milestones": [
       {
-        "milestoneTitle": "Milestone 1",
-        "milestoneDescription": "Description for Milestone 1",
-        "milestoneDeliveryDate": "2024-03-01",
-        "milestoneStatus": "PLANNED"
+        "title": "Milestone 1",
+        "description": "Description for Milestone 1",
+        "deliveryDate": "2024-03-01",
+        "status": "PLANNED"
       },
       {
-        "milestoneTitle": "Milestone 2",
-        "milestoneDescription": "Description for Milestone 2",
-        "milestoneDeliveryDate": "2024-06-01",
-        "milestoneStatus": "PLANNED"
+        "title": "Milestone 2",
+        "description": "Description for Milestone 2",
+        "deliveryDate": "2024-06-01",
+        "status": "PLANNED"
       }
     ],
     "id": 7,

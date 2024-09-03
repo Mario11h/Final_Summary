@@ -1,17 +1,18 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { loadProjects, setCurrentPage } from './features/projectSlice';
+import { fetchProjects, setCurrentPage, deleteProject } from './features/projectSlice';
 import { RootState, AppDispatch } from './store';
 import Pagination from './Components/Pagination';
 import ProjectScopeGoalsSection from './Components/ProjectDetails/ProjectScopeGoalsSection';
 import { BusinessTeamSection, HubTeamSection, RiskSection, BudgetSection } from './Components/ProjectDetails/CategoriesSection';
 import MilestonesSection from './Components/Timeline/MilestonesSection';
-import { Container, Typography, Box, Grid, Backdrop, CircularProgress, Tooltip, IconButton } from '@mui/material';
+import { Container, Typography, Box, Grid, Backdrop, CircularProgress, Tooltip, IconButton, Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, Button } from '@mui/material';
 import { StyledEqualContainer } from './Components/styledComponents/styledContainer';
 import NewProjectForm from './Components/NewProjectForm';
 import AddchartIcon from '@mui/icons-material/Addchart';
 import EditIcon from '@mui/icons-material/Edit';
 import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
+import DeleteIcon from '@mui/icons-material/Delete';
 import { useReactToPrint } from 'react-to-print';
 import './App.css';
 import { images } from './Components/Assets/DummyData';
@@ -29,12 +30,12 @@ const App: React.FC = () => {
   const [isEditing, setIsEditing] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
   const [printMode, setPrintMode] = useState(false);
- 
- 
   const printRef = useRef<HTMLDivElement | null>(null);
+  const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
+  const [projectToDelete, setProjectToDelete] = useState<number | null>(null);
 
   useEffect(() => {
-    dispatch(loadProjects());
+    dispatch(fetchProjects());
   }, [dispatch]);
 
   const handlePrint = useReactToPrint({
@@ -63,13 +64,13 @@ const App: React.FC = () => {
     console.log('New Project:', newProject);
     setIsAddingProject(false);
     setIsEditing(false);
-    await dispatch(loadProjects());
+    await dispatch(fetchProjects());
   };
 
   const handleDoneEditProject = async () => {
     setIsAddingProject(false);
     setIsEditing(false);
-    await dispatch(loadProjects());
+    await dispatch(fetchProjects());
   };
 
   const handleEditProject = () => {
@@ -77,8 +78,40 @@ const App: React.FC = () => {
     setIsAddingProject(true);
   };
 
- 
-   
+  const openDeleteDialog = (projectId: number) => {
+    setProjectToDelete(projectId);
+    setDeleteDialogOpen(true);
+  };
+
+  const closeDeleteDialog = () => {
+    setDeleteDialogOpen(false);
+    setProjectToDelete(null);
+  };
+
+  const handleDeleteProject = async (projectId: number) => {
+    try {
+      setIsDeleting(true);
+      await dispatch(deleteProject(projectId));
+      const updatedProjects = await dispatch(fetchProjects()).unwrap();
+      if (updatedProjects.length === 0) {
+        dispatch(setCurrentPage(0));
+      } else if (currentPage > updatedProjects.length) {
+        dispatch(setCurrentPage(updatedProjects.length));
+      }
+    } catch (error) {
+      console.error("Failed to delete the project:", error);
+    } finally {
+      setIsDeleting(false);
+    }
+  };
+
+  const confirmDeleteProject = () => {
+    if (projectToDelete !== null) {
+      handleDeleteProject(projectToDelete);
+      closeDeleteDialog();
+    }
+  };
+
   const convertProjectDatesToString = (project: any) => ({
     ...project,
     startDate: typeof project.startDate === 'string' ? project.startDate : project.startDate.toISOString(),
@@ -91,7 +124,7 @@ const App: React.FC = () => {
       <div key={index} className="pdf-page">
         <Grid>
           <ProjectHeader
-            projectName={project.projectName}
+            name={project.name}
             code={project.code}
             status={project.status}
             mode="view"
@@ -132,7 +165,6 @@ const App: React.FC = () => {
           </Grid>
 
         </Grid>
-        {/* Apply the page break after each project */}
         <div className="page-break"></div>
       </div>
     );
@@ -144,10 +176,12 @@ const App: React.FC = () => {
   let content;
 
   if (isLoading) {
-    content = <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
-      <div>Loading...</div>
-      <CircularProgress />
-    </Box>
+    content = (
+      <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+        <div>Loading...</div>
+        <CircularProgress />
+      </Box>
+    );
   } else if (error) {
     content = <Typography>{error}</Typography>;
   } else if (projects.length > 0) {
@@ -176,13 +210,11 @@ const App: React.FC = () => {
     content = (
       <div>
         <Typography>No projects available</Typography>
-        <Pagination />
       </div>
     );
   }
 
   return (
-
     <Container style={{ minWidth: "100%" }}>
       <Box
         sx={{
@@ -198,7 +230,6 @@ const App: React.FC = () => {
       />
 
       <Box display="flex" justifyContent="flex-end" alignItems="center" mb={2}>
-
         <Tooltip title="Add New Project" arrow>
           <IconButton
             color="primary"
@@ -222,6 +253,20 @@ const App: React.FC = () => {
             <EditIcon />
           </IconButton>
         </Tooltip>
+        
+        {currentProject && (
+          <Tooltip title="Delete Project" arrow>
+            <IconButton
+              color="error"
+              onClick={() => openDeleteDialog(currentProject.id)}
+              disabled={isAddingProject || isEditing || isDeleting}
+              size="large"
+              sx={{ '&:hover svg': { transform: 'scale(1.2)' }, transition: 'transform 0.3s', color: 'rgba(4, 36, 106, 1)' }}
+            >
+              <DeleteIcon />
+            </IconButton>
+          </Tooltip>
+        )}
         <Tooltip title="Print" arrow>
           <IconButton
             color="primary"
@@ -236,25 +281,40 @@ const App: React.FC = () => {
         <NamesMenu />
       </Box>
 
-      {isDeleting && (
-        <Backdrop open>
-          <CircularProgress color="inherit" />
-        </Backdrop>
-      )}
-      <div ref={printRef}>
-        {printMode ? (
-          <div>
-            {projects.map((project, index) => (
-              <div key={index}>
-                {renderProject(project)}
-                <div className="page-break" />
-              </div>
-            ))}
-          </div>
-        ) : (
-          content
-        )}
+      <Backdrop
+        sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+        open={isDeleting}
+      >
+        <CircularProgress color="inherit" />
+      </Backdrop>
+
+      <div ref={printRef} style={{ display: printMode ? 'block' : 'none' }}>
+        {renderProject(currentProject)}
       </div>
+
+      <Box>
+        {content}
+      </Box>
+      <Dialog
+        open={deleteDialogOpen}
+        onClose={closeDeleteDialog}
+      >
+        <DialogTitle>Confirm Deletion</DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            Are you sure you want to delete this project? This action cannot be undone.
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={closeDeleteDialog} color="primary">
+            Cancel
+          </Button>
+          <Button onClick={confirmDeleteProject} color="error">
+            Delete
+          </Button>
+        </DialogActions>
+      </Dialog>
+
     </Container>
   );
 };

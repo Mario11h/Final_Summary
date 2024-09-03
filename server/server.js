@@ -2,8 +2,11 @@ var express = require('express');
 var app = express();
 var fs = require('fs');
 var path = require('path');
+var cors = require('cors');  // Import the CORS package
 
 app.use(express.json()); // Middleware to parse JSON bodies
+app.use(cors());  // Enable CORS for all routes
+
 
 // GET request to fetch all data
 app.get('/', function (req, res) {
@@ -46,6 +49,9 @@ app.get('/projects/:id', function (req, res) {
     });
 });
 
+
+
+
 // POST request to add a new project
 app.post('/api/projects', function (req, res) {
     const newProject = req.body;
@@ -54,7 +60,7 @@ app.post('/api/projects', function (req, res) {
     
     fs.readFile(filePath, 'utf8', function (err, data) {
         if (err) {
-            console.error('Error reading file:', err); // Log the specific error
+            console.error('Error reading file:', err);
             res.status(500).send('Error reading file');
             return;
         }
@@ -80,10 +86,12 @@ app.post('/api/projects', function (req, res) {
                 res.status(500).send('Error writing to file');
                 return;
             }
-            res.status(201).send('Project added successfully');
+            // Send the newly added project back in the response
+            res.status(201).json(newProject);
         });
     });
 });
+
 
 // PUT request to edit data by id
 app.put('/api/projects/:id', function (req, res) {

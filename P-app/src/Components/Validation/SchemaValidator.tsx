@@ -1,7 +1,7 @@
 import * as Yup from 'yup';
 
 export const ProjectValidationSchema = Yup.object().shape({
-  projectName: Yup.string().required('Project name is required'),
+  name: Yup.string().required('Project name is required'),
   code: Yup.string().required('Project code is required'),
   status: Yup.string().required('Project status is required'),
   description: Yup.string().required('Project status is reuired'),
@@ -35,14 +35,14 @@ export const ProjectValidationSchema = Yup.object().shape({
     }),
   milestones: Yup.array().of(
     Yup.object().shape({
-      milestoneTitle: Yup.string(),
-      milestoneDescription: Yup.string(),
-      milestoneDeliveryDate: Yup.string()
+      title: Yup.string(),
+      description: Yup.string(),
+      deliveryDate: Yup.string()
         .nullable() // Allow null values
         .transform((value, originalValue) => {
           return originalValue === '' ? null : value; // Convert empty string to null
         }),
-      milestoneStatus: Yup.string()
+        status: Yup.string()
     })
   ),
   roi: Yup.string(),

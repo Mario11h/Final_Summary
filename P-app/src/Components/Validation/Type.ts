@@ -1,14 +1,14 @@
 export type Milestone = {
   id: number;
-  milestoneTitle: string;
-  milestoneDescription: string;
-  milestoneDeliveryDate: string;
-  milestoneStatus: string;
+  title: string;
+  description: string;
+  deliveryDate: string;
+  status: string;
 };
 
 export type Project = {
   id: number;
-  projectName: string;
+  name: string;
   code: string;
   description: string;
   status: string;

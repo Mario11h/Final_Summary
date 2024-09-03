@@ -12,6 +12,7 @@ import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import validateProjectForm from './Validation/projectValidator';
 import { Project } from './Validation/Type';
 import dayjs from 'dayjs';
+import axios from 'axios';
 
 interface NewProjectFormProps {
   onCancel: () => void;
@@ -28,7 +29,7 @@ const NewProjectForm: React.FC<NewProjectFormProps> = ({
 }) => {
   const initialValues: Project = project || {
     id: 0,
-    projectName: "",
+    name: "",
     code: "",
     description: "",
     status: "",
@@ -53,14 +54,20 @@ const NewProjectForm: React.FC<NewProjectFormProps> = ({
   const [milestonesToRemove, setMilestonesToRemove] = useState<number[]>([]);
   const [dialogOpen, setDialogOpen] = useState(false);
   const [isUpdating, setIsUpdating] = useState(false);
-
+  const [formValues, setFormValues] = useState<Project | null>(null);
   const handleSubmit = async (values: Project) => {
     console.log('values', values);
 
     try {
       if (!project) {
-        // Create a new project
-        const newProject: Project = { ...values, id: Date.now() }; // Create new project object
+        const response = await axios.post('http://127.0.0.1:5000/api/projects', values, {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        });
+
+        const newProject = response.data; // Assuming the backend returns the newly created project
+        console.log('data:',response.data)
         onDone(newProject);
       } else {
      
@@ -72,8 +79,9 @@ const NewProjectForm: React.FC<NewProjectFormProps> = ({
     }
   };
 
-  const handleOpenDialog = (isUpdate: boolean) => {
+  const handleOpenDialog = (isUpdate: boolean, values: Project) => {
     setIsUpdating(isUpdate);
+    setFormValues(values);
     setDialogOpen(true);
   };
 
@@ -81,8 +89,10 @@ const NewProjectForm: React.FC<NewProjectFormProps> = ({
     setDialogOpen(false);
   };
 
-  const handleConfirm = async (values: Project) => {
-    await handleSubmit(values);
+  const handleConfirm = async () => {
+    if (formValues) {
+      await handleSubmit(formValues);
+    }
     handleCloseDialog();
   };
 
@@ -99,11 +109,11 @@ const NewProjectForm: React.FC<NewProjectFormProps> = ({
           return (
             <form onSubmit={(e) => {
               e.preventDefault();
-              handleOpenDialog(!!project); // Open dialog for update if project exists
+              handleOpenDialog(!!project,values); // Open dialog for update if project exists
             }}>
               <Grid>
                 <ProjectHeader
-                  projectName={initialValues.projectName}
+                  name={initialValues.name}
                   code={initialValues.code}
                   status={initialValues.status}
                   mode="edit"
@@ -214,7 +224,7 @@ const NewProjectForm: React.FC<NewProjectFormProps> = ({
                           <>
                             {fields.map((name, index) => (
                               <Box key={index} mt={2} >
-                                <Field name={`${name}.milestoneTitle`}>
+                                <Field name={`${name}.title`}>
                                   {({ input, meta }) => (
                                     <FormControl fullWidth margin="normal">
                                       <TextField
@@ -227,12 +237,12 @@ const NewProjectForm: React.FC<NewProjectFormProps> = ({
                                     </FormControl>
                                   )}
                                 </Field>
-                                <Field name={`${name}.milestoneDescription`}>
+                                <Field name={`${name}.description`}>
                                   {({ input, meta }) => (
                                     <FormControl fullWidth margin="normal">
                                       <TextField
                                         {...input}
-                                        label="milestoneDescription"
+                                        label="description"
                                         fullWidth
                                         error={meta.touched && meta.error}
                                         helperText={meta.touched && meta.error}
@@ -240,13 +250,13 @@ const NewProjectForm: React.FC<NewProjectFormProps> = ({
                                     </FormControl>
                                   )}
                                 </Field>
-                                <Field name={`${name}.milestoneDeliveryDate`}>
+                                <Field name={`${name}.deliveryDate`}>
                                   {({ input, meta }) => (
                                     <FormControl fullWidth margin="normal">
                                       <TextField
                                         {...input}
                                         type="date"
-                                        label="milestoneDeliveryDate"
+                                        label="deliveryDate"
                                         fullWidth
                                         error={meta.touched && meta.error}
                                         helperText={meta.touched && meta.error}
@@ -258,7 +268,7 @@ const NewProjectForm: React.FC<NewProjectFormProps> = ({
                                 <FormControlLabel
                                   control={
                                     <Field
-                                      name={`${name}.milestoneStatus`}
+                                      name={`${name}.status`}
                                       component="input"
                                       type="checkbox"
                                     />
@@ -292,10 +302,10 @@ const NewProjectForm: React.FC<NewProjectFormProps> = ({
                               color="primary"
                               onClick={() =>
                                 fields.push({
-                                  milestoneTitle: "",
-                                  milestoneDescription: "",
-                                  milestoneDeliveryDate: "",
-                                  milestoneStatus: false,
+                                  title: "",
+                                  description: "",
+                                  deliveryDate: "",
+                                  status: "",
                                 })
                               }
                             >
@@ -322,12 +332,11 @@ const NewProjectForm: React.FC<NewProjectFormProps> = ({
                   </Button>
                 </div>
                 <Button
-                  variant="contained"
-                  color="primary"
-                  type="button" // Change to button to prevent immediate submission
-                  onClick={() => handleOpenDialog(!!project)} // Open dialog
-                  disabled={submitting || pristine}
-                >
+                    variant="contained"
+                    color="primary"
+                    type="submit"
+                    disabled={submitting || pristine}
+                  >
                   {submitting ? "Submitting..." : project ? "Update Project" : "Add Project"}
                 </Button>
               </Box>
@@ -352,7 +361,7 @@ const NewProjectForm: React.FC<NewProjectFormProps> = ({
           <Button onClick={handleCloseDialog} color="primary">
             Cancel
           </Button>
-          <Button onClick={() => handleConfirm(initialValues)} color="primary">
+          <Button onClick={handleConfirm}  color="primary">
             {isUpdating ? "Submit" : "Add"}
           </Button>
         </DialogActions>
