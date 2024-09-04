@@ -19,7 +19,7 @@ export const ProjectName = styled(Typography)({
 
 export const ProjectCode = styled(Typography)({
   color: 'grey',
-  fontSize: '14px', 
+  fontSize: '16px', 
   fontWeight: 'normal',
   fontFamily: 'roboto',
 });
@@ -27,13 +27,13 @@ export const ProjectCode = styled(Typography)({
 // Calibri font styled component
 export const TextRoboto = styled(Typography)({
   fontFamily: 'roboto',
-  fontSize: '14px',
+  fontSize: '16px',
   color: '#000',
 });
 
 export const CalibriText12P = styled(Typography)({
   fontFamily: 'roboto',
-  fontSize: '14px', 
+  fontSize: '16px', 
   color: '#000',
   paddingTop: '15px',
   paddingLeft: '20px',
@@ -54,7 +54,7 @@ export const CalibriText12Navy = styled(Typography)({
 // Bulleted list styled component
 export const BulletedList = styled('ul')({
   fontFamily: 'roboto',
-  fontSize: '12px', 
+  fontSize: '16px', 
   color: '#000', 
   listStyleType: 'disc', // Use bullets for list items
 });
@@ -67,7 +67,7 @@ export const LabelValueItem = styled('li')({
 // Label styled component
 export const Label = styled('span')({
   fontWeight: 'bold', // Set label font to bold
-  fontSize: '14px',
+  fontSize: '16px',
   marginRight: '4px',
 });
 
@@ -103,21 +103,21 @@ export const OngoingText = styled(Typography)<{ status: string }>(({ status }) =
 
 export const CalibriBoldNavy14 = styled(Typography)({
   fontFamily: 'roboto',
-  fontSize: '14px',
+  fontSize: '16px',
   fontWeight: 'bold', 
   color: '#003366', 
 });
 
 export const CalibriBoldNavy11 = styled(Typography)({
   fontFamily: 'roboto',
-  fontSize: '11px',
+  fontSize: '12px',
   fontWeight: 'bold', 
   color: '#003366',
 });
 
 export const CalibriBoldRed11 = styled(Typography)({
   fontFamily: 'roboto',
-  fontSize: '13px',
+  fontSize: '14px',
   fontWeight: 'bold', 
   color: 'rgba(226, 1, 1, 1)',
 });
