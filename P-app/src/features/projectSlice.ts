@@ -8,6 +8,7 @@ const initialState: ProjectState = {
   projects: [],
   isLoading: false,
   error: null,
+  status: "",
   currentPage: 1,
 };
 
@@ -84,6 +85,12 @@ const projectSlice = createSlice({
     setCurrentPage: (state, action: PayloadAction<number>) => {
       state.currentPage = action.payload;
     },
+    clearError: (state) => {
+      state.error = initialState.error
+    },
+    clearStatus: (state) => {
+      state.status = initialState.status
+    }
   },
   extraReducers: (builder) => {
     builder
@@ -104,6 +111,7 @@ const projectSlice = createSlice({
       .addCase(updateProject.pending, (state) => {
         state.isLoading = true;
         state.error = null;
+        state.status=""
       })
       .addCase(updateProject.fulfilled, (state, action) => {
         state.isLoading = false;
@@ -111,41 +119,49 @@ const projectSlice = createSlice({
         if (index !== -1) {
           state.projects[index] = action.payload;
         }
+        state.status="success";
       })
       .addCase(updateProject.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload || 'Failed to update project';
+        state.status="error";
       })
       // Handle adding a new project
       .addCase(addProject.pending, (state) => {
         state.isLoading = true;
         state.error = null;
+        state.status="";
       })
       .addCase(addProject.fulfilled, (state, action) => {
         state.isLoading = false;
         state.projects.push(action.payload); // Add the new project to the state
+        state.status="success";
       })
       .addCase(addProject.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload || 'Failed to add project';
+        state.status="error";
       })
       // Handle deleting a project
       .addCase(deleteProject.pending, (state) => {
         state.isLoading = true;
         state.error = null;
+        state.status="";
       })
       .addCase(deleteProject.fulfilled, (state, action) => {
         state.isLoading = false;
         // Remove the deleted project from the state
         state.projects = state.projects.filter(project => project.id !== action.meta.arg);
+        state.status="success";
       })
       .addCase(deleteProject.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload || 'Failed to delete project';
+        state.status="error";
       });
   },
 });
 
 // Export the actions and reducer
-export const { setCurrentPage } = projectSlice.actions;
+export const { setCurrentPage, clearError,clearStatus } = projectSlice.actions;
 export default projectSlice.reducer;

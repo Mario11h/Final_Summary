@@ -1,7 +1,7 @@
 [
   {
     "createdAt": "27-08-2024 2:19:19",
-    "updatedAt": "05/09/2024, 11:06:01 AM",
+    "updatedAt": "05/09/2024, 5:00:04 PM",
     "id": 5,
     "name": "CMA-CGM",
     "code": "ASP",
@@ -10,10 +10,11 @@
     "scope": "The scope of the project",
     "goals": [
       "Digitalized tool to sell used containers",
-      "Increase in sales of used containers."
+      "Increase in sales of used containers.",
+      "fasf"
     ],
     "sponsor": "sponsorName",
-    "businessOwner": "businessOwner",
+    "businessOwner": "businessOwners",
     "productOwner": "productOwner",
     "pm": "PM PM",
     "deliveryTeam": "AAA,BBB,CCC",
@@ -32,12 +33,6 @@
         "description": "Milestone Description1",
         "deliveryDate": "2024-06-01",
         "status": "FINISHED"
-      },
-      {
-        "title": "Milestone Title2",
-        "description": "Milestone Description2",
-        "deliveryDate": "2024-07-01",
-        "status": "ONGOING"
       }
     ]
   },
@@ -171,10 +166,11 @@
     "updatedAt": "05/09/2024, 8:51:52 AM"
   },
   {
-    "id": 9,
-    "name": "Mario Hatoum",
-    "code": "961",
-    "status": "",
+    "id": 11,
+    "name": "dsd",
+    "code": "dsds",
+    "description": "dsadsa",
+    "status": "REQUESTED",
     "scope": "",
     "goals": [
       ""
@@ -192,22 +188,8 @@
     "allocatedBudget": 0,
     "startDate": "2024-09-05",
     "endDate": "2024-12-05",
-    "milestones": [
-      {
-        "title": "tg",
-        "description": "tgt",
-        "deliveryDate": "",
-        "status": "ONGOING"
-      },
-      {
-        "title": "",
-        "description": "",
-        "deliveryDate": "",
-        "status": ""
-      }
-    ],
-    "description": "Over",
-    "createdAt": "05/09/2024, 10:21:44 AM",
-    "updatedAt": "05/09/2024, 10:30:49 AM"
+    "milestones": [],
+    "createdAt": "05/09/2024, 5:00:27 PM",
+    "updatedAt": "05/09/2024, 5:00:27 PM"
   }
 ]

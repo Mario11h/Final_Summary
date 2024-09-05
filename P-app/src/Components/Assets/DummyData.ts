@@ -15,7 +15,11 @@ export const images = [
   {
     id: 3,
     imageUrl: CMA_CGM2,
-  }
+  },
+  {
+    id: 5,
+    imageUrl: CMA_CGM3,
+  },
    
    
 ];

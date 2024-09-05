@@ -1,5 +1,5 @@
 import { styled } from '@mui/system';
-import { Typography } from '@mui/material';
+import { Button, Grid, Typography } from '@mui/material';
 export const AbsoluteBox = styled('div')({
   position: 'absolute',
   left: 0,
@@ -38,6 +38,7 @@ export const CenteredTypography = styled('div')({
   color: 'white',
   textAlign: 'center',
   textShadow: '0 4px 8px rgba(4, 36, 106, 1)',
+  fontFamily: 'roboto',
 });
 
 
@@ -48,3 +49,98 @@ export const StyledTitles = styled(Typography)({
   fontFamily: 'roboto',
   marginLeft:'10px'
 });
+export const StyledIcon = styled('div') ({
+    color:'red',
+})
+
+export const TextCont = styled('div') ({
+  color: '#003366', 
+  fontSize: '16px', 
+  fontWeight: 'bold',
+})
+
+export const ContentFlex = styled ('div')({
+  textAlign: 'center', 
+  display: 'flex', 
+  alignItems: 'center', 
+  justifyContent: 'center',
+  fontFamily: 'roboto',
+  
+})
+export const NumberFetch = styled ('div') ({
+  color: '#003366', 
+  fontSize: '24px',
+  fontFamily: 'roboto',
+  fontWeight: 'bold',
+  marginLeft:'10px '
+  
+})
+export const Flextxt = styled('div')({
+  flexDirection: 'row',
+  alignItems: 'center',
+});
+
+// filter box
+
+export const FilterBox = styled(Grid)({
+  height: "60vh",
+  display: "flex",
+  flexDirection: "column",
+  justifyContent: "space-between",
+  alignItems: "flex-start",
+});
+
+export const FilterBoxFilters = styled(Grid)({
+  width: "100%",
+  height: "35%",
+  display: "flex",
+  boxShadow: "0 8px 16px rgba(0, 0, 0, 0.4)",
+  background: "white",
+});
+
+export const FilterBoxFiltersMain = styled(Grid)({
+  height: "100%",
+  display: "flex",
+  boxSizing: "border-box",
+  padding: "12px",
+});
+
+export const FilterBoxFiltersSearch = styled(Grid)({
+  height: "100%",
+  display: "flex",
+  boxSizing: "border-box",
+  padding: "12px",
+  flexDirection: "column",
+  justifyContent: "end",
+});
+
+export const SearchContainersButton = styled(Button)({
+  width: "100%",
+  backgroundColor: "darkblue",
+  color: "white",
+  height: "50%",
+  fontSize: "10px",
+  fontWeight: "bold",
+  "&:hover": {
+    backgroundColor: "darkblue",
+    color: "white",
+  },
+});
+
+export const FilterBoxImageSection = styled(Grid)({
+  width: "100%",
+  height: "65%",
+  marginTop: "20px",
+  display: "flex",
+  justifyContent: "space-between",
+});
+
+export const FilterBoxImageBox = styled(Grid)({
+  backgroundColor: "white",
+  height: "100%",
+  display: "flex",
+  borderRadius: "10px",
+  overflow: "hidden",
+  flexDirection: "column",
+});
+

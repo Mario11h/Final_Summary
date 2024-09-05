@@ -5,5 +5,6 @@ export interface ProjectState {
   isLoading: boolean;
   error: string | null;
   currentPage: number;
+  status: "success" | "error" | ""
 }
 

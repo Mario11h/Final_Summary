@@ -1,12 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchProjects, setCurrentPage, deleteProject } from './features/projectSlice';
+import { fetchProjects, setCurrentPage, deleteProject, clearError, clearStatus } from './features/projectSlice';
 import { RootState, AppDispatch } from './store';
 import Pagination from './Components/Pagination';
 import ProjectScopeGoalsSection from './Components/ProjectDetails/ProjectScopeGoalsSection';
 import { BusinessTeamSection, HubTeamSection, RiskSection, BudgetSection } from './Components/ProjectDetails/CategoriesSection';
 import MilestonesSection from './Components/Timeline/MilestonesSection';
-import { Container, Typography, Box, Grid, Backdrop, CircularProgress, Tooltip, IconButton, Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, Button } from '@mui/material';
+import { Container, Typography, Box, Grid, Backdrop, CircularProgress, Tooltip, IconButton, Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, Button, Snackbar, Alert } from '@mui/material';
 import { StyledEqualContainer } from './Components/styledComponents/styledContainer';
 import NewProjectForm from './Components/NewProjectForm';
 import AddchartIcon from '@mui/icons-material/Addchart';
@@ -25,6 +25,7 @@ const MainApp: React.FC = () => {
   const currentPage = useSelector((state: RootState) => state.projects.currentPage);
   const isLoading = useSelector((state: RootState) => state.projects.isLoading);
   const error = useSelector((state: RootState) => state.projects.error);
+  const status = useSelector((state: RootState) => state.projects.status) ;
   const projects = useSelector((state: RootState) => state.projects.projects);
   const [isAddingProject, setIsAddingProject] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
@@ -33,6 +34,26 @@ const MainApp: React.FC = () => {
   const printRef = useRef<HTMLDivElement | null>(null);
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
   const [projectToDelete, setProjectToDelete] = useState<number | null>(null);
+  //alert
+  const [open, setOpen] = useState(false);
+  const handleOpenSnackbar = () => {
+    setOpen(true);
+  };
+  const handleCloseSnackbar = () => {
+    setOpen(false);
+    setTimeout(() => {
+      dispatch(clearError());
+      dispatch(clearStatus());
+    }, 300);
+  };
+
+  useEffect(() => {
+    if (status !== "") {
+      handleOpenSnackbar();
+    } else {
+      setOpen(false);
+    }
+  }, [error]);
 
   useEffect(() => {
     dispatch(fetchProjects());
@@ -122,6 +143,12 @@ const MainApp: React.FC = () => {
     if (!project) return null;
     return (
       <div key={index} className="pdf-page">
+        <Snackbar open={open} autoHideDuration={3000} anchorOrigin={{vertical: "top", horizontal: "center"}} onClose={handleCloseSnackbar}>
+          <Alert severity={status === "success" ? "success" : "error"}
+          variant="filled" onClose={handleCloseSnackbar}>
+            {status === 'success' ? "Success" : error}
+          </Alert>
+        </Snackbar>
         <Grid>
           <ProjectHeader
             name={project.name}
@@ -187,9 +214,7 @@ const MainApp: React.FC = () => {
         <CircularProgress />
       </Box>
     );
-  } else if (error) {
-    content = <Typography>{error}</Typography>;
-  } else if (projects.length > 0) {
+  }  else if (projects.length > 0) {
     if (isAddingProject) {
       content = (
         <NewProjectForm

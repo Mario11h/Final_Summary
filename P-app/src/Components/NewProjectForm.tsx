@@ -13,6 +13,9 @@ import validateProjectForm from './Validation/projectValidator';
 import { Project } from './Validation/Type';
 import dayjs from 'dayjs';
 import axios from 'axios';
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "../store";
+
 
 interface NewProjectFormProps {
   onCancel: () => void;
@@ -49,6 +52,7 @@ const NewProjectForm: React.FC<NewProjectFormProps> = ({
     milestones: [],
   };
 
+  const dispatch = useDispatch<AppDispatch>();
   const [goalsToRemove, setGoalsToRemove] = useState<number[]>([]);
   const [risksToRemove, setRisksToRemove] = useState<number[]>([]);
   const [milestonesToRemove, setMilestonesToRemove] = useState<number[]>([]);
@@ -57,9 +61,12 @@ const NewProjectForm: React.FC<NewProjectFormProps> = ({
   const [formValues, setFormValues] = useState<Project | null>(null);
   const [alertOpen, setAlertOpen] = useState(false);
 
+  
+
   const handleSubmit = async (values: Project) => {
     console.log('Submitting values:', values);
-  
+
+    
     try {
       let response;
       if (!project) {
@@ -75,9 +82,6 @@ const NewProjectForm: React.FC<NewProjectFormProps> = ({
         console.log('Updated project response:', response.data);
         onEdit(response.data);
       }
-      setAlertOpen(true);
-      setTimeout(() => setAlertOpen(false), 2000);
-      console.log('Alert should now be open');
     } catch (error) {
       console.error("Error handling project data:", error);
     }
@@ -385,11 +389,7 @@ const NewProjectForm: React.FC<NewProjectFormProps> = ({
         </DialogActions>
       </Dialog>
 
-      <Snackbar open={alertOpen} autoHideDuration={2000} onClose={() => setAlertOpen(false)}>
-        <Alert onClose={() => setAlertOpen(false)} severity="success" sx={{ width: '100%' }}>
-        Test Alert
-        </Alert>
-      </Snackbar>
+
     </>
   );
 };
