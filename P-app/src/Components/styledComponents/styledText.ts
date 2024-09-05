@@ -99,6 +99,20 @@ export const OngoingText = styled(Typography)<{ status: string }>(({ status }) =
   padding: '5px 10px',
   display: 'inline-block',
   marginRight: 0,
+  boxShadow: (() => {
+    switch (status) {
+      case 'ONGOING':
+        return '0px 4px 15px rgba(226, 1, 1, 0.5)';
+      case 'ON HOLD':
+        return '0px 4px 15px rgba(7, 62, 183, 0.5)';
+      case 'FINISHED':
+        return '0px 4px 15px rgba(4, 164, 132, 0.5)';
+      case 'REQUESTED':
+        return '0px 4px 15px rgba(61, 34, 53, 0.5)';
+      default:
+        return 'none';
+    }
+  })(),
 }));
 
 export const CalibriBoldNavy14 = styled(Typography)({

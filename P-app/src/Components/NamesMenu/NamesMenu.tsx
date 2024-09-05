@@ -5,22 +5,21 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { useNavigate } from 'react-router-dom';
-import { RootState, AppDispatch } from '../store';
-import { fetchProjects } from '../features/projectSlice';
+import { RootState, AppDispatch } from '../../store';
+import { fetchProjects } from '../../features/projectSlice';
 
 const ITEM_HEIGHT = 48;
 
 export default function LongMenu() {
   const dispatch: AppDispatch = useDispatch();
   const navigate = useNavigate();
-  const projects = useSelector((state: RootState) => state.projects.projects);
-  const isLoading = useSelector((state: RootState) => state.projects.isLoading);
+  const { projects, isLoading, error } = useSelector((state: RootState) => state.projects);
 
   useEffect(() => {
-    if (projects.length === 0) {
+    if (projects.length === 0 && !isLoading) {
       dispatch(fetchProjects());
     }
-  }, [dispatch, projects.length]);
+  }, [dispatch, projects.length, isLoading]);
 
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
@@ -34,8 +33,7 @@ export default function LongMenu() {
   };
 
   const handleProjectClick = (projectId: number) => {
-    // Convert projectId from number to string before navigating
-    navigate(`/projects/${projectId.toString()}`);
+    
     handleClose();
   };
 
@@ -59,17 +57,17 @@ export default function LongMenu() {
         anchorEl={anchorEl}
         open={open}
         onClose={handleClose}
-        slotProps={{
-          paper: {
-            style: {
-              maxHeight: ITEM_HEIGHT * 4.5,
-              width: '20ch',
-            },
+        PaperProps={{
+          style: {
+            maxHeight: ITEM_HEIGHT * 4.5,
+            width: '20ch',
           },
         }}
       >
         {isLoading ? (
           <MenuItem disabled>Loading...</MenuItem>
+        ) : error ? (
+          <MenuItem disabled>Error: {error}</MenuItem>
         ) : (
           projects.map((project) => (
             <MenuItem key={project.id} onClick={() => handleProjectClick(project.id)}>

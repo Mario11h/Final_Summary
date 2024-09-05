@@ -18,7 +18,7 @@ import './App.css';
 import { images } from './Components/Assets/DummyData';
 import ProjectHeader from './Components/ProjectDetails/ProjectHeader';
 import OverviewSection from './Components/ProjectDetails/OverviewSection';
-import NamesMenu from './Components/NamesMenu';
+import NamesMenu from './Components/NamesMenu/NamesMenu';
 
 const MainApp: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -220,6 +220,21 @@ const MainApp: React.FC = () => {
   }
 
   return (
+    <>
+    <style>
+        {`
+          @media print {
+            @page {
+              size: 70cm 70cm;
+            }
+            .pdf-page {
+              width: 50cm;
+              height: 60cm;
+              overflow: hidden;
+            }
+          }
+        `}
+      </style>
     <Container style={{ minWidth: "100%" }}>
       <Box
         sx={{
@@ -321,6 +336,7 @@ const MainApp: React.FC = () => {
       </Dialog>
 
     </Container>
+    </>
   );
 };
 

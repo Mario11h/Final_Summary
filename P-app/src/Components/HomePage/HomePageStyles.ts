@@ -26,7 +26,7 @@ export const LogoutBox = styled('div')({
 
 export const BackgroundBox = styled('div')({
   width: '100%',
-  height: '50vh',
+  height: '60vh',
   backgroundSize: 'cover',
   display: 'flex',
   alignItems: 'center',

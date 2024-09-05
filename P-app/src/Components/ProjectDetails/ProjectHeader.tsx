@@ -78,7 +78,7 @@ const ProjectHeader: React.FC<ProjectHeaderProps> = ({
       {mode === "edit" ? (
         <OngoingText status={status}>
         <Field name="status" initialValue={status}>
-          {({ input,meta }) => (
+          {({ input, meta }) => (
             <FormControl fullWidth variant="standard" sx={{ width: '100%' }}>
               <InputLabel shrink>{generateLabel("Status", true)}</InputLabel>
               <Select
@@ -100,6 +100,7 @@ const ProjectHeader: React.FC<ProjectHeaderProps> = ({
           )}
         </Field>
       </OngoingText>
+      
       ) : (
         <OngoingText status={status}>{status}</OngoingText>
       )}

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, TextField, Box, FormControlLabel, Grid, FormControl, InputLabel, CircularProgress, Backdrop, IconButton, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from "@mui/material";
+import { Button, TextField, Box, FormControlLabel, Grid, FormControl, InputLabel, CircularProgress, Backdrop, IconButton, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Alert, Snackbar } from "@mui/material";
 import { Form, Field } from "react-final-form";
 import arrayMutators from "final-form-arrays";
 import ProjectHeader from "./ProjectDetails/ProjectHeader";
@@ -13,9 +13,6 @@ import validateProjectForm from './Validation/projectValidator';
 import { Project } from './Validation/Type';
 import dayjs from 'dayjs';
 import axios from 'axios';
-import Alert from '@mui/material/Alert';
-import CheckIcon from '@mui/icons-material/Check';
-
 
 interface NewProjectFormProps {
   onCancel: () => void;
@@ -58,28 +55,29 @@ const NewProjectForm: React.FC<NewProjectFormProps> = ({
   const [dialogOpen, setDialogOpen] = useState(false);
   const [isUpdating, setIsUpdating] = useState(false);
   const [formValues, setFormValues] = useState<Project | null>(null);
+  const [alertOpen, setAlertOpen] = useState(false);
 
   const handleSubmit = async (values: Project) => {
-    console.log('values', values);
-
+    console.log('Submitting values:', values);
+  
     try {
+      let response;
       if (!project) {
-        const response = await axios.post('http://127.0.0.1:5000/api/projects', values, {
+        response = await axios.post('http://127.0.0.1:5000/api/projects', values, {
           headers: { 'Content-Type': 'application/json' },
         });
-
-        const newProject = response.data;
-        console.log('data:', response.data);
-        onDone(newProject);
+        console.log('New project response:', response.data);
+        onDone(response.data);
       } else {
-        const response = await axios.put(`http://127.0.0.1:5000/api/projects/${project.id}`, values, {
+        response = await axios.put(`http://127.0.0.1:5000/api/projects/${project.id}`, values, {
           headers: { 'Content-Type': 'application/json' },
         });
-
-        const updatedProject = response.data;
-        console.log('updated data:', response.data);
-        onEdit(updatedProject);
+        console.log('Updated project response:', response.data);
+        onEdit(response.data);
       }
+      setAlertOpen(true);
+      setTimeout(() => setAlertOpen(false), 2000);
+      console.log('Alert should now be open');
     } catch (error) {
       console.error("Error handling project data:", error);
     }
@@ -101,7 +99,7 @@ const NewProjectForm: React.FC<NewProjectFormProps> = ({
     }
     handleCloseDialog();
   };
-
+  console.log('Alert Open State:', alertOpen);
   return (
     <>
       <Form
@@ -162,7 +160,6 @@ const NewProjectForm: React.FC<NewProjectFormProps> = ({
                           pm={initialValues.pm}
                           deliveryTeam={initialValues.pm}
                           mode="edit"
-
                         />
                         <FieldArray name="risks">
                           {({ fields }) => (
@@ -229,7 +226,7 @@ const NewProjectForm: React.FC<NewProjectFormProps> = ({
                         {({ fields }) => (
                           <>
                             {fields.map((name, index) => (
-                              <Box key={index} mt={2} >
+                              <Box key={index} mt={2}>
                                 <Field name={`${name}.title`}>
                                   {({ input, meta }) => (
                                     <FormControl fullWidth margin="normal">
@@ -271,12 +268,27 @@ const NewProjectForm: React.FC<NewProjectFormProps> = ({
                                     </FormControl>
                                   )}
                                 </Field>
-                                <FormControlLabel
+                                <FormControlLabel 
                                   control={
                                     <Field
                                       name={`${name}.status`}
                                       component="input"
                                       type="checkbox"
+                                      checked={fields.value[index]?.status === 'ONGOING'}
+                                      onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                                        const isChecked = event.target.checked;
+
+                                        if (isChecked) {
+                                          fields.value.forEach((item, idx) => {
+                                            if (idx !== index) {
+                                              fields.update(idx, { ...item, status: '' });
+                                            }
+                                          });
+                                        }
+
+                                        const newStatus = isChecked ? 'ONGOING' : '';
+                                        fields.update(index, { ...fields.value[index], status: newStatus });
+                                      }}
                                     />
                                   }
                                   label="Current State"
@@ -372,6 +384,12 @@ const NewProjectForm: React.FC<NewProjectFormProps> = ({
           </Button>
         </DialogActions>
       </Dialog>
+
+      <Snackbar open={alertOpen} autoHideDuration={2000} onClose={() => setAlertOpen(false)}>
+        <Alert onClose={() => setAlertOpen(false)} severity="success" sx={{ width: '100%' }}>
+        Test Alert
+        </Alert>
+      </Snackbar>
     </>
   );
 };
