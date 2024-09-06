@@ -144,7 +144,7 @@
       ""
     ],
     "roi": "",
-    "actualBudget": "333",
+    "actualBudget": "33",
     "allocatedBudget": "2233",
     "startDate": "2024-09-03",
     "endDate": "2024-12-03",
@@ -163,7 +163,7 @@
       }
     ],
     "createdAt": "03/09/2024, 3:45:04 PM",
-    "updatedAt": "05/09/2024, 8:51:52 AM"
+    "updatedAt": "06/09/2024, 12:13:35 PM"
   },
   {
     "id": 11,
@@ -185,11 +185,11 @@
     ],
     "roi": "",
     "actualBudget": 0,
-    "allocatedBudget": 0,
+    "allocatedBudget": "80",
     "startDate": "2024-09-05",
     "endDate": "2024-12-05",
     "milestones": [],
     "createdAt": "05/09/2024, 5:00:27 PM",
-    "updatedAt": "05/09/2024, 5:00:27 PM"
+    "updatedAt": "06/09/2024, 12:12:38 PM"
   }
 ]

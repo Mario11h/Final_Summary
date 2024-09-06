@@ -253,8 +253,8 @@ const MainApp: React.FC = () => {
               size: 70cm 70cm;
             }
             .pdf-page {
-              width: 50cm;
-              height: 60cm;
+              width: 100%;
+              height: 100%;
               overflow: hidden;
             }
           }
@@ -265,8 +265,8 @@ const MainApp: React.FC = () => {
         sx={{
           position: 'absolute',
           left: 0,
-          top: 10,
-          width: '12%',
+          top: 5,
+          width: '10%',
           height: '8vh',
           backgroundImage: `url(${images[0].imageUrl})`,
           backgroundSize: 'cover',

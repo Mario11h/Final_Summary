@@ -3,7 +3,6 @@ import { Button, Grid, Typography } from "@mui/material";
 export const AbsoluteBox = styled("div")({
   position: "absolute",
   left: 0,
-  top: 10,
   width: "10%",
   height: "8vh",
   backgroundSize: "cover",
@@ -75,6 +74,27 @@ export const NumberFetch = styled("div")({
 export const Flextxt = styled("div")({
   flexDirection: "row",
   alignItems: "center",
+  position: "absolute",
+  left: 0,
+  
+});
+export const StyledFlextxtButton = styled(Button)({
+  color: "blue",
+  textDecoration: "underline",
+  "&:hover": {
+    color: "red",
+  },
+});
+
+export const VisitorTxt = styled("div")({
+  flexDirection: "row",
+  alignItems: "center",
+  justifyContent: "center",
+
+});
+export const IconsButton = styled("div")({
+  position: "absolute",
+  right: 10,
 });
 
 // filter box
@@ -84,6 +104,7 @@ export const FilterBox = styled(Grid)({
   flexDirection: "column",
   justifyContent: "space-between",
   alignItems: "flex-start",
+  minHeight:'50vh'
 });
 
 export const FilterBoxFilters = styled(Grid)({

@@ -1,11 +1,14 @@
 import React, { useState } from "react";
-import { Box, Button, Grid, Typography } from "@mui/material";
+import { Box, Button, Grid, Link, Typography } from "@mui/material";
 import LogoutIcon from "@mui/icons-material/Logout";
 import { images } from "../Assets/DummyData";
 import AllInboxIcon from "@mui/icons-material/AllInbox";
 import PublicIcon from "@mui/icons-material/Public";
 import GroupsIcon from "@mui/icons-material/Groups";
-
+import FacebookIcon from '@mui/icons-material/Facebook';
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import TwitterIcon from '@mui/icons-material/Twitter';
+import InstagramIcon from '@mui/icons-material/Instagram';
 import SelectionBox from "./components/SelectionBox";
 import {
   AbsoluteBox,
@@ -24,6 +27,9 @@ import {
   FilterBoxFiltersSearch,
   SearchContainersButton,
   FilterBoxImageSection,
+  VisitorTxt,
+  IconsButton,
+  StyledFlextxtButton
 } from "./HomePageStyles";
 import { StyledBox } from "../styledComponents/styledContainer";
 
@@ -36,21 +42,19 @@ const HomePage: React.FC = () => {
   return (
     <div>
       <Grid container spacing={3}>
-        <Grid item xs={12}>
+        <Grid item xs={12} >
           <AbsoluteBox
             style={{ backgroundImage: `url(${images[0].imageUrl})` }}
           />
 
           <FlexBox>
             <Button sx={{ color: "blue", textTransform: "none" }}>Home</Button>
-            <Button sx={{ color: "blue", textTransform: "none" }}>
-              Products
-            </Button>
+            <Button  href="/app" sx={{ color: "blue", textTransform: "none" }}>Projects</Button>
           </FlexBox>
 
           <LogoutBox>
             <Button>
-              <LogoutIcon sx={{ color: "black", mt: 2 }} />
+              <LogoutIcon sx={{ color: "black" }} />
             </Button>
           </LogoutBox>
         </Grid>
@@ -117,15 +121,14 @@ const HomePage: React.FC = () => {
         <Grid item xs={12}>
           <BackgroundBox
             style={{ backgroundImage: `url(${images[2].imageUrl})` }}
-          ></BackgroundBox>
-          <StyledBox
+          >
+            <StyledBox
             sx={{
               backgroundColor: "white",
               boxShadow: "revert",
               borderRadius: 2,
               maxWidth: 800,
               margin: "0 auto",
-              transform: "translateY(-300px)",
             }}
           >
             <Grid container>
@@ -171,13 +174,41 @@ const HomePage: React.FC = () => {
               </Grid>
             </Grid>
           </StyledBox>
+          </BackgroundBox>
+          
         </Grid>
-        <Grid item xs={12}>
-          <Flextxt>
-            <Button sx={{ color: "red" }}>Terms and conditions</Button>
-            <Button sx={{ color: "red" }}>Privacy Notice</Button>
-            <Button sx={{ color: "red" }}>Legal Terms</Button>
-          </Flextxt>
+        <Grid item xs={12} container alignItems="center" direction="column">
+        <Flextxt>
+  <StyledFlextxtButton>Terms and conditions</StyledFlextxtButton>
+  <StyledFlextxtButton>Privacy Notice</StyledFlextxtButton>
+  <StyledFlextxtButton>Legal Terms</StyledFlextxtButton>
+</Flextxt>
+          <VisitorTxt>
+          <Box >
+        <Button  href="/corporate" sx={{ color: "blue",textDecoration: "underline", "&:hover": { color: "red", },boxShadow: "none",}}>
+          Visit our corporate website
+        </Button>
+      </Box>
+      <Box mt={3}>
+        <Typography variant="caption" sx={{ color: '#888' }}>
+          © 2024 All rights reserved. CMA CGM Group
+        </Typography>
+      </Box>
+          </VisitorTxt>
+          <IconsButton>
+            <Link href="https://www.facebook.com" sx={{ mx: 1 }}>
+              <FacebookIcon sx={{color: "white", backgroundColor: "blue", padding: "10px", "&:hover": { backgroundColor: "red" } }} />
+            </Link>
+            <Link href="https://www.linkedin.com" sx={{ mx: 1 }}>
+              <LinkedInIcon sx={{color: "white", backgroundColor: "blue", padding: "10px", "&:hover": { backgroundColor: "red" } }} />
+            </Link>
+            <Link href="https://www.twitter.com" sx={{ mx: 1 }}>
+              <TwitterIcon sx={{color: "white", backgroundColor: "blue", padding: "10px", "&:hover": { backgroundColor: "red" } }} />
+            </Link>
+            <Link href="https://www.instagram.com" sx={{ mx: 1 }}>
+              <InstagramIcon sx={{color: "white", backgroundColor: "blue", padding: "10px", "&:hover": { backgroundColor: "red" } }} />
+              </Link>
+          </IconsButton>
         </Grid>
       </Grid>
     </div>
