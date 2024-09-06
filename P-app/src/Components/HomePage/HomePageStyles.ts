@@ -76,7 +76,6 @@ export const Flextxt = styled("div")({
   alignItems: "center",
   position: "absolute",
   left: 0,
-  
 });
 export const StyledFlextxtButton = styled(Button)({
   color: "blue",
@@ -90,21 +89,10 @@ export const VisitorTxt = styled("div")({
   flexDirection: "row",
   alignItems: "center",
   justifyContent: "center",
-
 });
 export const IconsButton = styled("div")({
   position: "absolute",
   right: 10,
-});
-
-// filter box
-
-export const FilterBox = styled(Grid)({
-  display: "flex",
-  flexDirection: "column",
-  justifyContent: "space-between",
-  alignItems: "flex-start",
-  minHeight:'50vh'
 });
 
 export const FilterBoxFilters = styled(Grid)({
@@ -119,7 +107,7 @@ export const FilterBoxFiltersMain = styled(Grid)({
   height: "100%",
   display: "flex",
   boxSizing: "border-box",
-  padding: "12px",
+  padding: "1% 2%",
 });
 
 export const FilterBoxFiltersSearch = styled(Grid)({
@@ -131,23 +119,36 @@ export const FilterBoxFiltersSearch = styled(Grid)({
   justifyContent: "end",
 });
 
-export const SearchContainersButton = styled(Button)({
-  width: "100%",
-  backgroundColor: "darkblue",
-  color: "white",
-  height: "50%",
-  fontSize: "10px",
-  fontWeight: "bold",
-  "&:hover": {
-    backgroundColor: "darkblue",
-    color: "white",
-  },
-});
-
 export const FilterBoxImageSection = styled(Grid)({
   width: "100%",
   height: "65%",
   marginTop: "20px",
   display: "flex",
   justifyContent: "space-between",
+});
+
+export const SearchContainersButton = styled(Button)({
+  width: "100%",
+  backgroundColor: "darkblue",
+  color: "white",
+  height: "40px",
+  fontWeight: "bold",
+  borderRadius: "0px",
+  "&:hover": {
+    backgroundColor: "red",
+    color: "white",
+  },
+  fontSize: "8px",
+  "@media (min-width:600px)": {
+    fontSize: "8px",
+  },
+  "@media (min-width:960px)": {
+    fontSize: "8px",
+  },
+  "@media (min-width:1280px)": {
+    fontSize: "10px",
+  },
+  "@media (min-width:1920px)": {
+    fontSize: "12px",
+  },
 });
