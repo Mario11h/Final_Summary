@@ -27,7 +27,7 @@ const SelectionBox: React.FC<SelectionBoxProps> = ({
     <MainContainer xs={4} item>
       <Typography
         sx={{
-          color: "darkblue",
+          color: "#003366",
           fontWeight: "600",
           fontSize: {
             xs: "8px",

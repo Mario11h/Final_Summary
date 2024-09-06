@@ -45,10 +45,10 @@ export const CustomSelect: React.FC<CustomSelectProps> = ({
             },
             "& li.Mui-selected": {
               color: "white",
-              background: "darkblue",
+              background: "#003366",
             },
             "& li.Mui-selected:hover": {
-              background: "darkblue",
+              background: "#003366",
             },
           },
         },

@@ -3,9 +3,8 @@ import { Box, Grid, Divider } from '@mui/material';
 
 // General styling for container boxes
 export const StyledBox = styled(Box)({
-  padding: '16px',
   position: 'relative',
-  marginBottom: '20px',
+  
   border: '1px solid #e0e0e0',
 });
 

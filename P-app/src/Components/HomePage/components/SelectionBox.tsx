@@ -32,7 +32,7 @@ const SelectionBox: React.FC<SelectionBoxProps> = ({
 
   return (
     <MainContainer xs={4} item>
-      <Typography sx={{ color: "darkblue", fontWeight: "600" }}>
+      <Typography sx={{ color: "#003366", fontWeight: "600" }}>
         {label}
       </Typography>
       <Box sx={{ width: 120 }}>

@@ -78,8 +78,9 @@ export const Flextxt = styled("div")({
   left: 0,
 });
 export const StyledFlextxtButton = styled(Button)({
-  color: "blue",
+  color: "#003366",
   textDecoration: "underline",
+  fontWeight:"600",
   "&:hover": {
     color: "red",
   },
@@ -129,7 +130,7 @@ export const FilterBoxImageSection = styled(Grid)({
 
 export const SearchContainersButton = styled(Button)({
   width: "100%",
-  backgroundColor: "darkblue",
+  backgroundColor: "#003366",
   color: "white",
   height: "40px",
   fontWeight: "bold",

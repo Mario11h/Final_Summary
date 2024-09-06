@@ -38,8 +38,8 @@ const HomePage: React.FC = () => {
           />
 
           <FlexBox>
-            <Button sx={{ color: "blue", textTransform: "none" }}>Home</Button>
-            <Button href="/app" sx={{ color: "blue", textTransform: "none" }}>
+            <Button sx={{ color: "#003366", textTransform: "none" ,fontWeight: "bold",}}>Home</Button>
+            <Button href="/app" sx={{ color: "#003366", textTransform: "none",fontWeight: "bold", }}>
               Projects
             </Button>
           </FlexBox>
@@ -90,7 +90,7 @@ const HomePage: React.FC = () => {
             <StyledBox
               sx={{
                 backgroundColor: "white",
-                boxShadow: "revert",
+                
                 borderRadius: 2,
                 maxWidth: 800,
                 margin: "0 auto",
@@ -113,8 +113,8 @@ const HomePage: React.FC = () => {
                     sx={{
                       padding: 8,
                       textAlign: "center",
-                      borderRight: "2px dashed",
-                      borderLeft: "2px dashed",
+                      borderRight: "2px dashed rgba(0,0,0,0.3) ",
+                      borderLeft: "2px dashed rgba(0,0,0,0.3) "
                     }}
                   >
                     <ContentFlex>
@@ -184,12 +184,12 @@ const HomePage: React.FC = () => {
             </StyledFlextxtButton>
           </Flextxt>
           <VisitorTxt>
-            <Box>
+          <Box display="flex" alignItems="center" justifyContent="center"> 
               <Button
                 href="/corporate"
                 sx={{
-                  color: "blue",
-                  textDecoration: "underline",
+                  color: "#003366",
+                  textDecoration: "underline",fontWeight:"600",
                   "&:hover": { color: "red" },
                   boxShadow: "none",
                   fontSize: {
@@ -204,8 +204,8 @@ const HomePage: React.FC = () => {
                 Visit our corporate website
               </Button>
             </Box>
-            <Box mt={3}>
-              <Typography variant="caption" sx={{ color: "#888" }}>
+            <Box mt={3} display="flex" alignItems="center" justifyContent="center"> 
+              <Typography variant="caption" sx={{ color: "#888",fontSize:"16px"}} >
                 © 2024 All rights reserved. CMA CGM Group
               </Typography>
             </Box>
@@ -215,7 +215,7 @@ const HomePage: React.FC = () => {
               <FacebookIcon
                 sx={{
                   color: "white",
-                  backgroundColor: "blue",
+                  backgroundColor: "#003366",
                   padding: "10px",
                   "&:hover": { backgroundColor: "red" },
                 }}
@@ -225,7 +225,7 @@ const HomePage: React.FC = () => {
               <LinkedInIcon
                 sx={{
                   color: "white",
-                  backgroundColor: "blue",
+                  backgroundColor: "#003366",
                   padding: "10px",
                   "&:hover": { backgroundColor: "red" },
                 }}
@@ -235,7 +235,7 @@ const HomePage: React.FC = () => {
               <TwitterIcon
                 sx={{
                   color: "white",
-                  backgroundColor: "blue",
+                  backgroundColor: "#003366",
                   padding: "10px",
                   "&:hover": { backgroundColor: "red" },
                 }}
@@ -245,7 +245,7 @@ const HomePage: React.FC = () => {
               <InstagramIcon
                 sx={{
                   color: "white",
-                  backgroundColor: "blue",
+                  backgroundColor: "#003366",
                   padding: "10px",
                   "&:hover": { backgroundColor: "red" },
                 }}
