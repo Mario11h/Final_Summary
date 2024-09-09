@@ -178,7 +178,7 @@
       ""
     ],
     "roi": "",
-    "actualBudget": 0,
+    "actualBudget": "800",
     "allocatedBudget": "80",
     "startDate": "2024-09-05",
     "endDate": "2024-12-05",
@@ -197,60 +197,6 @@
       }
     ],
     "createdAt": "05/09/2024, 5:00:27 PM",
-    "updatedAt": "09/09/2024, 12:17:10 PM"
-  },
-  {
-    "id": 12,
-    "name": "klec",
-    "code": "kv",
-    "description": "over",
-    "status": "REQUESTED",
-    "scope": "",
-    "goals": [
-      ""
-    ],
-    "sponsor": "",
-    "businessOwner": "",
-    "productOwner": "",
-    "pm": "",
-    "deliveryTeam": "",
-    "risks": [
-      ""
-    ],
-    "roi": "",
-    "actualBudget": 0,
-    "allocatedBudget": 0,
-    "startDate": "2024-09-09",
-    "endDate": "2024-12-09",
-    "milestones": [],
-    "createdAt": "09/09/2024, 12:16:39 PM",
-    "updatedAt": "09/09/2024, 12:16:39 PM"
-  },
-  {
-    "id": 13,
-    "name": "Mario Hatoum",
-    "code": "961545354",
-    "description": "cxvcxxv",
-    "status": "REQUESTED",
-    "scope": "",
-    "goals": [
-      ""
-    ],
-    "sponsor": "",
-    "businessOwner": "",
-    "productOwner": "",
-    "pm": "",
-    "deliveryTeam": "",
-    "risks": [
-      ""
-    ],
-    "roi": "",
-    "actualBudget": 0,
-    "allocatedBudget": 0,
-    "startDate": "2024-09-09",
-    "endDate": "2024-12-09",
-    "milestones": [],
-    "createdAt": "09/09/2024, 12:29:27 PM",
-    "updatedAt": "09/09/2024, 12:29:27 PM"
+    "updatedAt": "09/09/2024, 4:06:20 PM"
   }
 ]

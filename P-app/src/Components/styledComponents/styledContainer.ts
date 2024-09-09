@@ -6,7 +6,9 @@ export const StyledBox = styled(Box)({
   position: 'relative',
   padding:'5px',
   border: '1px solid #e0e0e0',
-  backgroundColor:'white'
+  backgroundColor:'white',
+  marginBottom:'15px',
+  boxShadow: '0 4px 8px rgba(226, 1, 1, 0.3)',
 });
 
 export const StyledGridItem = styled(Grid)({
@@ -65,7 +67,7 @@ export const StyledMilestoneContainer = styled(Box)({
   backgroundColor: '#ffffff',
   borderRadius: '8px',
   border: '1px solid #e0e0e0',
-  boxShadow: '0 2px 6px rgba(0, 0, 0, 0.1)',
+  boxShadow: '0 4px 8px rgba(226, 1, 1, 0.3)',
 });
 
 // Utility functions for budget value box
