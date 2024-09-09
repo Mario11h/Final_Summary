@@ -1,14 +1,16 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import HomePage from './Components/HomePage/HomePage'; // Your new home page component
+import HomePage from './Components/Pagee/HomePage/Home'
 import MainApp from './MainApp';   // Renamed from App.tsx to MainApp.tsx
+import Navbar from './Components/Pagee/Navbar/Navbar';
 
 const App: React.FC = () => {
   return (
     <Router>
+      <Navbar/>
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/app" element={<MainApp />} />
+        <Route path="/projects" element={<MainApp />} />
       </Routes>
     </Router>
   );

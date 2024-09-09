@@ -15,7 +15,6 @@ import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { useReactToPrint } from 'react-to-print';
 import './App.css';
-import { images } from './Components/Assets/DummyData';
 import ProjectHeader from './Components/ProjectDetails/ProjectHeader';
 import OverviewSection from './Components/ProjectDetails/OverviewSection';
 import NamesMenu from './Components/NamesMenu/NamesMenu';
@@ -48,12 +47,12 @@ const MainApp: React.FC = () => {
   };
 
   useEffect(() => {
-    if (status !== "") {
+    if (status === "success" || status==="error") {
       handleOpenSnackbar();
     } else {
       setOpen(false);
     }
-  }, [error]);
+  }, [error, status]);
 
   useEffect(() => {
     dispatch(fetchProjects());
@@ -261,19 +260,7 @@ const MainApp: React.FC = () => {
         `}
       </style>
     <Container style={{ minWidth: "100%" }}>
-      <Box
-        sx={{
-          position: 'absolute',
-          left: 0,
-          top: 5,
-          width: '10%',
-          height: '8vh',
-          backgroundImage: `url(${images[0].imageUrl})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-        }}
-      />
-
+      
       <Box display="flex" justifyContent="flex-end" alignItems="center" mb={2}>
         <Tooltip title="Add New Project" arrow>
           <IconButton

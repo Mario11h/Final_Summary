@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, TextField, Box, FormControlLabel, Grid, FormControl, InputLabel, CircularProgress, Backdrop, IconButton, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Alert, Snackbar } from "@mui/material";
+import { Button, TextField, Box, FormControlLabel, Grid, FormControl, InputLabel, CircularProgress, Backdrop, IconButton, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from "@mui/material";
 import { Form, Field } from "react-final-form";
 import arrayMutators from "final-form-arrays";
 import ProjectHeader from "./ProjectDetails/ProjectHeader";
@@ -12,10 +12,9 @@ import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import validateProjectForm from './Validation/projectValidator';
 import { Project } from './Validation/Type';
 import dayjs from 'dayjs';
-import axios from 'axios';
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../store";
-
+import { addProject, updateProject } from "../features/projectSlice"; // Import thunks
 
 interface NewProjectFormProps {
   onCancel: () => void;
@@ -61,26 +60,18 @@ const NewProjectForm: React.FC<NewProjectFormProps> = ({
   const [formValues, setFormValues] = useState<Project | null>(null);
   const [alertOpen, setAlertOpen] = useState(false);
 
-  
-
   const handleSubmit = async (values: Project) => {
     console.log('Submitting values:', values);
 
-    
     try {
-      let response;
       if (!project) {
-        response = await axios.post('http://127.0.0.1:5000/api/projects', values, {
-          headers: { 'Content-Type': 'application/json' },
-        });
-        console.log('New project response:', response.data);
-        onDone(response.data);
+        const response = await dispatch(addProject(values)).unwrap();
+        console.log('New project response:', response);
+        onDone(response);
       } else {
-        response = await axios.put(`http://127.0.0.1:5000/api/projects/${project.id}`, values, {
-          headers: { 'Content-Type': 'application/json' },
-        });
-        console.log('Updated project response:', response.data);
-        onEdit(response.data);
+        const response = await dispatch(updateProject(values)).unwrap();
+        console.log('Updated project response:', response);
+        onEdit(response);
       }
     } catch (error) {
       console.error("Error handling project data:", error);
@@ -103,6 +94,7 @@ const NewProjectForm: React.FC<NewProjectFormProps> = ({
     }
     handleCloseDialog();
   };
+
   console.log('Alert Open State:', alertOpen);
   return (
     <>
@@ -388,8 +380,6 @@ const NewProjectForm: React.FC<NewProjectFormProps> = ({
           </Button>
         </DialogActions>
       </Dialog>
-
-
     </>
   );
 };

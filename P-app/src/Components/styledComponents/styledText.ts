@@ -29,6 +29,7 @@ export const TextRoboto = styled(Typography)({
   fontFamily: 'roboto',
   fontSize: '16px',
   color: '#000',
+  marginLeft:'7px'
 });
 
 export const CalibriText12P = styled(Typography)({

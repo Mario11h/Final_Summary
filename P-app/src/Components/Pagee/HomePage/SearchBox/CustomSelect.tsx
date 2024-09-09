@@ -1,19 +1,22 @@
 import React from "react";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import FormControl from "@mui/material/FormControl";
 import { menuClasses } from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import Select, { selectClasses, SelectChangeEvent } from "@mui/material/Select";
 
 interface CustomSelectProps {
   value: string;
-  onChange: (event: SelectChangeEvent<string>) => void;
+  setValue: (value: string) => void;
 }
 
 export const CustomSelect: React.FC<CustomSelectProps> = ({
   value,
-  onChange,
+  setValue,
 }) => {
+  const handleChange = (event: SelectChangeEvent<string>) => {
+    setValue(event.target.value);
+  };
+
   return (
     <Select
       disableUnderline
@@ -35,7 +38,7 @@ export const CustomSelect: React.FC<CustomSelectProps> = ({
           [`& .${menuClasses.list}`]: {
             paddingTop: 0,
             paddingBottom: 0,
-            background: "white",
+            background: "F7F7F7",
             "& li": {
               paddingTop: "12px",
               paddingBottom: "12px",
@@ -55,11 +58,15 @@ export const CustomSelect: React.FC<CustomSelectProps> = ({
       }}
       IconComponent={ExpandMoreIcon}
       value={value}
-      onChange={onChange}
+      onChange={handleChange}
       sx={{
-        width: "90%",
+        border: "1px solid rgba(0,0,0,0.3)",
+        height: "40px",
+        paddingLeft: "10px",
+        borderRadius: "5px",
+        width: "100%",
         [`& .${selectClasses.select}`]: {
-          background: "white",
+          background: "F7F7F7",
           color: "black",
         },
         [`& .${selectClasses.icon}`]: {

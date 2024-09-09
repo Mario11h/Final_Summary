@@ -4,8 +4,9 @@ import { Box, Grid, Divider } from '@mui/material';
 // General styling for container boxes
 export const StyledBox = styled(Box)({
   position: 'relative',
-  
+  padding:'5px',
   border: '1px solid #e0e0e0',
+  backgroundColor:'white'
 });
 
 export const StyledGridItem = styled(Grid)({
@@ -149,7 +150,7 @@ export const StyledProjectHeaderBox = styled(Box)({
   flexDirection: 'column',
   width: '100%',
   boxSizing: 'border-box',
-  padding: '16px',
+   
 });
 
 export const ProjectName = styled(Box)({

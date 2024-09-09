@@ -1,7 +1,7 @@
 [
   {
     "createdAt": "27-08-2024 2:19:19",
-    "updatedAt": "05/09/2024, 5:00:04 PM",
+    "updatedAt": "09/09/2024, 12:32:23 PM",
     "id": 5,
     "name": "CMA-CGM",
     "code": "ASP",
@@ -17,7 +17,7 @@
     "businessOwner": "businessOwners",
     "productOwner": "productOwner",
     "pm": "PM PM",
-    "deliveryTeam": "AAA,BBB,CCC",
+    "deliveryTeam": "AAA,BBB,CCCw",
     "risks": [
       "The project missed a Front-end developer for multiple sprints",
       "Change and missing business requirements"
@@ -86,7 +86,7 @@
   {
     "name": "New Project",
     "code": "NP",
-    "status": "PLANNED",
+    "status": "REQUESTED",
     "description": "Description of the new project",
     "scope": "Scope of the new project",
     "goals": [
@@ -154,23 +154,17 @@
         "description": "last year",
         "deliveryDate": "",
         "status": "ONGOING"
-      },
-      {
-        "title": "",
-        "description": "",
-        "deliveryDate": "",
-        "status": ""
       }
     ],
     "createdAt": "03/09/2024, 3:45:04 PM",
-    "updatedAt": "06/09/2024, 12:13:35 PM"
+    "updatedAt": "09/09/2024, 12:14:04 PM"
   },
   {
     "id": 11,
     "name": "dsd",
     "code": "dsds",
     "description": "dsadsa",
-    "status": "REQUESTED",
+    "status": "ON HOLD",
     "scope": "",
     "goals": [
       ""
@@ -188,8 +182,75 @@
     "allocatedBudget": "80",
     "startDate": "2024-09-05",
     "endDate": "2024-12-05",
-    "milestones": [],
+    "milestones": [
+      {
+        "title": "",
+        "description": "",
+        "deliveryDate": "",
+        "status": "ONGOING"
+      },
+      {
+        "title": "helo",
+        "description": "",
+        "deliveryDate": "",
+        "status": ""
+      }
+    ],
     "createdAt": "05/09/2024, 5:00:27 PM",
-    "updatedAt": "06/09/2024, 12:12:38 PM"
+    "updatedAt": "09/09/2024, 12:17:10 PM"
+  },
+  {
+    "id": 12,
+    "name": "klec",
+    "code": "kv",
+    "description": "over",
+    "status": "REQUESTED",
+    "scope": "",
+    "goals": [
+      ""
+    ],
+    "sponsor": "",
+    "businessOwner": "",
+    "productOwner": "",
+    "pm": "",
+    "deliveryTeam": "",
+    "risks": [
+      ""
+    ],
+    "roi": "",
+    "actualBudget": 0,
+    "allocatedBudget": 0,
+    "startDate": "2024-09-09",
+    "endDate": "2024-12-09",
+    "milestones": [],
+    "createdAt": "09/09/2024, 12:16:39 PM",
+    "updatedAt": "09/09/2024, 12:16:39 PM"
+  },
+  {
+    "id": 13,
+    "name": "Mario Hatoum",
+    "code": "961545354",
+    "description": "cxvcxxv",
+    "status": "REQUESTED",
+    "scope": "",
+    "goals": [
+      ""
+    ],
+    "sponsor": "",
+    "businessOwner": "",
+    "productOwner": "",
+    "pm": "",
+    "deliveryTeam": "",
+    "risks": [
+      ""
+    ],
+    "roi": "",
+    "actualBudget": 0,
+    "allocatedBudget": 0,
+    "startDate": "2024-09-09",
+    "endDate": "2024-12-09",
+    "milestones": [],
+    "createdAt": "09/09/2024, 12:29:27 PM",
+    "updatedAt": "09/09/2024, 12:29:27 PM"
   }
 ]
