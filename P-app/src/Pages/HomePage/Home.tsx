@@ -19,12 +19,12 @@ import { Typography } from "@mui/material";
 import HomeSearchBox from "./SearchBox/HomeSearchBox";
 
 import ImageBoxWithAnimation from "./ImageBox/ImageBoxWithAnimation";
-import { images } from "../../Assets/DummyData";
+import { images } from "../../Components/Assets/DummyData";
 
 import AllInboxIcon from "@mui/icons-material/AllInbox";
 import PublicIcon from "@mui/icons-material/Public";
 import GroupsIcon from "@mui/icons-material/Groups";
-import Footer from "../Footer/Footer";
+import Footer from "../../Components/Footer/Footer";
 
 const HERO_TITLE = "Buy CMA CGM Containers";
 const HERO_TEXT =
@@ -114,7 +114,7 @@ const Home: React.FC = () => {
             </StatBoxWrapper>
           </StatContainer>
         </HomeStatsSection>
-        <Footer/>
+        <Footer />
       </PageContainer>
     </>
   );

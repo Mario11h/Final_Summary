@@ -1,5 +1,5 @@
 import { Box, Button } from "@mui/material";
-import { images } from "../../Assets/DummyData";
+import { images } from "../Assets/DummyData";
 import LogoutIcon from "@mui/icons-material/Logout";
 import {
   NavbarContainer,

@@ -1,6 +1,6 @@
 import { Box, Grid } from "@mui/material";
 import styled from "styled-components";
-import { images } from "../../Assets/DummyData";
+import { images } from "../../Components/Assets/DummyData";
 
 export const PageContainer = styled(Grid)({});
 
