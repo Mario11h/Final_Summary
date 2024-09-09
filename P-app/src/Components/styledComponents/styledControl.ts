@@ -1,33 +1,33 @@
-import styled from '@emotion/styled';
-import { Select, MenuItem } from '@mui/material';
+import styled from "@emotion/styled";
+import { Select, MenuItem } from "@mui/material";
 
 export const StyledSelect = styled(Select)({
-  backgroundColor: 'white',
-  borderRadius: '4px',
+  backgroundColor: "white",
+  borderRadius: "4px",
 
-  '.MuiSelect-select': {
-    padding: '10px 14px',
+  ".MuiSelect-select": {
+    padding: "10px 14px",
   },
 
-  '.MuiOutlinedInput-notchedOutline': {
-    borderColor: '#ccc',
+  ".MuiOutlinedInput-notchedOutline": {
+    borderColor: "#ccc",
   },
 
-  '&:hover .MuiOutlinedInput-notchedOutline': {
-    borderColor: '#888',
+  "&:hover .MuiOutlinedInput-notchedOutline": {
+    borderColor: "#888",
   },
 
-  '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-    borderColor: '#555',
+  "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+    borderColor: "#555",
   },
 });
 
 export const StyledMenuItem = styled(MenuItem)({
-  '&.Mui-selected': {
-    backgroundColor: '#f0f0f0',
+  "&.Mui-selected": {
+    backgroundColor: "#f0f0f0",
   },
 
-  '&:hover': {
-    backgroundColor: '#e0e0e0',
+  "&:hover": {
+    backgroundColor: "#e0e0e0",
   },
 });

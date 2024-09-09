@@ -1,7 +1,12 @@
-import React from 'react';
-import DirectionsRunIcon from '@mui/icons-material/DirectionsRun';
-import DoneIcon from '@mui/icons-material/Done';
-import { TimelineItem, TimelineSeparator, TimelineContent, timelineItemClasses } from '@mui/lab';
+import React from "react";
+import DirectionsRunIcon from "@mui/icons-material/DirectionsRun";
+import DoneIcon from "@mui/icons-material/Done";
+import {
+  TimelineItem,
+  TimelineSeparator,
+  TimelineContent,
+  timelineItemClasses,
+} from "@mui/lab";
 import {
   StyledTimeline,
   StyledTimelineConnector,
@@ -12,10 +17,15 @@ import {
   StyledDivEnd,
   StyledArrowBackIcon,
   ArrowContainer,
-} from '../styledComponents/StyledTimeline';
-import { CalibriBoldNavy14, CalibriBoldNavy11, CalibriBoldNavy18, CalibriBoldRed11 } from '../styledComponents/styledText';
-import { Grid } from '@mui/material';
-import { Milestone } from '../Validation/Type';
+} from "../styledComponents/StyledTimeline";
+import {
+  CalibriBoldNavy14,
+  CalibriBoldNavy11,
+  CalibriBoldNavy18,
+  CalibriBoldRed11,
+} from "../styledComponents/styledText";
+import { Grid } from "@mui/material";
+import { Milestone } from "../Validation/Type";
 
 type CustomizedTimelineProps = {
   startDate: string;
@@ -23,7 +33,11 @@ type CustomizedTimelineProps = {
   milestones: Milestone[];
 };
 
-const CustomizedTimeline: React.FC<CustomizedTimelineProps> = ({ startDate, endDate, milestones }) => {
+const CustomizedTimeline: React.FC<CustomizedTimelineProps> = ({
+  startDate,
+  endDate,
+  milestones,
+}) => {
   return (
     <StyledTimeline
       sx={{
@@ -62,15 +76,15 @@ const CustomizedTimeline: React.FC<CustomizedTimelineProps> = ({ startDate, endD
                   <CalibriBoldNavy14>{milestone.title}</CalibriBoldNavy14>
                   <CalibriBoldNavy11>{milestone.description}</CalibriBoldNavy11>
                 </Grid>
-                
+
                 <Grid>
-  <CalibriBoldRed11>{milestone.deliveryDate}</CalibriBoldRed11>
-  {milestone.status === "ONGOING" ? (
-    <ArrowContainer>
-      <StyledArrowBackIcon />
-    </ArrowContainer>
-  ) : null}
-</Grid>
+                  <CalibriBoldRed11>{milestone.deliveryDate}</CalibriBoldRed11>
+                  {milestone.status === "ONGOING" ? (
+                    <ArrowContainer>
+                      <StyledArrowBackIcon />
+                    </ArrowContainer>
+                  ) : null}
+                </Grid>
               </StyledDiv>
             </TimelineContent>
           </TimelineItem>

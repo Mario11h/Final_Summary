@@ -1,9 +1,11 @@
 // src/validateProjectForm.ts
-import { ProjectValidationSchema } from './SchemaValidator'; // Make sure this path is correct
-import { Project } from './Type';
-import * as Yup from 'yup';
+import { ProjectValidationSchema } from "./SchemaValidator"; // Make sure this path is correct
+import { Project } from "./Type";
+import * as Yup from "yup";
 
-const validateProjectForm = async (values: Partial<Project>): Promise<Record<string, string>> => {
+const validateProjectForm = async (
+  values: Partial<Project>
+): Promise<Record<string, string>> => {
   try {
     await ProjectValidationSchema.validate(values, { abortEarly: false });
     return {};
@@ -15,7 +17,7 @@ const validateProjectForm = async (values: Partial<Project>): Promise<Record<str
           errors[error.path] = error.message;
         }
       });
-      console.log(errors)
+      console.log(errors);
       return errors;
     } else {
       throw err;
@@ -25,7 +27,7 @@ const validateProjectForm = async (values: Partial<Project>): Promise<Record<str
 export const generateLabel = (label: string, isRequired: boolean) => {
   return (
     <span>
-      {label} {isRequired && <span >*</span>}
+      {label} {isRequired && <span>*</span>}
     </span>
   );
 };

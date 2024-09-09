@@ -1,27 +1,31 @@
-import React from 'react';
-import { Field } from 'react-final-form';
-import Section from './Section';
+import React from "react";
+import { Field } from "react-final-form";
+import Section from "./Section";
 import {
   StyledIconGreenBackground,
   StyledIconNoBackground,
-  StyledIconBox,
-} from '../styledComponents/StyledIconAvatar';
+} from "../styledComponents/StyledIconAvatar";
 import {
   StyledBox,
   StyledGridItem,
   StyledVerticalDivider,
-} from '../styledComponents/styledContainer';
-import InsertChartIcon from '@mui/icons-material/InsertChart';
-import FlagCircleIcon from '@mui/icons-material/FlagCircle';
-import { TextRoboto, BulletedList, CalibriText12P, LabelValueItem } from '../styledComponents/styledText';
-import { Grid, TextField, Button } from '@mui/material';
-import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
-import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
-import { generateLabel } from "../Validation/projectValidator";
+} from "../styledComponents/styledContainer";
+import InsertChartIcon from "@mui/icons-material/InsertChart";
+import FlagCircleIcon from "@mui/icons-material/FlagCircle";
+import {
+  TextRoboto,
+  BulletedList,
+  CalibriText12P,
+  LabelValueItem,
+} from "../styledComponents/styledText";
+import { Grid, TextField, Button } from "@mui/material";
+import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
+import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline";
+
 type ProjectScopeGoalsSectionProps = {
   scopeDescription: string;
   goals: string[];
-  mode: 'view' | 'edit';
+  mode: "view" | "edit";
   addGoalField?: () => void;
   removeGoalField?: (index: number) => void;
 };
@@ -45,7 +49,7 @@ const ProjectScopeGoalsSection: React.FC<ProjectScopeGoalsSectionProps> = ({
             }
             title="Project Scope"
             content={
-              mode === 'edit' ? (
+              mode === "edit" ? (
                 <Field name="scope" initialValue={scopeDescription}>
                   {({ input, meta }) => (
                     <TextField
@@ -58,9 +62,8 @@ const ProjectScopeGoalsSection: React.FC<ProjectScopeGoalsSectionProps> = ({
                       helperText={meta.touched && meta.error}
                       InputProps={{
                         disableUnderline: true,
-                        style: { fontSize: 'inherit', fontWeight: 'inherit' },
+                        style: { fontSize: "inherit", fontWeight: "inherit" },
                       }}
-                      
                     />
                   )}
                 </Field>
@@ -80,10 +83,13 @@ const ProjectScopeGoalsSection: React.FC<ProjectScopeGoalsSectionProps> = ({
             }
             title="Project Goals"
             content={
-              mode === 'edit' ? (
+              mode === "edit" ? (
                 <>
                   {goals.map((goal, index) => (
-                    <div key={index} style={{ display: 'flex', alignItems: 'center' }}>
+                    <div
+                      key={index}
+                      style={{ display: "flex", alignItems: "center" }}
+                    >
                       <Field name={`goals[${index}]`} initialValue={goal}>
                         {({ input, meta }) => (
                           <TextField
@@ -96,7 +102,11 @@ const ProjectScopeGoalsSection: React.FC<ProjectScopeGoalsSectionProps> = ({
                             helperText={meta.touched && meta.error}
                             InputProps={{
                               disableUnderline: true,
-                              style: { fontSize: 'inherit', fontWeight: 'inherit', paddingLeft: '15px' },
+                              style: {
+                                fontSize: "inherit",
+                                fontWeight: "inherit",
+                                paddingLeft: "15px",
+                              },
                             }}
                             margin="normal"
                           />
@@ -106,7 +116,7 @@ const ProjectScopeGoalsSection: React.FC<ProjectScopeGoalsSectionProps> = ({
                         onClick={() => removeGoalField?.(index)}
                         variant="text"
                         color="error"
-                        style={{ marginLeft: '8px' }}
+                        style={{ marginLeft: "8px" }}
                       >
                         <RemoveCircleOutlineIcon />
                       </Button>
@@ -116,7 +126,7 @@ const ProjectScopeGoalsSection: React.FC<ProjectScopeGoalsSectionProps> = ({
                     onClick={addGoalField}
                     variant="text"
                     color="primary"
-                    style={{ marginTop: '8px' }}
+                    style={{ marginTop: "8px" }}
                   >
                     <AddCircleOutlineIcon />
                   </Button>

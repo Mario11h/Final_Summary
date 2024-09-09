@@ -1,19 +1,19 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import IconButton from '@mui/material/IconButton';
-import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
-import MoreVertIcon from '@mui/icons-material/MoreVert';
-import { useNavigate } from 'react-router-dom';
-import { RootState, AppDispatch } from '../../store';
-import { fetchProjects } from '../../features/projectSlice';
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import IconButton from "@mui/material/IconButton";
+import Menu from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
+import MoreVertIcon from "@mui/icons-material/MoreVert";
+import { RootState, AppDispatch } from "../../store";
+import { fetchProjects } from "../../features/projectSlice";
 
 const ITEM_HEIGHT = 48;
 
 export default function LongMenu() {
   const dispatch: AppDispatch = useDispatch();
-  const navigate = useNavigate();
-  const { projects, isLoading, error } = useSelector((state: RootState) => state.projects);
+  const { projects, isLoading, error } = useSelector(
+    (state: RootState) => state.projects
+  );
 
   useEffect(() => {
     if (projects.length === 0 && !isLoading) {
@@ -33,7 +33,6 @@ export default function LongMenu() {
   };
 
   const handleProjectClick = (projectId: number) => {
-    
     handleClose();
   };
 
@@ -42,8 +41,8 @@ export default function LongMenu() {
       <IconButton
         aria-label="more"
         id="long-button"
-        aria-controls={open ? 'long-menu' : undefined}
-        aria-expanded={open ? 'true' : undefined}
+        aria-controls={open ? "long-menu" : undefined}
+        aria-expanded={open ? "true" : undefined}
         aria-haspopup="true"
         onClick={handleClick}
       >
@@ -52,7 +51,7 @@ export default function LongMenu() {
       <Menu
         id="long-menu"
         MenuListProps={{
-          'aria-labelledby': 'long-button',
+          "aria-labelledby": "long-button",
         }}
         anchorEl={anchorEl}
         open={open}
@@ -60,7 +59,7 @@ export default function LongMenu() {
         PaperProps={{
           style: {
             maxHeight: ITEM_HEIGHT * 4.5,
-            width: '20ch',
+            width: "20ch",
           },
         }}
       >
@@ -70,7 +69,10 @@ export default function LongMenu() {
           <MenuItem disabled>Error: {error}</MenuItem>
         ) : (
           projects.map((project) => (
-            <MenuItem key={project.id} onClick={() => handleProjectClick(project.id)}>
+            <MenuItem
+              key={project.id}
+              onClick={() => handleProjectClick(project.id)}
+            >
               {project.name}
             </MenuItem>
           ))

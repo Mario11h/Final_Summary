@@ -1,12 +1,12 @@
-import React from 'react';
-import { Box } from '@mui/material';
+import React from "react";
+import { Box } from "@mui/material";
 import {
   StyledSectionBox,
   StyledTeamBox,
-  StyledTitleContainer
-} from '../styledComponents/styledContainer';
-import { StyledTitle } from '../styledComponents/styledText';
-import { StyledIconMulIcon } from '../styledComponents/StyledIconAvatar';
+  StyledTitleContainer,
+} from "../styledComponents/styledContainer";
+import { StyledTitle } from "../styledComponents/styledText";
+import { StyledIconMulIcon } from "../styledComponents/StyledIconAvatar";
 
 type LowerSectionProps<T> = {
   title: string;
@@ -16,7 +16,13 @@ type LowerSectionProps<T> = {
   children?: React.ReactNode;
 };
 
-function LowerSection<T>({ title, icon: Icon, data, renderItem, children }: LowerSectionProps<T>): JSX.Element {
+function LowerSection<T>({
+  title,
+  icon: Icon,
+  data,
+  renderItem,
+  children,
+}: LowerSectionProps<T>): JSX.Element {
   return (
     <StyledSectionBox>
       <StyledTeamBox>
@@ -36,9 +42,7 @@ function LowerSection<T>({ title, icon: Icon, data, renderItem, children }: Lowe
           <p>No data available</p>
         )}
       </Box>
-      <Box mt={2}>
-        {children}
-      </Box>
+      <Box mt={2}>{children}</Box>
     </StyledSectionBox>
   );
 }

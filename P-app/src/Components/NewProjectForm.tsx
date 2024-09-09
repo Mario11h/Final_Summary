@@ -1,17 +1,41 @@
 import React, { useState } from "react";
-import { Button, TextField, Box, FormControlLabel, Grid, FormControl, InputLabel, CircularProgress, Backdrop, IconButton, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from "@mui/material";
+import {
+  Button,
+  TextField,
+  Box,
+  FormControlLabel,
+  Grid,
+  FormControl,
+  InputLabel,
+  CircularProgress,
+  Backdrop,
+  IconButton,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+} from "@mui/material";
 import { Form, Field } from "react-final-form";
 import arrayMutators from "final-form-arrays";
 import ProjectHeader from "./ProjectDetails/ProjectHeader";
 import OverviewSection from "./ProjectDetails/OverviewSection";
 import ProjectScopeGoalsSection from "./ProjectDetails/ProjectScopeGoalsSection";
-import { StyledEqualContainer, StyledMilestoneContainer } from "./styledComponents/styledContainer";
-import { BusinessTeamSection, HubTeamSection, RiskSection, BudgetSection } from "./ProjectDetails/CategoriesSection";
+import {
+  StyledEqualContainer,
+  StyledMilestoneContainer,
+} from "./styledComponents/styledContainer";
+import {
+  BusinessTeamSection,
+  HubTeamSection,
+  RiskSection,
+  BudgetSection,
+} from "./ProjectDetails/CategoriesSection";
 import { FieldArray } from "react-final-form-arrays";
-import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
-import validateProjectForm from './Validation/projectValidator';
-import { Project } from './Validation/Type';
-import dayjs from 'dayjs';
+import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
+import validateProjectForm from "./Validation/projectValidator";
+import { Project } from "./Validation/Type";
+import dayjs from "dayjs";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../store";
 import { addProject, updateProject } from "../features/projectSlice"; // Import thunks
@@ -46,8 +70,8 @@ const NewProjectForm: React.FC<NewProjectFormProps> = ({
     roi: "",
     actualBudget: 0,
     allocatedBudget: 0,
-    startDate: dayjs().format('YYYY-MM-DD'),
-    endDate: dayjs().add(3, 'month').format("YYYY-MM-DD"),
+    startDate: dayjs().format("YYYY-MM-DD"),
+    endDate: dayjs().add(3, "month").format("YYYY-MM-DD"),
     milestones: [],
   };
 
@@ -61,16 +85,16 @@ const NewProjectForm: React.FC<NewProjectFormProps> = ({
   const [alertOpen, setAlertOpen] = useState(false);
 
   const handleSubmit = async (values: Project) => {
-    console.log('Submitting values:', values);
+    console.log("Submitting values:", values);
 
     try {
       if (!project) {
         const response = await dispatch(addProject(values)).unwrap();
-        console.log('New project response:', response);
+        console.log("New project response:", response);
         onDone(response);
       } else {
         const response = await dispatch(updateProject(values)).unwrap();
-        console.log('Updated project response:', response);
+        console.log("Updated project response:", response);
         onEdit(response);
       }
     } catch (error) {
@@ -95,7 +119,7 @@ const NewProjectForm: React.FC<NewProjectFormProps> = ({
     handleCloseDialog();
   };
 
-  console.log('Alert Open State:', alertOpen);
+  console.log("Alert Open State:", alertOpen);
   return (
     <>
       <Form
@@ -104,13 +128,17 @@ const NewProjectForm: React.FC<NewProjectFormProps> = ({
         validate={validateProjectForm}
         mutators={{ ...arrayMutators }}
         render={({ handleSubmit, submitting, pristine, values }) => {
-          console.log('pristine', pristine);
-          const isFormValid = Object.values(values).every(value => value !== "" && value !== undefined);
+          console.log("pristine", pristine);
+          const isFormValid = Object.values(values).every(
+            (value) => value !== "" && value !== undefined
+          );
           return (
-            <form onSubmit={(e) => {
-              e.preventDefault();
-              handleOpenDialog(!!project, values);
-            }}>
+            <form
+              onSubmit={(e) => {
+                e.preventDefault();
+                handleOpenDialog(!!project, values);
+              }}
+            >
               <Grid>
                 <ProjectHeader
                   name={initialValues.name}
@@ -144,14 +172,13 @@ const NewProjectForm: React.FC<NewProjectFormProps> = ({
                       </FieldArray>
 
                       <StyledEqualContainer>
-
                         <BusinessTeamSection
                           sponsor={initialValues.sponsor}
                           businessOwner={initialValues.businessOwner}
                           productOwner={initialValues.productOwner}
                           mode="edit"
                         />
-                        
+
                         <HubTeamSection
                           pm={initialValues.pm}
                           deliveryTeam={initialValues.pm}
@@ -196,7 +223,7 @@ const NewProjectForm: React.FC<NewProjectFormProps> = ({
                               fullWidth
                               error={meta.touched && meta.error}
                               helperText={meta.touched && meta.error}
-                              value={dayjs(input.value).format('YYYY-MM-DD')}
+                              value={dayjs(input.value).format("YYYY-MM-DD")}
                             />
                           </FormControl>
                         )}
@@ -213,7 +240,7 @@ const NewProjectForm: React.FC<NewProjectFormProps> = ({
                               fullWidth
                               error={meta.touched && meta.error}
                               helperText={meta.touched && meta.error}
-                              value={dayjs(input.value).format('YYYY-MM-DD')}
+                              value={dayjs(input.value).format("YYYY-MM-DD")}
                             />
                           </FormControl>
                         )}
@@ -259,31 +286,46 @@ const NewProjectForm: React.FC<NewProjectFormProps> = ({
                                         fullWidth
                                         error={meta.touched && meta.error}
                                         helperText={meta.touched && meta.error}
-                                        value={dayjs(input.value).format('YYYY-MM-DD')}
+                                        value={dayjs(input.value).format(
+                                          "YYYY-MM-DD"
+                                        )}
                                       />
                                     </FormControl>
                                   )}
                                 </Field>
-                                <FormControlLabel 
+                                <FormControlLabel
                                   control={
                                     <Field
                                       name={`${name}.status`}
                                       component="input"
                                       type="checkbox"
-                                      checked={fields.value[index]?.status === 'ONGOING'}
-                                      onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                                      checked={
+                                        fields.value[index]?.status ===
+                                        "ONGOING"
+                                      }
+                                      onChange={(
+                                        event: React.ChangeEvent<HTMLInputElement>
+                                      ) => {
                                         const isChecked = event.target.checked;
 
                                         if (isChecked) {
                                           fields.value.forEach((item, idx) => {
                                             if (idx !== index) {
-                                              fields.update(idx, { ...item, status: '' });
+                                              fields.update(idx, {
+                                                ...item,
+                                                status: "",
+                                              });
                                             }
                                           });
                                         }
 
-                                        const newStatus = isChecked ? 'ONGOING' : '';
-                                        fields.update(index, { ...fields.value[index], status: newStatus });
+                                        const newStatus = isChecked
+                                          ? "ONGOING"
+                                          : "";
+                                        fields.update(index, {
+                                          ...fields.value[index],
+                                          status: newStatus,
+                                        });
                                       }}
                                     />
                                   }
@@ -291,11 +333,12 @@ const NewProjectForm: React.FC<NewProjectFormProps> = ({
                                 />
                                 <Button
                                   variant="contained"
-                                  color='error'
+                                  color="error"
                                   sx={{
-                                    '&:hover': {
-                                      backgroundColor: 'rgba(226, 1, 1, 1)',
-                                      boxShadow: '0 4px 8px rgba(4, 36, 106, 1)',
+                                    "&:hover": {
+                                      backgroundColor: "rgba(226, 1, 1, 1)",
+                                      boxShadow:
+                                        "0 4px 8px rgba(4, 36, 106, 1)",
                                     },
                                   }}
                                   onClick={() => {
@@ -332,8 +375,13 @@ const NewProjectForm: React.FC<NewProjectFormProps> = ({
                   </Grid>
                 </Grid>
               </Grid>
-              <Box mt={2} display="flex" justifyContent="space-between" alignItems="center">
-                <div style={{ position: 'relative' }}>
+              <Box
+                mt={2}
+                display="flex"
+                justifyContent="space-between"
+                alignItems="center"
+              >
+                <div style={{ position: "relative" }}>
                   <Button
                     color="primary"
                     onClick={onCancel}
@@ -351,7 +399,11 @@ const NewProjectForm: React.FC<NewProjectFormProps> = ({
                   type="submit"
                   disabled={submitting || pristine}
                 >
-                  {submitting ? "Submitting..." : project ? "Update Project" : "Add Project"}
+                  {submitting
+                    ? "Submitting..."
+                    : project
+                    ? "Update Project"
+                    : "Add Project"}
                 </Button>
               </Box>
               {submitting && (
@@ -365,10 +417,14 @@ const NewProjectForm: React.FC<NewProjectFormProps> = ({
       />
 
       <Dialog open={dialogOpen} onClose={handleCloseDialog}>
-        <DialogTitle>{isUpdating ? "Confirm Update" : "Confirm Addition"}</DialogTitle>
+        <DialogTitle>
+          {isUpdating ? "Confirm Update" : "Confirm Addition"}
+        </DialogTitle>
         <DialogContent>
           <DialogContentText>
-            {isUpdating ? "Are you sure you want to update the project details?" : "Are you sure you want to add this project?"}
+            {isUpdating
+              ? "Are you sure you want to update the project details?"
+              : "Are you sure you want to add this project?"}
           </DialogContentText>
         </DialogContent>
         <DialogActions>

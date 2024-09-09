@@ -1,8 +1,8 @@
-import React from 'react';
-import CustomizedTimeline from './Timeline'; // Adjust the import path as needed
-import { MilestoneText } from '../styledComponents/styledText';
-import {StyledMilestoneContainer} from '../styledComponents/styledContainer'
-import { Milestone } from '../Validation/Type';
+import React from "react";
+import CustomizedTimeline from "./Timeline"; // Adjust the import path as needed
+import { MilestoneText } from "../styledComponents/styledText";
+import { StyledMilestoneContainer } from "../styledComponents/styledContainer";
+import { Milestone } from "../Validation/Type";
 
 type MilestonesSectionProps = {
   milestones: Milestone[];
@@ -10,7 +10,11 @@ type MilestonesSectionProps = {
   endDate: string;
 };
 
-const MilestonesSection: React.FC<MilestonesSectionProps> = ({ milestones, startDate, endDate }) => {
+const MilestonesSection: React.FC<MilestonesSectionProps> = ({
+  milestones,
+  startDate,
+  endDate,
+}) => {
   return (
     <StyledMilestoneContainer>
       <MilestoneText>Milestones</MilestoneText>

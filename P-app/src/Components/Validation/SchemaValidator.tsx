@@ -1,17 +1,13 @@
-import * as Yup from 'yup';
+import * as Yup from "yup";
 
 export const ProjectValidationSchema = Yup.object().shape({
-  name: Yup.string().required('Project name is required'),
-  code: Yup.string().required('Project code is required'),
-  status: Yup.string().required('Project status is required'),
-  description: Yup.string().required('Project status is reuired'),
+  name: Yup.string().required("Project name is required"),
+  code: Yup.string().required("Project code is required"),
+  status: Yup.string().required("Project status is required"),
+  description: Yup.string().required("Project status is reuired"),
   scope: Yup.string(),
-  goals: Yup.array().of(
-    Yup.string()
-  ),
-  risks: Yup.array().of(
-    Yup.string()
-  ),
+  goals: Yup.array().of(Yup.string()),
+  risks: Yup.array().of(Yup.string()),
 
   sponsor: Yup.string(),
   businessOwner: Yup.string(),
@@ -20,18 +16,26 @@ export const ProjectValidationSchema = Yup.object().shape({
   pm: Yup.string(),
   deliveryTeam: Yup.string(),
   budget: Yup.object().shape({
-    actualBudget: Yup.number().positive('Actual budget must be a positive number'),
-    allocatedBudget: Yup.number().positive('Planned budget must be a positive number')
+    actualBudget: Yup.number().positive(
+      "Actual budget must be a positive number"
+    ),
+    allocatedBudget: Yup.number().positive(
+      "Planned budget must be a positive number"
+    ),
   }),
   startDate: Yup.string()
     .nullable()
     .transform((value, originalValue) => {
-      return originalValue === '' || originalValue === '00-00-00' ? null : value;
+      return originalValue === "" || originalValue === "00-00-00"
+        ? null
+        : value;
     }),
   endDate: Yup.string()
     .nullable()
     .transform((value, originalValue) => {
-      return originalValue === '' || originalValue === '00-00-00' ? null : value;
+      return originalValue === "" || originalValue === "00-00-00"
+        ? null
+        : value;
     }),
   milestones: Yup.array().of(
     Yup.object().shape({
@@ -40,9 +44,9 @@ export const ProjectValidationSchema = Yup.object().shape({
       deliveryDate: Yup.string()
         .nullable() // Allow null values
         .transform((value, originalValue) => {
-          return originalValue === '' ? null : value; // Convert empty string to null
+          return originalValue === "" ? null : value; // Convert empty string to null
         }),
-        status: Yup.string()
+      status: Yup.string(),
     })
   ),
   roi: Yup.string(),
