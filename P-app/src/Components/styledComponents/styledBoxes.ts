@@ -9,6 +9,8 @@ export const StyledProjectHeaderBox = styled(Box)({
   padding: '8px 16px',
   marginBottom: '24px',
   minHeight: '35px',
-  boxSizing: 'border-box', 
+  boxSizing: 'border-box',
+  backgroundColor: '#ffffff', 
+  boxShadow: '0 2px 4px rgba(226, 1, 1, 0.3)',
 });
 
