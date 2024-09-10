@@ -13,14 +13,12 @@ export const ProjectValidationSchema = Yup.object().shape({
   productOwner: Yup.string(),
   pm: Yup.string(),
   deliveryTeam: Yup.string(),
-  budget: Yup.object().shape({
-    actualBudget: Yup.number().positive(
-      "Actual budget must be a positive number"
-    ),
-    allocatedBudget: Yup.number().positive(
-      "Planned budget must be a positive number"
-    ),
-  }),
+  actualBudget: Yup.number().positive(
+    "Actual budget must be a positive number"
+  ),
+  allocatedBudget: Yup.number().positive(
+    "Planned budget must be a positive number"
+  ),
   startDate: Yup.string()
     .nullable()
     .transform((value, originalValue) => {

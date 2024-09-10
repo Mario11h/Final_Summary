@@ -5,7 +5,6 @@ export const StyledProjectHeaderBox = styled(Box)<{ status: string }>(({ status 
   display: 'flex',
   justifyContent: 'space-between',
   alignItems: 'center',
-  width: '99%',
   padding: '8px 16px',
   marginBottom: '24px',
   minHeight: '35px',
