@@ -8,11 +8,9 @@ export const ProjectValidationSchema = Yup.object().shape({
   scope: Yup.string(),
   goals: Yup.array().of(Yup.string()),
   risks: Yup.array().of(Yup.string()),
-
   sponsor: Yup.string(),
   businessOwner: Yup.string(),
   productOwner: Yup.string(),
-
   pm: Yup.string(),
   deliveryTeam: Yup.string(),
   budget: Yup.object().shape({

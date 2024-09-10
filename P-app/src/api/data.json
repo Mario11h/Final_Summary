@@ -158,45 +158,5 @@
     ],
     "createdAt": "03/09/2024, 3:45:04 PM",
     "updatedAt": "09/09/2024, 12:14:04 PM"
-  },
-  {
-    "id": 11,
-    "name": "dsd",
-    "code": "dsds",
-    "description": "dsadsa",
-    "status": "ON HOLD",
-    "scope": "",
-    "goals": [
-      ""
-    ],
-    "sponsor": "",
-    "businessOwner": "",
-    "productOwner": "",
-    "pm": "",
-    "deliveryTeam": "",
-    "risks": [
-      ""
-    ],
-    "roi": "",
-    "actualBudget": "800",
-    "allocatedBudget": "80",
-    "startDate": "2024-09-05",
-    "endDate": "2024-12-05",
-    "milestones": [
-      {
-        "title": "",
-        "description": "",
-        "deliveryDate": "",
-        "status": "ONGOING"
-      },
-      {
-        "title": "helo",
-        "description": "",
-        "deliveryDate": "",
-        "status": ""
-      }
-    ],
-    "createdAt": "05/09/2024, 5:00:27 PM",
-    "updatedAt": "09/09/2024, 4:06:20 PM"
   }
 ]

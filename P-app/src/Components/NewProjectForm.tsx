@@ -38,7 +38,7 @@ import { Project } from "./Validation/Type";
 import dayjs from "dayjs";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../store";
-import { addProject, updateProject } from "../features/projectSlice"; // Import thunks
+import { addProject, updateProject } from "../features/projectSlice";
 
 interface NewProjectFormProps {
   onCancel: () => void;
@@ -76,25 +76,23 @@ const NewProjectForm: React.FC<NewProjectFormProps> = ({
   };
 
   const dispatch = useDispatch<AppDispatch>();
-  const [goalsToRemove, setGoalsToRemove] = useState<number[]>([]);
-  const [risksToRemove, setRisksToRemove] = useState<number[]>([]);
-  const [milestonesToRemove, setMilestonesToRemove] = useState<number[]>([]);
   const [dialogOpen, setDialogOpen] = useState(false);
   const [isUpdating, setIsUpdating] = useState(false);
   const [formValues, setFormValues] = useState<Project | null>(null);
-  const [alertOpen, setAlertOpen] = useState(false);
 
   const handleSubmit = async (values: Project) => {
-    console.log("Submitting values:", values);
+    const validationErrors = await validateProjectForm(values);
+    if (Object.keys(validationErrors).length > 0) {
+      alert("Please fill out all required fields.");
+      return;
+    }
 
     try {
       if (!project) {
         const response = await dispatch(addProject(values)).unwrap();
-        console.log("New project response:", response);
         onDone(response);
       } else {
         const response = await dispatch(updateProject(values)).unwrap();
-        console.log("Updated project response:", response);
         onEdit(response);
       }
     } catch (error) {
@@ -119,7 +117,6 @@ const NewProjectForm: React.FC<NewProjectFormProps> = ({
     handleCloseDialog();
   };
 
-  console.log("Alert Open State:", alertOpen);
   return (
     <>
       <Form
@@ -127,295 +124,245 @@ const NewProjectForm: React.FC<NewProjectFormProps> = ({
         initialValues={initialValues}
         validate={validateProjectForm}
         mutators={{ ...arrayMutators }}
-        render={({ handleSubmit, submitting, pristine, values }) => {
-          console.log("pristine", pristine);
-          const isFormValid = Object.values(values).every(
-            (value) => value !== "" && value !== undefined
-          );
-          return (
-            <form
-              onSubmit={(e) => {
-                e.preventDefault();
-                handleOpenDialog(!!project, values);
-              }}
-            >
-              <Grid>
-                <ProjectHeader
-                  name={initialValues.name}
-                  code={initialValues.code}
-                  status={initialValues.status}
-                  mode="edit"
-                />
-                <Grid container spacing={2}>
-                  <Grid item xs={12} md={8}>
-                    <Grid>
-                      <OverviewSection
-                        description={initialValues.description}
+        keepDirtyOnReinitialize={true}
+        render={({ handleSubmit, submitting, pristine, values }) => (
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              handleOpenDialog(!!project, values);
+            }}
+          >
+            <Grid>
+              <ProjectHeader
+                name={values.name}
+                code={values.code}
+                status={values.status}
+                mode="edit"
+              />
+              <Grid container spacing={2}>
+                <Grid item xs={12} md={8}>
+                  <OverviewSection
+                    description={values.description}
+                    mode="edit"
+                  />
+                  <Box mt={4} />
+                  <FieldArray name="goals">
+                    {({ fields }) => (
+                      <ProjectScopeGoalsSection
+                        scopeDescription={values.scope}
+                        goals={fields?.value || []}
                         mode="edit"
+                        addGoalField={() => fields.push("")}
+                        removeGoalField={(index) => fields.remove(index)}
                       />
-                      <Box mt={4} />
-                      <FieldArray name="goals">
-                        {({ fields }) => (
-                          <ProjectScopeGoalsSection
-                            scopeDescription={initialValues.scope}
-                            goals={fields.value}
-                            mode="edit"
-                            addGoalField={() => fields.push("")}
-                            removeGoalField={(index) => {
-                              const goalId = fields.value[index].id;
-                              if (goalId)
-                                setGoalsToRemove([...goalsToRemove, goalId]);
-                              fields.remove(index);
-                            }}
+                    )}
+                  </FieldArray>
+                  <StyledEqualContainer>
+                    <BusinessTeamSection
+                      sponsor={values.sponsor}
+                      businessOwner={values.businessOwner}
+                      productOwner={values.productOwner}
+                      mode="edit"
+                    />
+                    <HubTeamSection
+                      pm={values.pm}
+                      deliveryTeam={values.deliveryTeam}
+                      mode="edit"
+                    />
+                    <FieldArray name="risks">
+                      {({ fields }) => (
+                        <RiskSection
+                          risks={fields?.value || []}
+                          mode="edit"
+                          addRiskField={() => fields.push("")}
+                          removeRisk={(index) => fields.remove(index)}
+                        />
+                      )}
+                    </FieldArray>
+                    <BudgetSection
+                      actualBudget={values.actualBudget}
+                      allocatedBudget={values.allocatedBudget}
+                      roi={values.roi}
+                      mode="edit"
+                    />
+                  </StyledEqualContainer>
+                </Grid>
+                <Grid item xs={12} md={4}>
+                  <StyledMilestoneContainer>
+                    <Field name="startDate">
+                      {({ input, meta }) => (
+                        <FormControl fullWidth margin="normal">
+                          <InputLabel shrink htmlFor="startDate">
+                            Start Date
+                          </InputLabel>
+                          <TextField
+                            {...input}
+                            type="date"
+                            fullWidth
+                            error={meta.touched && meta.error}
+                            helperText={meta.touched && meta.error}
                           />
-                        )}
-                      </FieldArray>
-
-                      <StyledEqualContainer>
-                        <BusinessTeamSection
-                          sponsor={initialValues.sponsor}
-                          businessOwner={initialValues.businessOwner}
-                          productOwner={initialValues.productOwner}
-                          mode="edit"
-                        />
-
-                        <HubTeamSection
-                          pm={initialValues.pm}
-                          deliveryTeam={initialValues.pm}
-                          mode="edit"
-                        />
-                        <FieldArray name="risks">
-                          {({ fields }) => (
-                            <RiskSection
-                              risks={fields.value}
-                              mode="edit"
-                              addRiskField={() => fields.push("")}
-                              removeRisk={(index) => {
-                                const riskId = fields.value[index].id;
-                                if (riskId)
-                                  setRisksToRemove([...risksToRemove, riskId]);
-                                fields.remove(index);
-                              }}
-                            />
-                          )}
-                        </FieldArray>
-
-                        <BudgetSection
-                          actualBudget={initialValues.actualBudget}
-                          allocatedBudget={initialValues.allocatedBudget}
-                          roi={initialValues.roi}
-                          mode="edit"
-                        />
-                      </StyledEqualContainer>
-                    </Grid>
-                  </Grid>
-                  <Grid item xs={12} md={4}>
-                    <StyledMilestoneContainer>
-                      <Field name="startDate">
-                        {({ input, meta }) => (
-                          <FormControl fullWidth margin="normal">
-                            <InputLabel shrink htmlFor="startDate">
-                              Start Date
-                            </InputLabel>
-                            <TextField
-                              {...input}
-                              type="date"
-                              fullWidth
-                              error={meta.touched && meta.error}
-                              helperText={meta.touched && meta.error}
-                              value={dayjs(input.value).format("YYYY-MM-DD")}
-                            />
-                          </FormControl>
-                        )}
-                      </Field>
-                      <Field name="endDate">
-                        {({ input, meta }) => (
-                          <FormControl fullWidth margin="normal">
-                            <InputLabel shrink htmlFor="endDate">
-                              End Date
-                            </InputLabel>
-                            <TextField
-                              {...input}
-                              type="date"
-                              fullWidth
-                              error={meta.touched && meta.error}
-                              helperText={meta.touched && meta.error}
-                              value={dayjs(input.value).format("YYYY-MM-DD")}
-                            />
-                          </FormControl>
-                        )}
-                      </Field>
-                      <FieldArray name="milestones">
-                        {({ fields }) => (
-                          <>
-                            {fields.map((name, index) => (
-                              <Box key={index} mt={2}>
-                                <Field name={`${name}.title`}>
-                                  {({ input, meta }) => (
-                                    <FormControl fullWidth margin="normal">
-                                      <TextField
-                                        {...input}
-                                        label="Title"
-                                        fullWidth
-                                        error={meta.touched && meta.error}
-                                        helperText={meta.touched && meta.error}
-                                      />
-                                    </FormControl>
-                                  )}
-                                </Field>
-                                <Field name={`${name}.description`}>
-                                  {({ input, meta }) => (
-                                    <FormControl fullWidth margin="normal">
-                                      <TextField
-                                        {...input}
-                                        label="Description"
-                                        fullWidth
-                                        error={meta.touched && meta.error}
-                                        helperText={meta.touched && meta.error}
-                                      />
-                                    </FormControl>
-                                  )}
-                                </Field>
-                                <Field name={`${name}.deliveryDate`}>
-                                  {({ input, meta }) => (
-                                    <FormControl fullWidth margin="normal">
-                                      <TextField
-                                        {...input}
-                                        type="date"
-                                        label="Delivery Date"
-                                        fullWidth
-                                        error={meta.touched && meta.error}
-                                        helperText={meta.touched && meta.error}
-                                        value={dayjs(input.value).format(
-                                          "YYYY-MM-DD"
-                                        )}
-                                      />
-                                    </FormControl>
-                                  )}
-                                </Field>
-                                <FormControlLabel
-                                  control={
-                                    <Field
-                                      name={`${name}.status`}
-                                      component="input"
-                                      type="checkbox"
-                                      checked={
-                                        fields.value[index]?.status ===
-                                        "ONGOING"
-                                      }
-                                      onChange={(
-                                        event: React.ChangeEvent<HTMLInputElement>
-                                      ) => {
-                                        const isChecked = event.target.checked;
-
-                                        if (isChecked) {
-                                          fields.value.forEach((item, idx) => {
-                                            if (idx !== index) {
-                                              fields.update(idx, {
-                                                ...item,
-                                                status: "",
-                                              });
-                                            }
-                                          });
-                                        }
-
-                                        const newStatus = isChecked
-                                          ? "ONGOING"
-                                          : "";
-                                        fields.update(index, {
-                                          ...fields.value[index],
-                                          status: newStatus,
-                                        });
-                                      }}
+                        </FormControl>
+                      )}
+                    </Field>
+                    <Field name="endDate">
+                      {({ input, meta }) => (
+                        <FormControl fullWidth margin="normal">
+                          <InputLabel shrink htmlFor="endDate">
+                            End Date
+                          </InputLabel>
+                          <TextField
+                            {...input}
+                            type="date"
+                            fullWidth
+                            error={meta.touched && meta.error}
+                            helperText={meta.touched && meta.error}
+                          />
+                        </FormControl>
+                      )}
+                    </Field>
+                    <FieldArray name="milestones">
+                      {({ fields }) => (
+                        <>
+                          {fields?.value?.map((name, index) => (
+                            <Box key={index} mt={2}>
+                              <Field name={`${name}.title`}>
+                                {({ input, meta }) => (
+                                  <FormControl fullWidth margin="normal">
+                                    <TextField
+                                      {...input}
+                                      label="Title"
+                                      fullWidth
+                                      error={meta.touched && meta.error}
+                                      helperText={meta.touched && meta.error}
                                     />
-                                  }
-                                  label="Current State"
-                                />
-                                <Button
-                                  variant="contained"
-                                  color="error"
-                                  sx={{
-                                    "&:hover": {
-                                      backgroundColor: "rgba(226, 1, 1, 1)",
-                                      boxShadow:
-                                        "0 4px 8px rgba(4, 36, 106, 1)",
-                                    },
-                                  }}
-                                  onClick={() => {
-                                    const milestoneId = fields.value[index].id;
-                                    if (milestoneId)
-                                      setMilestonesToRemove([
-                                        ...milestonesToRemove,
-                                        milestoneId,
-                                      ]);
-                                    fields.remove(index);
-                                  }}
-                                >
-                                  Remove Milestone
-                                </Button>
-                              </Box>
-                            ))}
-                            <IconButton
-                              color="primary"
-                              onClick={() =>
-                                fields.push({
-                                  title: "",
-                                  description: "",
-                                  deliveryDate: "",
-                                  status: "",
-                                })
-                              }
-                            >
-                              <AddCircleOutlineIcon />
-                            </IconButton>
-                          </>
-                        )}
-                      </FieldArray>
-                    </StyledMilestoneContainer>
-                  </Grid>
+                                  </FormControl>
+                                )}
+                              </Field>
+                              <Field name={`${name}.description`}>
+                                {({ input, meta }) => (
+                                  <FormControl fullWidth margin="normal">
+                                    <TextField
+                                      {...input}
+                                      label="Description"
+                                      fullWidth
+                                      error={meta.touched && meta.error}
+                                      helperText={meta.touched && meta.error}
+                                    />
+                                  </FormControl>
+                                )}
+                              </Field>
+                              <Field name={`${name}.deliveryDate`}>
+                                {({ input, meta }) => (
+                                  <FormControl fullWidth margin="normal">
+                                    <TextField
+                                      {...input}
+                                      type="date"
+                                      label="Delivery Date"
+                                      fullWidth
+                                      error={meta.touched && meta.error}
+                                      helperText={meta.touched && meta.error}
+                                    />
+                                  </FormControl>
+                                )}
+                              </Field>
+                              <FormControlLabel
+                                control={
+                                  <Field
+                                    name={`${name}.status`}
+                                    component="input"
+                                    type="checkbox"
+                                    checked={
+                                      fields.value[index]?.status === "ONGOING"
+                                    }
+                                    onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                                      const isChecked = event.target.checked;
+                                      if (isChecked) {
+                                        fields.value.forEach((item, idx) => {
+                                          if (idx !== index) {
+                                            fields.update(idx, {
+                                              ...item,
+                                              status: "",
+                                            });
+                                          }
+                                        });
+                                      }
+                                      const newStatus = isChecked ? "ONGOING" : "";
+                                      fields.update(index, {
+                                        ...fields.value[index],
+                                        status: newStatus,
+                                      });
+                                    }}
+                                  />
+                                }
+                                label="Current State"
+                              />
+                              <Button
+                                variant="contained"
+                                color="error"
+                                sx={{
+                                  "&:hover": {
+                                    backgroundColor: "rgba(226, 1, 1, 1)",
+                                    boxShadow:
+                                      "0 4px 8px rgba(4, 36, 106, 1)",
+                                  },
+                                }}
+                                onClick={() => fields.remove(index)}
+                              >
+                                Remove Milestone
+                              </Button>
+                            </Box>
+                          ))}
+                          <IconButton
+                            color="primary"
+                            onClick={() =>
+                              fields.push({
+                                title: "",
+                                description: "",
+                                deliveryDate: "",
+                                status: "",
+                              })
+                            }
+                          >
+                            <AddCircleOutlineIcon />
+                          </IconButton>
+                        </>
+                      )}
+                    </FieldArray>
+                  </StyledMilestoneContainer>
                 </Grid>
               </Grid>
-              <Box
-                mt={2}
-                display="flex"
-                justifyContent="space-between"
-                alignItems="center"
+            </Grid>
+            <Box
+              mt={2}
+              display="flex"
+              justifyContent="space-between"
+              alignItems="center"
+            >
+              <Button color="primary" onClick={onCancel}>
+                Cancel
+              </Button>
+              <Button
+                variant="contained"
+                color="primary"
+                type="submit"
+                disabled={submitting || pristine}
               >
-                <div style={{ position: "relative" }}>
-                  <Button
-                    color="primary"
-                    onClick={onCancel}
-                    sx={{
-                      "&:hover": { transform: "scale(1.2)" },
-                      transition: "transform 0.3s",
-                    }}
-                  >
-                    Cancel
-                  </Button>
-                </div>
-                <Button
-                  variant="contained"
-                  color="primary"
-                  type="submit"
-                  disabled={submitting || pristine}
-                >
-                  {submitting
-                    ? "Submitting..."
-                    : project
-                    ? "Update Project"
-                    : "Add Project"}
-                </Button>
-              </Box>
-              {submitting && (
-                <Backdrop open={submitting}>
-                  <CircularProgress color="inherit" />
-                </Backdrop>
-              )}
-            </form>
-          );
-        }}
+                {submitting
+                  ? "Submitting..."
+                  : project
+                  ? "Update Project"
+                  : "Add Project"}
+              </Button>
+            </Box>
+            {submitting && (
+              <Backdrop open={submitting}>
+                <CircularProgress color="inherit" />
+              </Backdrop>
+            )}
+          </form>
+        )}
       />
-
       <Dialog open={dialogOpen} onClose={handleCloseDialog}>
         <DialogTitle>
           {isUpdating ? "Confirm Update" : "Confirm Addition"}

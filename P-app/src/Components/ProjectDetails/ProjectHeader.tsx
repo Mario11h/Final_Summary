@@ -1,13 +1,9 @@
 import React from "react";
 import { Field } from "react-final-form";
-import { TextField, Box, MenuItem, Select, FormControl, InputLabel } from "@mui/material";
-import {
-  ProjectName,
-  ProjectCode,
-  OngoingText,
-} from "../styledComponents/styledText";
+import {TextField,Box,MenuItem,Select,FormControl,InputLabel,} from "@mui/material";
+import {ProjectName,ProjectCode,OngoingText,} from "../styledComponents/styledText";
 import { StyledProjectHeaderBox } from "../styledComponents/styledBoxes";
-import { generateLabel } from "../Validation/projectValidator"; 
+import { generateLabel } from "../Validation/projectValidator";
 
 type ProjectHeaderProps = {
   name: string;
@@ -23,7 +19,7 @@ const ProjectHeader: React.FC<ProjectHeaderProps> = ({
   mode,
 }) => {
   return (
-    <StyledProjectHeaderBox>
+    <StyledProjectHeaderBox status={status}>
       <Box sx={{ display: "flex", flexDirection: "column" }}>
         {mode === "edit" ? (
           <>
@@ -42,7 +38,7 @@ const ProjectHeader: React.FC<ProjectHeaderProps> = ({
                       style: { fontSize: "inherit", fontWeight: "inherit" },
                     }}
                     label={generateLabel("Project Name", true)}
-                    sx={{ width: '145%' }}
+                    sx={{ width: "145%" }}
                   />
                 )}
               </Field>
@@ -77,30 +73,29 @@ const ProjectHeader: React.FC<ProjectHeaderProps> = ({
       </Box>
       {mode === "edit" ? (
         <OngoingText status={status}>
-        <Field name="status" initialValue={status}>
-          {({ input, meta }) => (
-            <FormControl fullWidth variant="standard" sx={{ width: '100%' }}>
-              <InputLabel shrink>{generateLabel("Status", true)}</InputLabel>
-              <Select
-                {...input}
-                displayEmpty
-                value={input.value}
-                error={meta.touched && meta.error}
-                style={{ fontSize: "inherit", fontWeight: "inherit" }}
-              >
-                <MenuItem value="">
-                  <em>None</em>
-                </MenuItem>
-                <MenuItem value="REQUESTED">Requested</MenuItem>
-                <MenuItem value="ONGOING">Ongoing</MenuItem>
-                <MenuItem value="ON HOLD">On Hold</MenuItem>
-                <MenuItem value="FINISHED">Finished</MenuItem>
-              </Select>
-            </FormControl>
-          )}
-        </Field>
-      </OngoingText>
-      
+          <Field name="status" initialValue={status}>
+            {({ input, meta }) => (
+              <FormControl fullWidth variant="standard" sx={{ width: "100%" }}>
+                <InputLabel shrink>{generateLabel("Status", true)}</InputLabel>
+                <Select
+                  {...input}
+                  displayEmpty
+                  value={input.value}
+                  error={meta.touched && meta.error}
+                  style={{ fontSize: "inherit", fontWeight: "inherit" }}
+                >
+                  <MenuItem value="">
+                    <em>None</em>
+                  </MenuItem>
+                  <MenuItem value="REQUESTED">Requested</MenuItem>
+                  <MenuItem value="ONGOING">Ongoing</MenuItem>
+                  <MenuItem value="ON HOLD">On Hold</MenuItem>
+                  <MenuItem value="FINISHED">Finished</MenuItem>
+                </Select>
+              </FormControl>
+            )}
+          </Field>
+        </OngoingText>
       ) : (
         <OngoingText status={status}>{status}</OngoingText>
       )}

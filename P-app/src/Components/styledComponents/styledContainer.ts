@@ -66,32 +66,20 @@ export const StyledMilestoneContainer = styled(Box)({
 });
 
 // Utility functions for budget value box
-const getBackgroundColor = (
-  isActual: boolean,
-  budget_actual_usd: number,
-  budget_planned_usd: number
-) => {
+const getBackgroundColor = (isActual: boolean, budget_actual_usd: number, budget_planned_usd: number) => {
   if (isActual) {
-    return budget_actual_usd > budget_planned_usd
-      ? "rgba(226, 1, 1, 1)"
-      : "rgba(4, 164, 132, 1)";
+    return budget_actual_usd > budget_planned_usd? "rgba(226, 1, 1, 1)": "rgba(4, 164, 132, 1)";
   }
   return "rgba(7, 62, 187, 1)";
 };
 
-const getWidth = (
-  isActual: boolean,
-  budget_actual_usd: number,
-  budget_planned_usd: number
-) => {
+const getWidth = (isActual: boolean,budget_actual_usd: number,budget_planned_usd: number) => {
   const BASE_BUDGET = 150000;
   const BASE_WIDTH = 75;
   const WIDTH_INCREMENT = 40;
 
-  const difference = isActual
-    ? budget_actual_usd - BASE_BUDGET
-    : budget_planned_usd - BASE_BUDGET;
-  const increments = Math.floor(difference / 75000);
+  const difference = isActual? budget_actual_usd - BASE_BUDGET: budget_planned_usd - BASE_BUDGET;
+  const increments = Math.floor(difference / 50000);
   const newWidth = BASE_WIDTH + increments * WIDTH_INCREMENT;
 
   return `${newWidth}px`;
