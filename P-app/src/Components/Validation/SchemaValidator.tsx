@@ -5,20 +5,16 @@ export const ProjectValidationSchema = Yup.object().shape({
   code: Yup.string().required("Project code is required"),
   status: Yup.string().required("Project status is required"),
   description: Yup.string().required("Project status is reuired"),
-  scope: Yup.string(),
-  goals: Yup.array().of(Yup.string()),
-  risks: Yup.array().of(Yup.string()),
-  sponsor: Yup.string(),
-  businessOwner: Yup.string(),
-  productOwner: Yup.string(),
-  pm: Yup.string(),
-  deliveryTeam: Yup.string(),
-  actualBudget: Yup.number().positive(
-    "Actual budget must be a positive number"
-  ),
-  allocatedBudget: Yup.number().positive(
-    "Planned budget must be a positive number"
-  ),
+  scope: Yup.string().required("Project scope is reuired"),
+  goals: Yup.array().of(Yup.string().required("Each goal is required")),
+  risks: Yup.array().required('Risk is required'),
+  sponsor: Yup.string().required('Sponsor is required'),
+  businessOwner: Yup.string().required('Business Owner is required'),
+  productOwner: Yup.string().required('Product Owner is required'),
+  pm: Yup.string().required('Project Manager is required'),
+  deliveryTeam: Yup.string().required('Developer Team is required'),
+  actualBudget: Yup.number().positive("Actual budget must be a positive number"),
+  allocatedBudget: Yup.number().positive("Planned budget must be a positive number"),
   startDate: Yup.string()
     .nullable()
     .transform((value, originalValue) => {

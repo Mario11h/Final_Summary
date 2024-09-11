@@ -21,6 +21,7 @@ import {
 import { Grid, TextField, Button } from "@mui/material";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline";
+import { generateLabel } from "../Validation/projectValidator";
 
 type ProjectScopeGoalsSectionProps = {
   scopeDescription: string;
@@ -40,7 +41,7 @@ const ProjectScopeGoalsSection: React.FC<ProjectScopeGoalsSectionProps> = ({
   return (
     <StyledBox>
       <Grid container>
-        <StyledGridItem item xs={12} md={6}>
+        <StyledGridItem item xs={6}>
           <Section
             icon={
               <StyledIconGreenBackground>
@@ -64,6 +65,8 @@ const ProjectScopeGoalsSection: React.FC<ProjectScopeGoalsSectionProps> = ({
                         disableUnderline: true,
                         style: { fontSize: "inherit", fontWeight: "inherit" },
                       }}
+                      label={generateLabel("Project Scope", true)}
+                      sx={{ width: "145%" }}
                     />
                   )}
                 </Field>
@@ -74,7 +77,7 @@ const ProjectScopeGoalsSection: React.FC<ProjectScopeGoalsSectionProps> = ({
           />
         </StyledGridItem>
         <StyledVerticalDivider />
-        <StyledGridItem item xs={12} md={6}>
+        <StyledGridItem item xs={6}>
           <Section
             icon={
               <StyledIconNoBackground>
@@ -102,12 +105,10 @@ const ProjectScopeGoalsSection: React.FC<ProjectScopeGoalsSectionProps> = ({
                             helperText={meta.touched && meta.error}
                             InputProps={{
                               disableUnderline: true,
-                              style: {
-                                fontSize: "inherit",
-                                fontWeight: "inherit",
-                                paddingLeft: "15px",
-                              },
+                              style: { fontSize: "inherit", fontWeight: "inherit" },
                             }}
+                            label={generateLabel("Project Goals", true)}
+                            sx={{ width: "145%" }}
                             margin="normal"
                           />
                         )}

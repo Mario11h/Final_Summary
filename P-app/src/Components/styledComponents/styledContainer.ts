@@ -28,6 +28,7 @@ export const StyledEqualContainer = styled(Box)({
   gap: "16px",
   justifyContent: "space-between",
   width: "100%",
+  marginBottom:'40px'
 });
 
 export const StyledTeamBox = styled(Box)({

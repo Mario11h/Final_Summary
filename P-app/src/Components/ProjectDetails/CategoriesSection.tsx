@@ -4,6 +4,7 @@ import GroupsOutlinedIcon from "@mui/icons-material/GroupsOutlined";
 import ContentPasteSearchIcon from "@mui/icons-material/ContentPasteSearch";
 import CurrencyExchangeIcon from "@mui/icons-material/CurrencyExchange";
 import LowerSection from "./lowerSection";
+import { generateLabel } from "../Validation/projectValidator";
 import {
   BulletedList,
   CalibriText12Navy,
@@ -84,6 +85,7 @@ const BusinessTeamSection: React.FC<BusinessTeamSectionProps> = ({
                     helperText={meta.touched && meta.error}
                     style={{ marginLeft: "8px" }}
                     defaultValue={sponsor}
+                    label={generateLabel("Sponsor", true)}
                   />
                 )}
               </Field>
@@ -109,6 +111,7 @@ const BusinessTeamSection: React.FC<BusinessTeamSectionProps> = ({
                     helperText={meta.touched && meta.error}
                     style={{ marginLeft: "8px" }}
                     defaultValue={businessOwner}
+                    label={generateLabel("Business Owner", true)}
                   />
                 )}
               </Field>
@@ -133,6 +136,7 @@ const BusinessTeamSection: React.FC<BusinessTeamSectionProps> = ({
                     helperText={meta.touched && meta.error}
                     style={{ marginLeft: "8px" }}
                     defaultValue={productOwner}
+                    label={generateLabel("Product Owner", true)}
                   />
                 )}
               </Field>
@@ -211,6 +215,8 @@ const HubTeamSection: React.FC<HubTeamSectionProps> = ({
                   fullWidth
                   style={{ marginLeft: "8px" }}
                   defaultValue={pm}
+                  label={generateLabel("PMs", true)}
+                  
                 />
               )}
             </Field>
@@ -236,6 +242,7 @@ const HubTeamSection: React.FC<HubTeamSectionProps> = ({
                   defaultValue={deliveryTeam}
                   error={meta.touched && meta.error}
                   helperText={meta.touched && meta.error}
+                  label={generateLabel("Delivery Team", true)}
                 />
               )}
             </Field>
@@ -276,6 +283,7 @@ const RiskSection: React.FC<RiskSectionProps> = ({
                 helperText={meta.touched && meta.error}
                 style={{ marginLeft: "8px" }}
                 defaultValue={risk}
+                label={generateLabel("Risk", true)}
               />
             )}
           </Field>

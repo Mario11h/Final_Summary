@@ -1,18 +1,12 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  fetchProjects,
-  setCurrentPage,
-  deleteProject,
-  clearError,
-  clearStatus,
-} from "../features/projectSlice";
+import {fetchProjects,setCurrentPage,deleteProject,} from "../features/projectSlice";
 import { RootState, AppDispatch } from "../store";
 import Pagination from "../Components/Pagination";
 import ProjectScopeGoalsSection from "../Components/ProjectDetails/ProjectScopeGoalsSection";
 import {BusinessTeamSection,HubTeamSection,RiskSection,BudgetSection,} from "../Components/ProjectDetails/CategoriesSection";
 import MilestonesSection from "../Components/Timeline/MilestonesSection";
-import {Container,Typography,Box,Grid,Backdrop,CircularProgress,Tooltip,IconButton,Dialog,DialogTitle,DialogContent,DialogContentText,DialogActions,Button,Snackbar,Alert} from "@mui/material";
+import {Container,Typography,Box,Grid,Backdrop,CircularProgress,Tooltip,IconButton,Dialog,DialogTitle,DialogContent,DialogContentText,DialogActions,Button,} from "@mui/material";
 import { StyledEqualContainer } from "../Components/styledComponents/styledContainer";
 import NewProjectForm from "../Components/NewProjectForm";
 import AddchartIcon from "@mui/icons-material/Addchart";
@@ -24,6 +18,7 @@ import "../App.css";
 import ProjectHeader from "../Components/ProjectDetails/ProjectHeader";
 import OverviewSection from "../Components/ProjectDetails/OverviewSection";
 import NamesMenu from "../Components/NamesMenu/NamesMenu";
+import { showAlert } from "../features/AlertSlice";
 
 const MainApp: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -41,26 +36,7 @@ const MainApp: React.FC = () => {
   const printRef = useRef<HTMLDivElement | null>(null);
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
   const [projectToDelete, setProjectToDelete] = useState<number | null>(null);
-  //alert
-  const [open, setOpen] = useState(false);
-  const handleOpenSnackbar = () => {
-    setOpen(true);
-  };
-  const handleCloseSnackbar = () => {
-    setOpen(false);
-    setTimeout(() => {
-      dispatch(clearError());
-      dispatch(clearStatus());
-    }, 300);
-  };
-
-  useEffect(() => {
-    if (status === "success" || status === "error") {
-      handleOpenSnackbar();
-    } else {
-      setOpen(false);
-    }
-  }, [error, status]);
+  
 
   useEffect(() => {
     dispatch(fetchProjects());
@@ -128,6 +104,7 @@ const MainApp: React.FC = () => {
       }
     } catch (error) {
       console.error("Failed to delete the project:", error);
+      dispatch(showAlert({message:"Failed to delete the project", severity:"error"}))
     } finally {
       setIsDeleting(false);
     }
@@ -136,6 +113,7 @@ const MainApp: React.FC = () => {
   const confirmDeleteProject = () => {
     if (projectToDelete !== null) {
       handleDeleteProject(projectToDelete);
+      dispatch(showAlert({message:"Delete Successfully", severity:"success"}))
       closeDeleteDialog();
     }
   };
@@ -156,20 +134,7 @@ const MainApp: React.FC = () => {
     if (!project) return null;
     return (
       <div key={index} className="pdf-page">
-        <Snackbar
-          open={open}
-          autoHideDuration={3000}
-          anchorOrigin={{ vertical: "top", horizontal: "center" }}
-          onClose={handleCloseSnackbar}
-        >
-          <Alert
-            severity={status === "success" ? "success" : "error"}
-            variant="filled"
-            onClose={handleCloseSnackbar}
-          >
-            {status === "success" ? "Success" : error}
-          </Alert>
-        </Snackbar>
+        
         <Grid>
           <ProjectHeader
             name={project.name}
@@ -291,7 +256,7 @@ const MainApp: React.FC = () => {
         {`
           @media print {
             @page {
-              size: 70cm 70cm;
+              size: 45cm 45cm;
             }
             .pdf-page {
               width: 100%;

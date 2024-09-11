@@ -5,7 +5,7 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { RootState, AppDispatch } from "../../store";
-import { fetchProjects } from "../../features/projectSlice";
+import { fetchProjects, setCurrentPage } from "../../features/projectSlice"; // Import setCurrentPage
 
 const ITEM_HEIGHT = 48;
 
@@ -32,8 +32,13 @@ export default function LongMenu() {
     setAnchorEl(null);
   };
 
+  // Handle project click and set the current page based on the project index
   const handleProjectClick = (projectId: number) => {
     handleClose();
+    const projectIndex = projects.findIndex((project) => project.id === projectId);
+    if (projectIndex !== -1) {
+      dispatch(setCurrentPage(projectIndex + 1)); // Set the page to the project number
+    }
   };
 
   return (

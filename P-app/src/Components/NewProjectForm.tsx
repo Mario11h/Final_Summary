@@ -1,36 +1,13 @@
 import React, { useState } from "react";
-import {
-  Button,
-  TextField,
-  Box,
-  FormControlLabel,
-  Grid,
-  FormControl,
-  InputLabel,
-  CircularProgress,
-  Backdrop,
-  IconButton,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogContentText,
-  DialogTitle,
-} from "@mui/material";
+import {Button,TextField,Box,FormControlLabel,Grid,FormControl,InputLabel,CircularProgress,Backdrop,IconButton,Dialog,DialogActions,DialogContent,DialogContentText,DialogTitle,} from "@mui/material";
 import { Form, Field } from "react-final-form";
 import arrayMutators from "final-form-arrays";
 import ProjectHeader from "./ProjectDetails/ProjectHeader";
 import OverviewSection from "./ProjectDetails/OverviewSection";
 import ProjectScopeGoalsSection from "./ProjectDetails/ProjectScopeGoalsSection";
+import {StyledEqualContainer,StyledMilestoneContainer,} from "./styledComponents/styledContainer";
 import {
-  StyledEqualContainer,
-  StyledMilestoneContainer,
-} from "./styledComponents/styledContainer";
-import {
-  BusinessTeamSection,
-  HubTeamSection,
-  RiskSection,
-  BudgetSection,
-} from "./ProjectDetails/CategoriesSection";
+BusinessTeamSection,HubTeamSection,RiskSection,BudgetSection,} from "./ProjectDetails/CategoriesSection";
 import { FieldArray } from "react-final-form-arrays";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import validateProjectForm from "./Validation/projectValidator";
@@ -39,6 +16,7 @@ import dayjs from "dayjs";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../store";
 import { addProject, updateProject } from "../features/projectSlice";
+import { showAlert } from "../features/AlertSlice";
 
 interface NewProjectFormProps {
   onCancel: () => void;
@@ -82,20 +60,24 @@ const NewProjectForm: React.FC<NewProjectFormProps> = ({
 
   const handleSubmit = async (values: Project) => {
     const validationErrors = await validateProjectForm(values);
-    if (Object.keys(validationErrors).length > 0) {
-      alert("Please fill out all required fields.");
+    if (Object.keys(validationErrors || {}).length > 0) {
+      dispatch(showAlert({message:"Please fill out all required fields.", severity:"error"}))
       return;
     }
+
 
     try {
       if (!project) {
         const response = await dispatch(addProject(values)).unwrap();
         onDone(response);
+        dispatch(showAlert({message:"Add Project Successfully ", severity:"success"}))
       } else {
         const response = await dispatch(updateProject(values)).unwrap();
         onEdit(response);
+        dispatch(showAlert({message:"Update Successfully", severity:"success"}))
       }
     } catch (error) {
+      dispatch(showAlert({message:"HElloooo", severity:"error"}))
       console.error("Error handling project data:", error);
     }
   };
@@ -226,7 +208,7 @@ const NewProjectForm: React.FC<NewProjectFormProps> = ({
                         <>
                           {fields?.value?.map((name, index) => (
                             <Box key={index} mt={2}>
-                              <Field name={`${name}.title`}>
+                              <Field name={`milestones[${index}].title`}>
                                 {({ input, meta }) => (
                                   <FormControl fullWidth margin="normal">
                                     <TextField
@@ -239,7 +221,7 @@ const NewProjectForm: React.FC<NewProjectFormProps> = ({
                                   </FormControl>
                                 )}
                               </Field>
-                              <Field name={`${name}.description`}>
+                              <Field name={`milestones[${index}].description`}>
                                 {({ input, meta }) => (
                                   <FormControl fullWidth margin="normal">
                                     <TextField
@@ -252,7 +234,7 @@ const NewProjectForm: React.FC<NewProjectFormProps> = ({
                                   </FormControl>
                                 )}
                               </Field>
-                              <Field name={`${name}.deliveryDate`}>
+                              <Field name={`milestones[${index}].deliveryDate`}>
                                 {({ input, meta }) => (
                                   <FormControl fullWidth margin="normal">
                                     <TextField

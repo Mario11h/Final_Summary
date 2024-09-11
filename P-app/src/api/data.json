@@ -1,7 +1,7 @@
 [
   {
     "createdAt": "27-08-2024 2:19:19",
-    "updatedAt": "09/09/2024, 12:32:23 PM",
+    "updatedAt": "11/09/2024, 4:42:57 PM",
     "id": 5,
     "name": "CMA-CGM",
     "code": "ASP",
@@ -33,6 +33,12 @@
         "description": "Milestone Description1",
         "deliveryDate": "2024-06-01",
         "status": "FINISHED"
+      },
+      {
+        "title": "eeeee",
+        "description": "eeeee",
+        "deliveryDate": "2024-09-26",
+        "status": ""
       }
     ]
   },
@@ -127,9 +133,9 @@
   },
   {
     "id": 8,
-    "name": "Container Sales Plastform Report",
-    "code": "Cm",
-    "description": "dede",
+    "name": "Mario Hatoum",
+    "code": "MA",
+    "description": "overvuew",
     "status": "ON HOLD",
     "scope": "",
     "goals": [
@@ -144,19 +150,65 @@
       ""
     ],
     "roi": "",
-    "actualBudget": "33",
-    "allocatedBudget": "2233",
-    "startDate": "2024-09-03",
-    "endDate": "2024-12-03",
+    "actualBudget": "500",
+    "allocatedBudget": "600",
+    "startDate": "2024-09-11",
+    "endDate": "2024-12-11",
+    "milestones": [],
+    "createdAt": "11/09/2024, 10:44:17 AM",
+    "updatedAt": "11/09/2024, 10:44:17 AM"
+  },
+  {
+    "id": 10,
+    "name": "Loancaster",
+    "code": "LS",
+    "description": "A project management tool for loan approvals.",
+    "status": "FINISHED",
+    "scope": "Manage and streamline loan approval processes.",
+    "goals": [
+      "Increase efficiency"
+    ],
+    "sponsor": "John Doe",
+    "businessOwner": "Jane Smith",
+    "productOwner": "Alice Johnson",
+    "pm": "Bob Roberts",
+    "deliveryTeam": "Team Alpha",
+    "risks": [
+      "Budget overrun",
+      "Data security issues",
+      "Timeline delays"
+    ],
+    "roi": "",
+    "actualBudget": "100000",
+    "allocatedBudget": "120000",
+    "startDate": "2024-09-11",
+    "endDate": "2024-12-11",
     "milestones": [
       {
-        "title": "xxx",
-        "description": "last year",
-        "deliveryDate": "",
-        "status": "ONGOING"
+        "title": "Phase 1: Requirement Gathering",
+        "description": "Collect all business requirements for the project.",
+        "deliveryDate": "2024-09-12",
+        "status": ""
+      },
+      {
+        "title": "Phase 2: Development",
+        "description": "Develop the core functionalities of the system.",
+        "deliveryDate": "2024-09-14",
+        "status": ""
+      },
+      {
+        "title": "Phase 3: Testing",
+        "description": "Perform system testing and user acceptance testing.",
+        "deliveryDate": "2024-09-18",
+        "status": ""
       }
     ],
-    "createdAt": "03/09/2024, 3:45:04 PM",
-    "updatedAt": "09/09/2024, 12:14:04 PM"
+    "object Object": {
+      "description": "Collect all business requirements for the project.",
+      "deliveryDate": "2024-09-19",
+      "title": "Phase 1: Development"
+    },
+    "createdAt": "11/09/2024, 4:22:21 PM",
+    "updatedAt": "11/09/2024, 4:46:30 PM"
   }
 ]

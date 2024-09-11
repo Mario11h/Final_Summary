@@ -1,9 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
 import projectReducer from './features/projectSlice';
-
+import alertReducer from './features/AlertSlice'
 const store = configureStore({
   reducer: {
     projects: projectReducer,
+    alert: alertReducer,
   },
 });
 
