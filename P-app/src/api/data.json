@@ -210,5 +210,50 @@
     },
     "createdAt": "11/09/2024, 4:22:21 PM",
     "updatedAt": "11/09/2024, 4:46:30 PM"
+  },
+  {
+    "id": 11,
+    "name": "HealthCarePlus",
+    "code": "HCP",
+    "description": "A comprehensive platform for managing healthcare records, appointments, and telemedicine.",
+    "status": "ONGOING",
+    "scope": "Develop an integrated system for healthcare providers to manage patient records, appointment scheduling, and virtual consultations.",
+    "goals": [
+      "Improve patient care coordination",
+      "Streamline appointment scheduling",
+      "Enhance data security and privacy",
+      "Enable telemedicine for remote patient care"
+    ],
+    "sponsor": "Dr. Emily White",
+    "businessOwner": "Dr. James Carter",
+    "productOwner": "Michael Stevens",
+    "pm": "Laura Mitchell",
+    "deliveryTeam": "Team Omega",
+    "risks": [
+      "Regulatory compliance issues",
+      "System downtime affecting patient care",
+      "Data breaches compromising patient confidentiality"
+    ],
+    "roi": "20% reduction in administrative costs",
+    "actualBudget": "200000",
+    "allocatedBudget": "250000",
+    "startDate": "2024-09-11",
+    "endDate": "2024-12-11",
+    "milestones": [
+      {
+        "title": "Project Kickoff",
+        "description": "Initial project planning and team setup.",
+        "deliveryDate": "2024-09-12",
+        "status": ""
+      },
+      {
+        "title": "Requirement Analysis",
+        "description": "Gather and document system requirements from healthcare professionals.so oigcyewfghacjywefcwegc",
+        "deliveryDate": "2024-09-17",
+        "status": "ONGOING"
+      }
+    ],
+    "createdAt": "11/09/2024, 5:39:55 PM",
+    "updatedAt": "11/09/2024, 5:47:58 PM"
   }
 ]

@@ -66,7 +66,7 @@ const ProjectScopeGoalsSection: React.FC<ProjectScopeGoalsSectionProps> = ({
                         style: { fontSize: "inherit", fontWeight: "inherit" },
                       }}
                       label={generateLabel("Project Scope", true)}
-                      sx={{ width: "145%" }}
+                      sx={{ width: "100%", }}
                     />
                   )}
                 </Field>

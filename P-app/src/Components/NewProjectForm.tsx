@@ -240,7 +240,7 @@ const NewProjectForm: React.FC<NewProjectFormProps> = ({
                                     <TextField
                                       {...input}
                                       type="date"
-                                      label="Delivery Date"
+                                      
                                       fullWidth
                                       error={meta.touched && meta.error}
                                       helperText={meta.touched && meta.error}

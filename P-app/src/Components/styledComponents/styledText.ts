@@ -137,6 +137,7 @@ export const CalibriBoldRed11 = styled(Typography)({
   fontSize: "14px",
   fontWeight: "bold",
   color: "rgba(226, 1, 1, 1)",
+  minWidth:'100px'
 });
 
 export const CalibriBoldNavy18 = styled(Typography)({

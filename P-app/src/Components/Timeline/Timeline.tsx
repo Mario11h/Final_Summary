@@ -74,7 +74,7 @@ const CustomizedTimeline: React.FC<CustomizedTimelineProps> = ({
               <StyledDiv>
                 <Grid>
                   <CalibriBoldNavy14>{milestone.title}</CalibriBoldNavy14>
-                  <CalibriBoldNavy11>{milestone.description}</CalibriBoldNavy11>
+                  <CalibriBoldNavy11 >{milestone.description}</CalibriBoldNavy11>
                 </Grid>
 
                 <Grid>
