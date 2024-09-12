@@ -1,30 +1,29 @@
 [
   {
     "createdAt": "27-08-2024 2:19:19",
-    "updatedAt": "12/09/2024, 10:42:52 AM",
+    "updatedAt": "12/09/2024, 3:54:51 PM",
     "id": 5,
     "name": "CMA-CGM",
     "code": "ASP",
-    "status": "ONGOING",
+    "status": "FINISHED",
     "description": "An overview of the project",
     "scope": "The scope of the project",
     "goals": [
       "Digitalized tool to sell used containers",
-      "Increase in sales of used containers.",
-      "fasf"
+      "Increase in sales of used containers."
     ],
     "sponsor": "sponsorName",
     "businessOwner": "businessOwners",
     "productOwner": "productOwner",
     "pm": "PM PM",
-    "deliveryTeam": "AAA,BBB,CCCw",
+    "deliveryTeam": "AAA,BBB,CCC",
     "risks": [
       "The project missed a Front-end developer for multiple sprints",
       "Change and missing business requirements"
     ],
     "roi": "$1.4 M Increase in revenue within the next 2 years",
-    "actualBudget": "120000",
-    "allocatedBudget": "200000",
+    "actualBudget": "220000",
+    "allocatedBudget": "120000",
     "startDate": "2024-01-01",
     "endDate": "2024-12-31",
     "milestones": [
@@ -35,10 +34,10 @@
         "status": ""
       },
       {
-        "title": "eeeee",
-        "description": "eeeee",
+        "title": "Milestone Title1",
+        "description": "Milestone Description1",
         "deliveryDate": "2024-09-26",
-        "status": "ONGOING"
+        "status": ""
       }
     ]
   },

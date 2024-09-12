@@ -5,8 +5,26 @@ import debounce from "lodash/debounce"; // Import lodash debounce
 
 // Debounce time (ms) - Adjust as needed
 const DEBOUNCE_TIME = 300;
+const requiredFields: Array<keyof Project> = [
+  'name',
+  'code',
+  'description',
+  'scope',
+  'status',
+  'goals',
+  'sponsor',
+  'businessOwner',
+  'productOwner',
+  'pm',
+  'deliveryTeam',
+  'risks'
+];
 
-const validateProjectForm = debounce(
+export const isFieldRequired = (fieldName: keyof Project): boolean => {
+  return requiredFields.includes(fieldName);
+};
+
+export const validateProjectForm = debounce(
   async (values: Partial<Project>): Promise<Record<string, string>> => {
     try {
       await ProjectValidationSchema.validate(values, { abortEarly: false });

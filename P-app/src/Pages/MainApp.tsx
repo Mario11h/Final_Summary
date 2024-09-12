@@ -26,8 +26,6 @@ const MainApp: React.FC = () => {
     (state: RootState) => state.projects.currentPage
   );
   const isLoading = useSelector((state: RootState) => state.projects.isLoading);
-  const error = useSelector((state: RootState) => state.projects.error);
-  const status = useSelector((state: RootState) => state.projects.status);
   const projects = useSelector((state: RootState) => state.projects.projects);
   const [isAddingProject, setIsAddingProject] = useState(false);
   const [isEditing, setIsEditing] = useState(false);

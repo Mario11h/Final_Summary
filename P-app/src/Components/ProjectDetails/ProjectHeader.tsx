@@ -68,9 +68,9 @@ const ProjectHeader: React.FC<ProjectHeaderProps> = ({
         ) : (
           <>
             <ProjectContainer>
-  <ProjectName>{name}</ProjectName>
-  {status === 'FINISHED' && <StyledGreenDone />}
-</ProjectContainer>
+              <ProjectName>{name}</ProjectName>
+              {status === 'FINISHED' && <StyledGreenDone />}
+            </ProjectContainer>
 
             <ProjectCode>{code}</ProjectCode>
           </>

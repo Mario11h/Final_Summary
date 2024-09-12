@@ -59,7 +59,8 @@ const NewProjectForm: React.FC<NewProjectFormProps> = ({
   const [isUpdating, setIsUpdating] = useState(false);
   const [formValues, setFormValues] = useState<Project | null>(null);
 
-  const handleSubmit = async (values: Project) => {
+  const onSubmit = async (values: Project) => {
+
     const validationErrors = await validateProjectForm(values);
     if (Object.keys(validationErrors || {}).length > 0) {
       dispatch(showAlert({ message: "Please fill out all required fields.", severity: "error" }))
@@ -95,7 +96,7 @@ const NewProjectForm: React.FC<NewProjectFormProps> = ({
 
   const handleConfirm = async () => {
     if (formValues) {
-      await handleSubmit(formValues);
+      await onSubmit(formValues);
     }
     handleCloseDialog();
   };
@@ -103,12 +104,12 @@ const NewProjectForm: React.FC<NewProjectFormProps> = ({
   return (
     <>
       <Form
-        onSubmit={handleSubmit}
+        onSubmit={onSubmit}
         initialValues={initialValues}
         validate={validateProjectForm}
         mutators={{ ...arrayMutators }}
         keepDirtyOnReinitialize={true}
-        render={({ handleSubmit, submitting, pristine, values }) => (
+        render={({ handleSubmit, submitting, pristine,form, values }) => (
           <form
             onSubmit={(e) => {
               e.preventDefault();

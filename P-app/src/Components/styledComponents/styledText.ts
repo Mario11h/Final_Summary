@@ -22,8 +22,9 @@ export const ProjectContainer = styled("div")({
   alignItems: "center",
 });
 export const StyledGreenDone = styled(DoneOutlineIcon)({
-  fontSize: '100%',
+  fontSize: '110%',
   transform: 'translateY(-40%)',
+  marginLeft:'7px',
   color: 'green',
   animation: 'fadeInScale 0.5s ease-in-out',
 
