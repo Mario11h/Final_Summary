@@ -58,4 +58,5 @@ export const ArrowContainer = styled.div({
   position: "absolute",
   right: "100px",
   bottom: "-10px",
+  
 });

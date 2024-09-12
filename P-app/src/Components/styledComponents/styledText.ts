@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import { Typography } from "@mui/material";
+import DoneOutlineIcon from '@mui/icons-material/DoneOutline';
 
 export const StyledTitleGreyBackground = styled(Typography)({
   color: "#003366",
@@ -15,6 +16,27 @@ export const ProjectName = styled(Typography)({
   fontWeight: "bold",
   fontFamily: "roboto",
   marginBottom: "5px",
+});
+export const ProjectContainer = styled("div")({
+  display: "flex",
+  alignItems: "center",
+});
+export const StyledGreenDone = styled(DoneOutlineIcon)({
+  fontSize: '100%',
+  transform: 'translateY(-40%)',
+  color: 'green',
+  animation: 'fadeInScale 0.5s ease-in-out',
+
+  '@keyframes fadeInScale': {
+    '0%': {
+      opacity: 0,
+      transform: 'scale(0.5) translateY(-40%)',
+    },
+    '100%': {
+      opacity: 1,
+      transform: 'scale(1) translateY(-40%)',
+    },
+  },
 });
 
 export const ProjectCode = styled(Typography)({

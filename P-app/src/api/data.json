@@ -1,7 +1,7 @@
 [
   {
     "createdAt": "27-08-2024 2:19:19",
-    "updatedAt": "11/09/2024, 4:42:57 PM",
+    "updatedAt": "12/09/2024, 10:42:52 AM",
     "id": 5,
     "name": "CMA-CGM",
     "code": "ASP",
@@ -32,13 +32,13 @@
         "title": "Milestone Title1",
         "description": "Milestone Description1",
         "deliveryDate": "2024-06-01",
-        "status": "FINISHED"
+        "status": ""
       },
       {
         "title": "eeeee",
         "description": "eeeee",
         "deliveryDate": "2024-09-26",
-        "status": ""
+        "status": "ONGOING"
       }
     ]
   },
@@ -235,8 +235,8 @@
       "Data breaches compromising patient confidentiality"
     ],
     "roi": "20% reduction in administrative costs",
-    "actualBudget": "200000",
-    "allocatedBudget": "250000",
+    "actualBudget": "280000",
+    "allocatedBudget": "200000",
     "startDate": "2024-09-11",
     "endDate": "2024-12-11",
     "milestones": [
@@ -254,6 +254,6 @@
       }
     ],
     "createdAt": "11/09/2024, 5:39:55 PM",
-    "updatedAt": "11/09/2024, 5:47:58 PM"
+    "updatedAt": "12/09/2024, 11:05:51 AM"
   }
 ]

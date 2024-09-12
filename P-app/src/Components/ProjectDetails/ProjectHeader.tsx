@@ -1,9 +1,10 @@
 import React from "react";
 import { Field } from "react-final-form";
 import {TextField,Box,MenuItem,Select,FormControl,InputLabel,} from "@mui/material";
-import {ProjectName,ProjectCode,OngoingText,} from "../styledComponents/styledText";
+import {ProjectName,ProjectCode,OngoingText, ProjectContainer,} from "../styledComponents/styledText";
 import { StyledProjectHeaderBox } from "../styledComponents/styledBoxes";
 import { generateLabel } from "../Validation/projectValidator";
+import { StyledGreenDone } from '../styledComponents/styledText';
 
 type ProjectHeaderProps = {
   name: string;
@@ -66,7 +67,11 @@ const ProjectHeader: React.FC<ProjectHeaderProps> = ({
           </>
         ) : (
           <>
-            <ProjectName>{name}</ProjectName>
+            <ProjectContainer>
+  <ProjectName>{name}</ProjectName>
+  {status === 'FINISHED' && <StyledGreenDone />}
+</ProjectContainer>
+
             <ProjectCode>{code}</ProjectCode>
           </>
         )}
